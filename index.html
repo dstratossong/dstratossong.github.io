@@ -1,1 +1,109 @@
-Hello World
+
+
+<html>
+
+<body style="background-color:red">
+
+<script>
+var color_g = 0;
+
+
+var colorwheel = [];
+var R = 255;
+var G = 0;
+var B = 0;
+
+function hexOneDigit (num) {
+	switch (num) {
+	case 0:
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+		return num;
+	case 10:
+		return 'A';
+	case 11:
+		return 'B';
+	case 12:
+		return 'C';
+	case 13:
+		return 'D';
+	case 14:
+		return 'E';
+	case 15:
+		return 'F';
+	}
+}
+
+function convertToHex (num) {
+	if (num < 0 || num > 255) {
+		return 0;
+	} else {
+		return hexOneDigit(parseInt(num/16)).toString() + hexOneDigit(num%16).toString();
+	}
+}
+
+
+
+function generatewheel () {
+	while (B < 255) {
+		colorwheel.push('#' + convertToHex(R) + convertToHex(G) + convertToHex(B));
+		B++;
+	}
+	while (R > 0) {
+		colorwheel.push('#' + convertToHex(R) + convertToHex(G) + convertToHex(B));
+		R--;
+	}
+	while (G < 255) {
+		colorwheel.push('#' + convertToHex(R) + convertToHex(G) + convertToHex(B));
+		G++;
+	}
+	while (B > 0) {
+		colorwheel.push('#' + convertToHex(R) + convertToHex(G) + convertToHex(B));
+		B--;
+	}
+	while (R < 255) {
+		colorwheel.push('#' + convertToHex(R) + convertToHex(G) + convertToHex(B));
+		R++;
+	}
+	while (G > 0) {
+		colorwheel.push('#' + convertToHex(R) + convertToHex(G) + convertToHex(B));
+		G--;
+	}
+}
+
+function fcn () {
+	color_g += 10;
+	if (color_g > 1530) color_g = 0;
+	var color = colorwheel[color_g];
+	console.debug("color: " + color);
+	
+	document.body.style.backgroundColor = color;
+}
+var intervalID;
+
+function start () {
+	intervalID = setInterval(fcn, 40);
+}
+
+function stop () {
+	clearInterval(intervalID);
+}
+
+window.onload = generatewheel();
+</script>
+
+<h1>Hello World</h1>
+
+<input type="button" onclick="javascript:start()" value="Click This For Magic" />
+<input type="button" onclick="javascript:stop()" value="Click This to Stop" />
+
+
+</body>
+</html>

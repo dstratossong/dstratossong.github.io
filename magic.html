@@ -1,0 +1,110 @@
+
+
+<html>
+ 
+<head>
+<title>David Song</title>
+</head>
+
+<body>
+
+<style>
+
+body {
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+}
+
+.body-wrapper {
+	width: 60%;
+	margin: 0 auto;
+}
+
+.logo {
+	position: relative;
+	float: left;
+	height:100%;
+	background-color: rgb(25, 25, 255);
+}
+
+#logo {
+	font-family: Helvetica;
+	font-style: italic;
+	font-size: 30px;
+	padding: 10px;
+	color: white;
+}
+
+#this_div {
+	background-color: red;
+	width: 200px;
+	height: 200px;
+}
+
+.buttons {
+	background-color: white;
+	width: 100px;
+	height: 50px;
+	position: relative;
+	float: left;
+}
+
+.banner {
+	top:0px;
+	height: 40px;
+	width: 100%;
+	background-color: rgb(100, 100, 255);
+	position: fixed;
+}
+
+</style>
+
+<script src="scripts/color-wheel.js"></script>
+<script src="scripts/lorem-ipsum.js"></script>
+<script>
+
+var intervalID;
+var intervalTime = 50;
+var running = false;
+
+function changeColor () {
+	document.getElementById("this_div").style.backgroundColor = increment();
+}
+
+function start () {
+	if (running) return;
+	intervalID = setInterval(changeColor, intervalTime);
+	running = true;
+}
+
+function stop () {
+	clearInterval(intervalID);
+	running = false;
+}
+
+window.onload = function () {
+	fillLoremIpsum(document.getElementById('lorem-ipsum'));
+}
+
+</script>
+<div class="body-wrapper">
+
+<div class="banner" >
+	<div class="logo"><span id="logo">After School</span></div>
+</div>
+
+<h1>Want to see Magic?</h1>
+
+<div id="this_div"></div>
+<br />
+<a href="javascript:start()" class="buttons" ><span><em>Magic</em></span></a>
+<a href="javascript:stop()"  class="buttons" ><span><em>Stop </em></span></a>
+
+
+<div id="lorem-ipsum"></div>
+
+
+</div>
+</body>
+</html>

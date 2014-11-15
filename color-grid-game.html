@@ -1,0 +1,99 @@
+<style>
+
+#game {
+	position: relative;
+	float: left;
+}
+
+#interface {
+	position: relative;
+	float: left;
+}
+
+</style>
+
+<script src="scripts/color-grid-game.js" ></script>
+<script>
+
+var CELL_SIZE = 50;
+
+var width, height;
+
+
+function setWidth(width) {
+	this.width = width; 
+}
+function setHeight(height) {
+	this.height = height;
+}
+
+function initializeGame() {
+	// #####
+	console.log('Creating 2D Array Grid');
+	grid = [];
+	fillGridWithRandomNumbers(width, height);
+	printGrid();
+
+	// #####
+	console.log('Hiding Initialization Div');
+	document.getElementById("initialize").style.visibility = 'hidden';
+
+	// #####
+	console.log('Creating Canvas Objects');
+	var myCanvas = document.getElementById('myCanvas');
+	myCanvas.width = width*CELL_SIZE;
+	myCanvas.height = height*CELL_SIZE;
+	myCanvas.style.visibility = 'visible';
+	// myCanvas.style.backgroundColor = 'black';
+	drawCanvas(myCanvas);
+
+	// #####
+	console.log('Creating Interface Objects');
+	var colorSelect = document.getElementById('colorSelect');
+	colorSelect.style.visibility = 'visible';
+	for (var i = 0; i < NUMBER_OF_COLORS; i ++) {
+		colorSelect.innerHTML += "<option value=\'" + i +"\' />" + COLOR_MAPPING[i] + "</option>";
+	}
+}
+
+function drawCanvas() {
+	var myCanvas = document.getElementById('myCanvas');
+	var context = myCanvas.getContext('2d')
+	context.clearRect(0, 0, myCanvas.width, myCanvas.height);
+
+	for (var i = 0; i < grid.length; i ++) {
+		for (var j = 0; j < grid[i].length; j ++) {
+			context.fillStyle = COLOR_MAPPING[grid[i][j]];
+			context.fillRect(CELL_SIZE*j, CELL_SIZE*i, CELL_SIZE, CELL_SIZE);
+		}
+	}
+}
+
+function update(color) {
+	changeColor(color);
+	drawCanvas();
+}
+
+</script>
+
+
+<div id="initialize">
+<fieldset>
+	Size of grid: 
+	Width: <input type="number" onchange="javascript:setWidth(this.value)" style="width:30px;"/>
+	Height: <input type="number" onchange="javascript:setHeight(this.value)" style="width:30px;" />
+	<input type="button" value="Game On" onclick="javascript:initializeGame()" /><br />
+</fieldset>
+</div>
+
+
+<div id="game">
+<canvas id="myCanvas" width="800" height="100" style="border:1px solid #c3c3c3; visibility:hidden;">
+</canvas>
+</div>
+
+<div id="interface">
+<select id="colorSelect" size="6" style='visibility:hidden' onclick='update(this.value)'>
+	
+</select>
+</div>

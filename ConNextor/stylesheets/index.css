@@ -3,6 +3,7 @@
 
 @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
 @import url(http://fonts.googleapis.com/css?family=Allerta);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400,300);
 
 
 body {
@@ -43,7 +44,7 @@ body {
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
-    font-family: 'Source Code Pro';
+    font-family: 'Open Sans', sans-serif;
     font-size: 48pt;
     color: white;
 }
@@ -52,7 +53,7 @@ body {
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
-    font-family: 'Allerta', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 24pt;
     color: white;
 }
@@ -61,7 +62,8 @@ body {
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
-    font-family: 'Allerta', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
     font-size: 20pt;
     color: white;
 }
@@ -129,8 +131,6 @@ body {
     color: black;
     text-align: center;
 }
-
-
 
 .sub-point-container {
     width: 100%;

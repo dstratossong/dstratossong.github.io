@@ -12,6 +12,7 @@
 
 </style>
 
+<script src="scripts/parseGETParameters.js" ></script>
 <script src="scripts/color-grid-game.js" ></script>
 <script>
 
@@ -57,6 +58,8 @@ function initializeGame() {
 }
 
 function drawCanvas() {
+	console.log('Drawing Canvas');
+
 	var myCanvas = document.getElementById('myCanvas');
 	var context = myCanvas.getContext('2d')
 	context.clearRect(0, 0, myCanvas.width, myCanvas.height);
@@ -73,6 +76,18 @@ function update(color) {
 	changeColor(color);
 	drawCanvas();
 }
+
+var param = parseGETParameters(window.location.search);
+
+function loadWithParam() {
+	if (param.width != null && param.length != null) {
+		setWidth(param.width);
+		setHeight(param.length);
+		initializeGame();
+	}
+}
+
+window.onload = loadWithParam;
 
 </script>
 

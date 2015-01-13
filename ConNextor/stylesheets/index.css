@@ -4,13 +4,23 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
 @import url(http://fonts.googleapis.com/css?family=Allerta);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400,300);
-
+@import url(http://fonts.googleapis.com/css?family=Raleway:200,300,400,700,800);
 
 body {
     margin: 0px;
     padding: 0px;
     width: 100%;
     height: 100%;
+}
+
+#waitingDiv {
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    z-index: 6;
+    width: 100%;
+    height: 100%;
+    background-color: white;
 }
 
 .top-container {
@@ -40,11 +50,15 @@ body {
     transform: translateY(-50%);
 }
 
+.logo-text, .short-description, .long-description {
+    font-family: 'Raleway', sans-serif;
+}
+
 .logo-text {
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
-    font-family: 'Open Sans', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
     font-size: 48pt;
     color: white;
 }
@@ -53,7 +67,7 @@ body {
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
-    font-family: 'Open Sans', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
     font-size: 24pt;
     color: white;
 }
@@ -62,7 +76,7 @@ body {
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
-    font-family: 'Open Sans', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
     font-weight: 300;
     font-size: 20pt;
     color: white;

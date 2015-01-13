@@ -3,7 +3,7 @@
 
 $(document).ready(function(){
     start();
-
+    $( ".waitingDiv" ).remove();
 });
 
 $(window).scroll(function() {

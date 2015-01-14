@@ -7,7 +7,8 @@
     <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="libs/bootstrap/3.2.0/css/bootstrap.min.css" />
     <!--<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>-->
-    <script src="libs/jquery/1.11.2/jquery-1.11.2.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    
     <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
     <script src="libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
@@ -16,6 +17,7 @@
 
     <!--stylesheets-->
     <script type="text/javascript" src="scripts/scroll.js"></script>
+    <script type="text/javascript" src="scripts/outpost.js"></script>
 
 </head>
 <body>
@@ -34,12 +36,11 @@
             <p class="long-description">A passionate community that builds dreams</p>
         </div>
     </div>
-    <!--<div class="blank-middle"></div>-->
 
     <div class="main-point-container">
         <div class="container main-point">
             <div class="row">
-                <div class="col-md-5 col-md-offset-6">
+                <div class="col-sm-5 col-sm-offset-6">
 
                     <!--<div class="main-point">-->
                     <h2 class="main-point-text">Get Started</h2>
@@ -61,7 +62,7 @@
 
         <div class="container main-point">
             <div class="row">
-                <div class="col-md-5 col-md-offset-6">
+                <div class="col-sm-5 col-sm-offset-6">
 
                     <!--<div class="main-point">-->
                     <h2 class="main-point-text">Team Up</h2>
@@ -83,7 +84,7 @@
 
         <div class="container main-point">
             <div class="row">
-                <div class="col-md-5 col-md-offset-6">
+                <div class="col-sm-5 col-sm-offset-6">
 
                     <!--<div class="main-point">-->
                     <h2 class="main-point-text">Put to Action</h2>
@@ -105,7 +106,7 @@
 
         <div class="container main-point">
             <div class="row">
-                <div class="col-md-5 col-md-offset-6">
+                <div class="col-sm-5 col-sm-offset-6">
                     <!--<div class="main-point">-->
                     <h2 class="main-point-text">Gain Support</h2>
 
@@ -126,7 +127,7 @@
     <div class="main-point-container">
         <div class="container main-point">
             <div class="row">
-                <div class="col-md-5 col-md-offset-6">
+                <div class="col-sm-5 col-sm-offset-6">
                     <!--<div class="main-point">-->
                     <h2 class="main-point-text">Surprise the World</h2>
                     <!--</div>-->
@@ -136,6 +137,48 @@
         </div>
     </div>
 
+    <div class="bottom-page-container">
+        <div class="quote-and-sign-up">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <blockquote>
+                            <p>No matter where you are from,</p>
+                            <p>what you are passionate about,</p>
+                            <p>in ConNextor,</p>
+                            <p>you can always find someone as special as you.</p>
+                            <footer>Elva Yang | ConNextor CEO</footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sign-up-container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 col-sm-offset-2" >
+                            <h3>Stay tuned!</h3>
+                            <input id="emailInput" type="text" placeholder="Enter your email" size="30"/>
+                            <button onclick="javascript:postEmailToServer()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container" >
+            <div class="row">
+                <div class="col-sm-5">
+                    <h4 style="color:white">The ConNextor Team</h4>
+                </div>
+                <div class="col-sm-3 col-sm-offset-4">
+                    <a href="mailto:elva@connextor.co?Subject=Hi, I want to learn more about your project!" target="_blank"><h4>Contact Us</h4></a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
@@ -143,8 +186,11 @@
     <div class="bottom-background">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-md-offset-1 light-bulb-container">
+                <div class="col-lg-4 col-lg-offset-1 light-bulb-container">
                     <div class="light-bulb"></div>
+					<div id="light_bulb_image_container" class="light-bulb-container">
+						<div id="light_bulb_image"></div>
+					</div>
                 </div>
             </div>
         </div>

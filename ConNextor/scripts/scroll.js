@@ -31,7 +31,7 @@ $(window).scroll(function () {
 	if (Math.abs(currentSection - currentDisplayingPicture) > offset) {
 		changeSection(Math.round(currentSection));
 		//drawLine($(window).width()/2.5,200, $(window).width()/2.5+160, 200);
-		$("#section1").css("position","fixed"); 
+		//$("#section1").css("position","fixed"); 
 		//drawLine($(window).width()/2.5,500, $(window).width()/2.5+160, 500);
 	}
 });

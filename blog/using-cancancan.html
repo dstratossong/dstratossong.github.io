@@ -1,0 +1,118 @@
+<h1 id="using-cancancan">Using CanCanCan</h1>
+
+<p><a href="https://github.com/CanCanCommunity/cancancan">CanCanCan</a> is a gem for permissions used in Rails development. The original gem, <a href="https://github.com/ryanb/cancan">CanCan</a> was developed by Ryan Bates of Rails Casts. After he stopped supporting the project since Rails 3, the community picked up the project, maintaining much of the original features over the years.</p>
+
+<p><div class="toc">
+<ul>
+<li><a href="#using-cancancan">Using CanCanCan</a><ul>
+<li><ul>
+<li><a href="#extracting-permissions-to-a-single-class">Extracting permissions to a single class</a></li>
+<li><a href="#thinning-controllers">Thinning controllers</a></li>
+<li><a href="#abstracting-business-logic-from-views">Abstracting business logic from views</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</p>
+
+
+
+<h3 id="extracting-permissions-to-a-single-class">Extracting permissions to a single class</h3>
+
+<p>To use permissions, we first have to define them, and this is done in the file <code>ability.rb</code>. In here, CanCanCan provides the flexible <code>can</code> and <code>cannot</code> methods, which we can use to check the abilities of the <code>current_user</code> against a resource. More specifically, we can define rules to use against a specific instance of a model, for example <code>project</code>. This instance does not restrict to a model: </p>
+
+
+
+<pre class="prettyprint"><code class="language-ruby hljs "><span class="hljs-comment"># ability.rb</span>
+can <span class="hljs-symbol">:manage</span>, <span class="hljs-constant">WelcomeController</span>
+can [<span class="hljs-symbol">:edit</span>, <span class="hljs-symbol">:update</span>], <span class="hljs-constant">Project</span> <span class="hljs-keyword">do</span> |project|
+  user == project.owner
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># welcome_controller.rb</span>
+authorize! <span class="hljs-symbol">:index</span>, <span class="hljs-keyword">self</span></code></pre>
+
+<p>A controller like the <code>WelcomeController</code> does not have a model instance which it manages. In this case, we check against the controller itself in a method, passing <code>self</code> to the <code>authorize</code> method (taking advantage of Ruby as an object oriented language). In the <code>ProjectController</code>, we can pass in the <code>@project</code> instance and get the appropriate response. </p>
+
+<p>By using CanCanCan’s setup, we eliminate those scattered if-statements that usually hang around the beginning of a method like:</p>
+
+
+
+<pre class="prettyprint"><code class="language-ruby hljs "><span class="hljs-comment"># some_controller.rb</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> </span>show
+  <span class="hljs-variable">@model</span> = <span class="hljs-constant">Model</span>.find(params[<span class="hljs-symbol">:id</span>])
+  <span class="hljs-keyword">if</span> <span class="hljs-variable">@model</span>.user == current_user
+    <span class="hljs-comment"># do something</span>
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-comment"># throw something</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+
+<p>Moreover, we have collected all the rules into a single method, which makes changing permissions much easier. The only possible downside might be that it makes creating new scaffolds a bit harder, as you’d have to worry about setting permissions much before you’d prefer to. </p>
+
+<p>A worry that came up, especially with developers who have experience dealing large-scale applications, is that they prefer to define permissions in the database[^database]. In a simple and rapid product pushing environment, we argue that if we change permissions, we at least have to change something somewhere else in the codebase. This is saying that we simply cannot handle on-the-fly permission changing with the current state of code. Therefore, we’d have to redeploy anyway, so we can keep permission as part of the codebase. CanCanCan does in fact provide loading database permissions. See <a href="https://github.com/CanCanCommunity/cancancan/wiki/Abilities-in-Database">Database Permissions</a> </p>
+
+
+
+<h3 id="thinning-controllers">Thinning controllers</h3>
+
+<p>CanCanCan provides methods that eliminates repeating lines in controllers, a feature that greatly accommodates Rails’ DRY philosophy. For example, this could further reduce the <code>show</code> method:</p>
+
+
+
+<pre class="prettyprint"><code class="language-ruby hljs "><span class="hljs-comment"># some_controller.rb</span>
+
+<span class="hljs-comment"># before</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> </span>show
+  <span class="hljs-variable">@model</span> = <span class="hljs-constant">Model</span>.find(params[<span class="hljs-symbol">:id</span>])
+  authorize! <span class="hljs-symbol">:read</span>, <span class="hljs-variable">@model</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># after</span>
+load_and_authorize_resource
+<span class="hljs-function"><span class="hljs-keyword">def</span> </span>show
+  <span class="hljs-comment"># nothing is needed</span>
+<span class="hljs-keyword">end</span></code></pre>
+
+<p>This <code>load_and_authorize_resource</code> method is in the scope of the entire class, so other methods do not have to explicitly find their methods at all. In methods like <code>create</code> and <code>update</code>, CanCanCan expects a method defined as <code>model_params</code> (where model is the name of the specific model), and this enforces the usage of strong parameters as well (Rails 4+). </p>
+
+<p>Variations to this method, <code>load_resource</code> and <code>authorize_resource</code>, are both provided. All three variations can take a symbol for the name of the model to load, which is defaulted to the name of the controller. The extended benefit of this feature is that it accounts for nested resources:</p>
+
+
+
+<pre class="prettyprint"><code class="language-ruby hljs "><span class="hljs-comment"># routes.rb</span>
+resources <span class="hljs-symbol">:project</span> <span class="hljs-keyword">do</span>
+  resources <span class="hljs-symbol">:tasks</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># tasks_controller.rb</span>
+load_and_authorize_resource <span class="hljs-symbol">:project</span>
+load_and_authorize_resource <span class="hljs-symbol">:task</span>, <span class="hljs-symbol">through:</span> <span class="hljs-symbol">:project</span></code></pre>
+
+<p>This gives us a <code>@project</code> and <code>@task</code> instance in every method, and also gives us incentive to use Rails’ resourceful routes. </p>
+
+<p>Furthermore, CanCanCan has the assurance method <code>check_authorization</code> that, when put in <code>ApplicationController</code>, will raise an exception if any method of any controller does not have the authorize method. CanCanCan allows us to skip checks for specific controllers by adding <code>skip_authorization_check</code>. We don’t encourage using this method because it lets business logic slip into specific controllers when we have already encapsulated it well. We use the trick of checking for controller instances (see before) to ensure we have an authorize for each method. We encourage developers to define abilities first and not wait until their scaffold is complete, as it will eliminate mistakes of forgetting permission checking. See also, <a href="https://github.com/CanCanCommunity/cancancan/wiki/Testing-Abilities">Integration Testing</a>.</p>
+
+
+
+<h3 id="abstracting-business-logic-from-views">Abstracting business logic from views</h3>
+
+<p>CanCanCan allows us to check permissions in the views too; we take full advantage of this:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs sql"># ability.rb
+can :follow, Profile <span class="hljs-operator"><span class="hljs-keyword">do</span> |profile|
+  (<span class="hljs-keyword">user</span>.profile != profile) <span class="hljs-keyword">and</span> (<span class="hljs-keyword">not</span> UserFollow.find_by(follower_id: <span class="hljs-keyword">user</span>.id, followee_id: profile.<span class="hljs-keyword">user</span>.id))
+<span class="hljs-keyword">end</span>
+can :unfollow, Profile <span class="hljs-keyword">do</span> |profile|
+  (<span class="hljs-keyword">user</span>.profile != profile) <span class="hljs-keyword">and</span> UserFollow.find_by(follower_id: <span class="hljs-keyword">user</span>.id, followee_id: profile.<span class="hljs-keyword">user</span>.id)
+<span class="hljs-keyword">end</span>
+
+&lt;!-- _follow_button.html.erb --&gt;
+&lt;%= button_to <span class="hljs-string">'Follow'</span>, follow_profile_path(profile) <span class="hljs-keyword">if</span> can? :follow, profile %&gt;
+&lt;%= button_to <span class="hljs-string">'Unfollow'</span>, unfollow_profile_path(profile) <span class="hljs-keyword">if</span> can? :unfollow, profile %&gt;</span></code></pre>
+
+<p>Here, if a user can both follow and unfollow a profile, they would definitely see both buttons. We control this inside <code>ability.rb</code>, where it is impossible for both permissions to satisfy. There are cases where a user can neither follow nor unfollow a user (e.g. they are seeing their own profile). This logic is all handled inside ability, and the view is left only in charge of presentation.</p>

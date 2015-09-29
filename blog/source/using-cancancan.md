@@ -1,6 +1,10 @@
 Using CanCanCan
 ===============
 
+_September 12nd, 2015_
+
+------
+
 [CanCanCan](https://github.com/CanCanCommunity/cancancan) is a gem for permissions used in Rails development. The original gem, [CanCan](https://github.com/ryanb/cancan) was developed by Ryan Bates of Rails Casts. After he stopped supporting the project since Rails 3, the community picked up the project, maintaining much of the original features over the years.
 
 [TOC]

@@ -88,3 +88,4 @@ end
 <%= button_to 'Unfollow', unfollow_profile_path(profile) if can? :unfollow, profile %>
 ```
 Here, if a user can both follow and unfollow a profile, they would definitely see both buttons. We control this inside `ability.rb`, where it is impossible for both permissions to satisfy. There are cases where a user can neither follow nor unfollow a user (e.g. they are seeing their own profile). This logic is all handled inside ability, and the view is left only in charge of presentation.
+

@@ -32,6 +32,7 @@ RUN bundle install
 # Add Files
 ADD . /Conjure
 ```
+
 Note that Docker cannot cache the `ADD` command, so it is the last command. 
 
 ```
@@ -41,22 +42,22 @@ development: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  host: <%= ENV['DATABASE_HOST] || "localhost" %>
+  host: <%= ENV['DATABASE_HOST'] || "localhost" %>
   port: 5432
 
-  database: connextor_development
+  database: conjure_development
   username: postgres
   password:
 
 test:
   <<: *default
-  database: connextor_test
+  database: conjure_test
 
 production:
   <<: *default
-  database: connextor_production
+  database: conjure_production
   username: postgres
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 ```
 

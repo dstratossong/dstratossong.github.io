@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,12 @@
 <link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
-<body><div class="container"><h1 id="using-cancancan">Using CanCanCan</h1>
+
+<body style="font-size: 18px">
+
+<div class="container" style="margin-bottom: 0">
+
+<h1 id="using-cancancan">Using CanCanCan</h1>
 
 <p><a href="https://github.com/CanCanCommunity/cancancan">CanCanCan</a> is a gem for permissions used in Rails development. The original gem, <a href="https://github.com/ryanb/cancan">CanCan</a> was developed by Ryan Bates of Rails Casts. After he stopped supporting the project since Rails 3, the community picked up the project, maintaining much of the original features over the years.</p>
 
@@ -124,5 +130,84 @@ can :unfollow, Profile <span class="hljs-keyword">do</span> |profile|
 &lt;%= button_to <span class="hljs-string">'Follow'</span>, follow_profile_path(profile) <span class="hljs-keyword">if</span> can? :follow, profile %&gt;
 &lt;%= button_to <span class="hljs-string">'Unfollow'</span>, unfollow_profile_path(profile) <span class="hljs-keyword">if</span> can? :unfollow, profile %&gt;</span></code></pre>
 
-<p>Here, if a user can both follow and unfollow a profile, they would definitely see both buttons. We control this inside <code>ability.rb</code>, where it is impossible for both permissions to satisfy. There are cases where a user can neither follow nor unfollow a user (e.g. they are seeing their own profile). This logic is all handled inside ability, and the view is left only in charge of presentation.</p></div></body>
+<p>Here, if a user can both follow and unfollow a profile, they would definitely see both buttons. We control this inside <code>ability.rb</code>, where it is impossible for both permissions to satisfy. There are cases where a user can neither follow nor unfollow a user (e.g. they are seeing their own profile). This logic is all handled inside ability, and the view is left only in charge of presentation.</p>
+
+
+<style>
+
+  .author-info {
+    margin: 100px 0;
+    background: #f0f0f0;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .author-info .image-column {
+    max-width: 200px;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .author-info .author-text {
+    padding: 0 20px;
+  }
+  
+  .author-info .author-text .author-name {
+    margin-bottom: 0.7em;
+  }
+  
+  .author-info .author-text .author-description {
+    font-size: 0.96em;
+  }
+  
+  /* Small Screen */
+  @media screen and (max-width: 735px) {
+    
+    .author-info .image-column {
+      display: block;
+      margin: 0 auto;
+    }
+    
+    .author-info .author-text {
+      display: block;
+      text-align: center;
+    }
+  }
+  
+  /*Large Screen*/
+  @media screen and (min-width: 736px) {
+    
+    .author-info .image-column {
+      float: left;
+    }
+    
+    .author-info .author-text {
+      float: none;
+      width: auto;
+      overflow: hidden;
+      padding-right: 40px;
+    }
+    
+    .author-info .author-text .author-name {
+      margin-top: 1em;
+    }
+  }
+
+</style>
+
+<div class="author-info">
+  <div class="image-column">
+    <img class="author-photo" src="../images/face.png" />
+  </div>
+  <div class="content-column">
+    <div class="author-text">
+      <p class="author-name h2">David Song</p>
+      <p class="author-description">I am a developer with just over 1 year of web experience, and over 7 years of competitive programming experience; Currently a third year student at the University of Waterloo. I am eager to argue for design choices, and open to critism about coding practices; I am looking to accumulate knowledge with a mind to learn, and contribute to the community with a habit to share; I'm obsessed with the most challenging problems, and have fallen for the simplest solutions. Also addicted to Netflix. </p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
 </html>

@@ -4,6 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="../scripts/enforceSSL.js"></script>
 <title>blog/using-docker</title>
 <link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
@@ -63,6 +64,8 @@ Gemfile.<span class="hljs-keyword">lock</span></code></pre>
 
 <p>Next, we want to configure our compose file. Here, I used a common.yml file as a base, which we will reuse later when creating a different compose file for production. </p>
 
+
+
 <pre class="prettyprint"><code class=" hljs livecodeserver"><span class="hljs-comment"># common.yml</span>
 postgres:
   image: postgres
@@ -71,6 +74,8 @@ web:
   <span class="hljs-command"><span class="hljs-keyword">command</span>: <span class="hljs-title">bundle</span> <span class="hljs-title">exec</span> <span class="hljs-title">rails</span> <span class="hljs-title">server</span> -<span class="hljs-title">p</span> <span class="hljs-title">3000</span> -<span class="hljs-title">b</span> <span class="hljs-string">'0.0.0.0'</span> </span>
   ports: 
     - <span class="hljs-string">"3000:3000"</span></code></pre>
+
+
 
 <pre class="prettyprint"><code class=" hljs haml"># docker-compose.yml
 db:
@@ -91,11 +96,15 @@ web:
 
 <p>Already, we can start building the application:</p>
 
+
+
 <pre class="prettyprint"><code class=" hljs bash">docker-compose build                     <span class="hljs-comment"># build</span></code></pre>
 
 <p>So what exactly does <code>docker-compose build</code> do? Note that we defined a <code>build</code> command in common.yml, which simply points to the current directory. Every other command is configured for running the container. Thus <code>docker-compose build</code> simply translates to <code>docker build .</code>, which runs the commands in the Dockerfile found in the current directory. You will see that Docker first skips the building of the db because it is simply an image (it will be built when ran). Then, Docker follows every instruction in the Dockerfile. </p>
 
 <p>Before running this server, we need to change up the database configuration. Postgres’s host is no longer localhost but db, so we need to configure it that way. To make this application still runnable with traditional methods, we will put it as an environment variable (we set its value inside docker-compose.yml)</p>
+
+
 
 <pre class="prettyprint"><code class=" hljs haskell"><span class="hljs-preprocessor"># database.yml</span>
 <span class="hljs-title">development</span>: &amp;<span class="hljs-default"><span class="hljs-keyword">default</span></span>
@@ -122,11 +131,15 @@ web:
 
 <p>Now we can run (and stop) the application. </p>
 
+
+
 <pre class="prettyprint"><code class=" hljs bash">docker-compose up <span class="hljs-operator">-d</span>                     <span class="hljs-comment"># start (daemon)</span>
 docker-compose logs                      <span class="hljs-comment"># view output</span>
 docker-compose stop                      <span class="hljs-comment"># stop daemons</span></code></pre>
 
 <p>Rails might throw an exception and kill itself when you attempt this, and it might be because the database is not created. Then simply create it by running commands inside the container:</p>
+
+
 
 <pre class="prettyprint"><code class=" hljs applescript">docker-compose <span class="hljs-command">run</span> INSTANCE COMMAND      <span class="hljs-comment"># running commands</span>
 docker-compose <span class="hljs-command">run</span> web rake db:create    <span class="hljs-comment"># e.g. create database</span>
@@ -137,11 +150,15 @@ docker-compose <span class="hljs-command">run</span> web rake db:seed      <span
 
 <p>We might want to connect to the rails console, which is as simple as running a command:</p>
 
+
+
 <pre class="prettyprint"><code class=" hljs coffeescript">docker-compose run web rails <span class="hljs-built_in">console</span>     <span class="hljs-comment"># e.g. getting console</span></code></pre>
 
 <hr>
 
 <p>Docker Machine allows us to deploy to a remote server easily. Here I will simply show the commands.</p>
+
+
 
 <pre class="prettyprint"><code class="language-bash hljs ">docker-machine create \
 --driver amazonec2 \

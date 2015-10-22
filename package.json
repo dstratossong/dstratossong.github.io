@@ -1,0 +1,21 @@
+{
+  "name": "dstratossong.github.io",
+  "version": "0.3.2",
+  "description": "My personal website",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dstratossong/dstratossong.github.io.git"
+  },
+  "author": "David Song",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/dstratossong/dstratossong.github.io/issues"
+  },
+  "homepage": "https://meetdavidsong.com",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-sass": "^0.9.2",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

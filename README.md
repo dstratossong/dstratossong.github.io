@@ -1,4 +1,4 @@
 dstratossong.github.io
 ======================
 
-My Personal Page at MeetDavidSong.me or MeetDavidSong.com
+My Personal Page at MeetDavidSong.com

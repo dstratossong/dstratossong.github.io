@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= documentTitle %></title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+
+<body>
+
+<div class="container" style="margin-bottom: 0">
+
+<%= documentHTML %>
+
+
+<style>
+
+  .author-info {
+    margin: 100px 0;
+    background: #F0FDF4;
+    border-radius: 5px;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .author-info .image-column {
+    max-width: 200px;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .author-info .author-text {
+    padding: 0 20px;
+  }
+  
+  .author-info .author-text .author-name {
+    margin-bottom: 0.7em;
+  }
+  
+  .author-info .author-text .author-description {
+    /*font-size: 0.96em;*/
+  }
+  
+  /* Small Screen */
+  @media screen and (max-width: 735px) {
+    
+    .author-info .image-column {
+      display: block;
+      margin: 0 auto;
+    }
+    
+    .author-info .author-text {
+      display: block;
+      text-align: center;
+    }
+  }
+  
+  /*Large Screen*/
+  @media screen and (min-width: 736px) {
+    
+    .author-info .image-column {
+      float: left;
+    }
+    
+    .author-info .author-text {
+      float: none;
+      width: auto;
+      overflow: hidden;
+      padding-right: 40px;
+    }
+    
+    .author-info .author-text .author-name {
+      margin-top: 1em;
+    }
+  }
+
+</style>
+
+<div class="author-info">
+  <div class="image-column">
+    <img class="author-photo" src="../images/face2.gif" />
+  </div>
+  <div class="content-column">
+    <div class="author-text">
+      <p class="author-name h2">David Song</p>
+      <p class="author-description">I am a developer with just over 1 year of web experience, and over 7 years of competitive programming experience; Currently a third year student at the University of Waterloo. I am eager to argue for design choices, and open to critism about coding practices; I am looking to accumulate knowledge with a mind to learn, and contribute to the community with a habit to share; I'm obsessed with the most challenging problems, and have fallen for the simplest solutions. Also addicted to Netflix. </p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

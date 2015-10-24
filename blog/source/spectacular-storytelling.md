@@ -1,4 +1,9 @@
+Spectacular Storytelling
+========================
 
+_November 18th, 2014_
+
+--------------
 
 How I Met Your Mother (HIMYM) ended on March 31st. I caught the big one-hour finale the day after, and I really thought that it was one big April Fool's joke.
 

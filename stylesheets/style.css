@@ -1,31 +1,76 @@
-body {
-  margin: 0px; }
+@import url("//fonts.googleapis.com/css?family=Lora|Anonymous+Pro|Oxygen");
+html, body {
+  margin: 0;
+  height: 100%; }
 
-.outer {
-  display: table;
-  position: absolute;
-  height: 100%;
-  width: 100%; }
+.c-outer {
+  display: table; }
 
-.middle {
+.c-middle {
   display: table-cell;
   vertical-align: middle; }
 
-.inner {
+.c-inner {
   margin-left: auto;
-  margin-right: auto;
-  width: 280px; }
+  margin-right: auto; }
 
-.construction-msg {
-  font-family: 'Arvo', serif;
-  font-size: 18pt;
-  text-align: center; }
+.index .cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 50px; }
+  .index .cover .face-center-container {
+    min-height: 100%;
+    width: 100%; }
+  .index .cover .face-container {
+    width: 280px; }
+    .index .cover .face-container .face-image {
+      width: 280px; }
+    .index .cover .face-container p {
+      font-family: "Oxygen", sans-serif; }
+  .index .cover .nav {
+    width: 100%;
+    height: 50px;
+    margin-bottom: -50px;
+    background-color: yellow; }
 
-.construction-msg-supp {
-  font-size: 14pt !important; }
-
-#face {
-  width: 300px;
-  height: 300px; }
+.blog {
+  /* Small Screen */
+  /*Large Screen*/ }
+  .blog .container {
+    margin-bottom: 0; }
+  .blog .author-info {
+    margin: 100px 0;
+    background: #F0FDF4;
+    border-radius: 5px;
+    height: auto;
+    overflow: hidden; }
+    .blog .author-info .image-column {
+      max-width: 200px;
+      width: 100%;
+      padding: 20px; }
+    .blog .author-info .author-text {
+      padding: 0 20px; }
+      .blog .author-info .author-text .author-name {
+        margin-bottom: 0.7em; }
+  @media screen and (max-width: 735px) {
+    .blog .author-info .image-column {
+      display: block;
+      margin: 0 auto; }
+    .blog .author-info .author-text {
+      display: block;
+      text-align: center; } }
+  @media screen and (min-width: 736px) {
+    .blog .author-info .image-column {
+      float: left; }
+    .blog .author-info .author-text {
+      float: none;
+      width: auto;
+      overflow: hidden;
+      padding-right: 40px; }
+    .blog .author-info .author-text .author-name {
+      margin-top: 1em; } }
 
 /*# sourceMappingURL=style.css.map */

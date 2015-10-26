@@ -1,5 +1,49 @@
 // Styling for /index.html
 
+
+$navbar-height:        50px;
+
 .index {
 
+  .cover {
+    // width: 100%;
+    // min-height: 100%;
+    // height: 1px;
+    position: absolute;
+    top: 0;
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+
+    padding-bottom: $navbar-height;
+
+
+    .face-center-container {
+      // position: absolute;
+      min-height: 100%;
+      width: 100%;
+    }
+
+    .face-container {
+      width: 280px;
+      
+      .face-image {
+        width: 280px;
+      }
+
+      p {
+        font-family: $oxyg-font-family;
+      }
+    }
+
+    .nav {
+      width: 100%;
+      height: $navbar-height;
+      margin-bottom: -$navbar-height;
+
+      background-color: yellow;
+    }
+  }
+  
 }
+

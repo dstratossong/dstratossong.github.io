@@ -1,17 +1,22 @@
-.outer {
-	display: table;
-	position: absolute;
-	height: 100%;
-	width: 100%;
+// Global classes file.
+// Keep all generic or reusable classes in this file.
+
+
+.c-outer {
+  display: table;
 }
 
-.middle {
-	display: table-cell;
-	vertical-align: middle;
+.c-middle {
+  display: table-cell;
+  vertical-align: middle;
 }
 
-.inner {
-	margin-left: auto;
-	margin-right: auto; 
-	width: 280px;
+.c-inner {
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+
+.nav {
+
 }

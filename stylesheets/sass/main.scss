@@ -1,19 +1,7 @@
-// Load global components
 @import "constants";
 
+@import "base";
+@import "global-classes";
 
-// -------------------------------
-
-// Global classes
-
-
-// -------------------------------
-
-// Generic classes
-
-
-
-// -------------------------------
-
-// Load other components
 @import "index";
+@import "blog";

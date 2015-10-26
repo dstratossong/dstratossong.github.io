@@ -2,86 +2,31 @@
 <html>
 
 <head>
+
+<!-- Meta Tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="David Song">
+<!-- <meta name="description" content=""> -->
+
+<!-- Title -->
 <title><%= documentTitle %></title>
-<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<!-- Assets -->
+<link rel="stylesheet" href="//stackedit.io/res-min/themes/base.css" />
+<link rel="stylesheet" href="//../stylesheets/style.css" />
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 
-<body>
+<body class="blog">
 
-<div class="container" style="margin-bottom: 0">
+<div class="container">
 
 <%= documentHTML %>
 
-
-<style>
-
-  .author-info {
-    margin: 100px 0;
-    background: #F0FDF4;
-    border-radius: 5px;
-    height: auto;
-    overflow: hidden;
-  }
-  
-  .author-info .image-column {
-    max-width: 200px;
-    width: 100%;
-    padding: 20px;
-  }
-  
-  .author-info .author-text {
-    padding: 0 20px;
-  }
-  
-  .author-info .author-text .author-name {
-    margin-bottom: 0.7em;
-  }
-  
-  .author-info .author-text .author-description {
-    /*font-size: 0.96em;*/
-  }
-  
-  /* Small Screen */
-  @media screen and (max-width: 735px) {
-    
-    .author-info .image-column {
-      display: block;
-      margin: 0 auto;
-    }
-    
-    .author-info .author-text {
-      display: block;
-      text-align: center;
-    }
-  }
-  
-  /*Large Screen*/
-  @media screen and (min-width: 736px) {
-    
-    .author-info .image-column {
-      float: left;
-    }
-    
-    .author-info .author-text {
-      float: none;
-      width: auto;
-      overflow: hidden;
-      padding-right: 40px;
-    }
-    
-    .author-info .author-text .author-name {
-      margin-top: 1em;
-    }
-  }
-
-</style>
-
 <div class="author-info">
   <div class="image-column">
-    <img class="author-photo" src="../images/face2.gif" />
+    <img class="author-photo" src="//../images/face2.gif" />
   </div>
   <div class="content-column">
     <div class="author-text">
@@ -94,19 +39,15 @@
 <!-- DISQUS -->
 <div id="disqus_thread"></div>
 <script>
-    /**
-     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-     */
     
     var PAGE_IDENTIFIER = "<%= documentTitle %>";
     
     var disqus_config = function () {
-        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = PAGE_URL;
+        this.page.identifier = PAGE_IDENTIFIER;
     };
     
-    (function() {  // DON'T EDIT BELOW THIS LINE
+    (function() {
         var d = document, s = d.createElement('script');
         
         s.src = '//meetdavidsong.disqus.com/embed.js';

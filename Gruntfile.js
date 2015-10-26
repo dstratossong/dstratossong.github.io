@@ -24,5 +24,6 @@ module.exports = function(grunt) {
 
   // Register
   grunt.registerTask('default', ['watch']);
+  grunt.registerTask('compile', ['sass']);
 
 };

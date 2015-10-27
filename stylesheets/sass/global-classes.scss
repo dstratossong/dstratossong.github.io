@@ -86,3 +86,11 @@
   position: fixed;
   bottom: 0;
 }
+
+.anchor {
+  display: block;
+  position: relative;
+  top: -$nav-height;
+
+  visibility: hidden;
+}

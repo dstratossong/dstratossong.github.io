@@ -1,26 +1,24 @@
 // Styling for /index.html
 
 
-$navbar-height:        50px;
-
 .index {
 
   .cover {
-    // width: 100%;
-    // min-height: 100%;
-    // height: 1px;
-    position: absolute;
-    top: 0;
-    bottom: 0; 
-    left: 0; 
-    right: 0;
+    width: 100%;
+    min-height: 100%;
+    height: 1px;
+    // position: absolute;
+    // top: 0;
+    // bottom: 0; 
+    // left: 0; 
+    // right: 0;
 
-    padding-bottom: $navbar-height;
+    padding-bottom: $nav-height;
 
 
     .face-center-container {
       // position: absolute;
-      min-height: 100%;
+      min-height: calc(100% - #{$nav-height});
       width: 100%;
     }
 
@@ -31,15 +29,16 @@ $navbar-height:        50px;
         width: 280px;
       }
 
-      p {
-        font-family: $oxyg-font-family;
+      .face-caption {
+        text-align: center;
+        font-family: $lora-font-family;
+        font-size: 24px;
       }
     }
 
     .nav {
-      width: 100%;
-      height: $navbar-height;
-      margin-bottom: -$navbar-height;
+      height: $nav-height;
+      margin-bottom: -$nav-height;
 
       background-color: yellow;
     }

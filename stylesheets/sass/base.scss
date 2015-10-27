@@ -5,5 +5,15 @@
 html, body {
   margin: 0;
   height: 100%;
+
+  font-family: $global-font-family;
+  font-size: $global-font-size;
+  line-height: $global-line-height;
+}
+
+
+
+p {
+  font-family: $oxyg-font-family;
 }
 

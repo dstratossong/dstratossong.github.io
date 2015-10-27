@@ -18,5 +18,71 @@
 
 
 .nav {
+  position: relative;
 
+  font-family: $nav-font-family;
+  font-size: $nav-font-size;
+  line-height: $nav-height;
+  padding: 0;
+
+  width: 100%;
+
+  %nav-group {
+    height: $nav-height;
+    // padding: ($nav-height - $nav-line-height)/2 0;
+
+    ul, ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      a {
+        height: $nav-height;
+      }
+
+      li {
+        display: inline-block;
+        height: $nav-height;
+      }
+
+      li:hover {
+        background: white;
+      }
+    }
+  }
+
+  .nav-left {
+    @extend %nav-group;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .nav-mid {
+    @extend %nav-group;
+
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-right {
+    @extend %nav-group;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.nav-fixed-top {
+  position: fixed;
+  top: 0;
+}
+
+.nav-fixed-bottom {
+  position: fixed;
+  bottom: 0;
 }

@@ -2,8 +2,20 @@
 // Keep cross-file configuration in this file.
 
 
+// Fonts Import
 $fonts-url:            "//fonts.googleapis.com/css?family=Lora|Anonymous+Pro|Oxygen";
-
 $lora-font-family:     'Lora', serif;
 $anon-font-family:     'Anonymous Pro', ;
 $oxyg-font-family:     'Oxygen', sans-serif;
+
+// Global
+$global-font-family:   $oxyg-font-family;
+$global-font-size:     18px;
+$global-line-height:   22px;
+
+
+// Navigation
+$nav-height:           50px;
+$nav-font-family:      $oxyg-font-family;
+$nav-font-size:        18px;
+$nav-line-height:      22px;

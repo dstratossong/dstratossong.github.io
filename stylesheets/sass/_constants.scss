@@ -8,14 +8,19 @@ $lora-font-family:     'Lora', serif;
 $anon-font-family:     'Anonymous Pro', ;
 $oxyg-font-family:     'Oxygen', sans-serif;
 
+// Colors
+$text-black:           #333333;
+
 // Global
 $global-font-family:   $oxyg-font-family;
 $global-font-size:     18px;
 $global-line-height:   22px;
-
+$global-font-color:    $text-black;
 
 // Navigation
 $nav-height:           50px;
 $nav-font-family:      $oxyg-font-family;
 $nav-font-size:        18px;
 $nav-line-height:      22px;
+$nav-bg-color:         #f3f3f3;
+$nav-text-color:       $text-black;

@@ -36,16 +36,18 @@
       padding: 0;
       margin: 0;
 
-      a {
-        height: $nav-height;
-      }
-
-      li {
+      a, li {
         display: inline-block;
         height: $nav-height;
       }
 
-      li:hover {
+      a, a:link, a:visited {
+        height: $nav-height;
+        color: $nav-text-color;
+        text-decoration: none;
+      }
+
+      li:hover, li:focus {
         background: white;
       }
     }
@@ -57,6 +59,10 @@
     position: absolute;
     left: 0;
     top: 0;
+
+    @media screen and (max-width: 735px) {
+      display: none;
+    }
   }
 
   .nav-mid {
@@ -66,6 +72,20 @@
     margin-right: auto;
     display: flex;
     justify-content: center;
+
+    @media screen and (max-width: 460px) {
+      width: 100%;
+
+      ul, ol {
+        display: table;
+        width: 100%;
+
+        a, li {
+          display: table-cell;
+
+        }
+      }
+    }
   }
 
   .nav-right {
@@ -74,8 +94,41 @@
     position: absolute;
     right: 0;
     top: 0;
+
+    @media screen and (max-width: 735px) {
+      display: none;
+    }
   }
 }
+
+// .project-tabs {
+//   width: 100%;
+//   padding: 10px 0 0;
+//   margin-bottom: 0;
+//   display: table;
+//   table-layout: fixed;
+//   text-align: center;
+
+//   .project-tab {
+//     list-style-type: none;
+//     display: table-cell;
+//     width: 25%;
+//     height: auto;
+//     vertical-align: bottom;
+
+//     a, a:link, a:visited {
+//       display: block;
+//       min-height: 100%;
+//       padding: 4px 10px;
+//       color: black;
+//     }
+//     a:hover, a:focus {
+//       color: $primary-color;
+//       text-decoration: none;
+//     }
+//   }
+// }
+
 
 .nav-fixed-top {
   position: fixed;
@@ -97,6 +150,6 @@
 
 .anchor-nav {
   @extend .anchor;
-  
+
   top: 0;
 }

@@ -65,7 +65,12 @@ p {
           display: table;
           width: 100%; }
           .nav .nav-mid ul a, .nav .nav-mid ul li, .nav .nav-mid ol a, .nav .nav-mid ol li {
-            display: table-cell; } }
+            display: table-cell; }
+        .nav .nav-mid .text {
+          display: none; } }
+    @media screen and (min-width: 461px) {
+      .nav .nav-mid .icon {
+        display: none; } }
   .nav .nav-right {
     position: absolute;
     right: 0;

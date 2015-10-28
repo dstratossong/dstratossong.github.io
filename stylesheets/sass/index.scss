@@ -18,7 +18,8 @@
 
     .face-center-container {
       // position: absolute;
-      min-height: calc(100% - #{$nav-height});
+      // min-height: calc(100% - #{$nav-height});
+      min-height: 100%;
       width: 100%;
     }
 
@@ -38,7 +39,7 @@
 
     .nav {
       height: $nav-height;
-      margin-bottom: -$nav-height;
+      // margin-bottom: -$nav-height;
 
       background-color: $nav-bg-color;
     }

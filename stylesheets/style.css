@@ -102,7 +102,7 @@ p {
   height: 1px;
   padding-bottom: 50px; }
   .index .cover .face-center-container {
-    min-height: calc(100% - 50px);
+    min-height: 100%;
     width: 100%; }
   .index .cover .face-container {
     width: 280px; }
@@ -114,7 +114,6 @@ p {
       font-size: 24px; }
   .index .cover .nav {
     height: 50px;
-    margin-bottom: -50px;
     background-color: #f3f3f3; }
 
 .blog {

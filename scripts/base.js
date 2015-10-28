@@ -3,8 +3,9 @@ function navScrollHook() {
   var viewPortSize = $(window).height();
 
   var nav = $('.nav');
+  var anchor = $('#nav');
 
-  if (distFromTop >= nav.offset().top - viewPortSize) {
+  if (distFromTop >= anchor.offset().top - viewPortSize) {
     nav.addClass('nav-fixed-top');
   } else {
     nav.removeClass('nav-fixed-top');

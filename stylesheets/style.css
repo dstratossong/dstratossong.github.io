@@ -71,6 +71,10 @@ p {
     @media screen and (min-width: 461px) {
       .nav .nav-mid .icon {
         display: none; } }
+    .nav .nav-mid ul li.active, .nav .nav-mid ol li.active {
+      background: #e4e4e4; }
+    .nav .nav-mid ul li.active ~ li.active, .nav .nav-mid ol li.active ~ li.active {
+      background: #f3f3f3; }
   .nav .nav-right {
     position: absolute;
     right: 0;

@@ -10,4 +10,13 @@ function navScrollHook() {
     nav.removeClass('nav-fixed-top');
   }
 
+  $(".nav-section").each(function () {
+    var sectionId = $(this).attr("id");
+    if ($(this).visible(true)) {
+      $("#" + sectionId + "-menu").addClass("active");
+    } else {
+      $("#" + sectionId + "-menu").removeClass("active");
+    }
+  });
+
 }

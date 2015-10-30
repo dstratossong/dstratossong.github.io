@@ -96,6 +96,15 @@
         display: none;
       }
     }
+
+    ul, ol {
+      li.active {
+        background: $nav-active-color;
+      }
+      li.active ~ li.active {
+        background: $nav-bg-color;
+      }
+    }
   }
 
   .nav-right {

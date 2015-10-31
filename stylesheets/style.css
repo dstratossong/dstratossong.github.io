@@ -40,6 +40,8 @@ p {
       .nav .nav-left ul a, .nav .nav-mid ul a, .nav .nav-right ul a, .nav .nav-left ul li, .nav .nav-mid ul li, .nav .nav-right ul li, .nav .nav-left ol a, .nav .nav-mid ol a, .nav .nav-right ol a, .nav .nav-left ol li, .nav .nav-mid ol li, .nav .nav-right ol li {
         display: inline-block;
         height: 50px; }
+      .nav .nav-left ul li, .nav .nav-mid ul li, .nav .nav-right ul li, .nav .nav-left ol li, .nav .nav-mid ol li, .nav .nav-right ol li {
+        padding: 0 10px; }
       .nav .nav-left ul a, .nav .nav-mid ul a, .nav .nav-right ul a, .nav .nav-left ul a:link, .nav .nav-mid ul a:link, .nav .nav-right ul a:link, .nav .nav-left ul a:visited, .nav .nav-mid ul a:visited, .nav .nav-right ul a:visited, .nav .nav-left ol a, .nav .nav-mid ol a, .nav .nav-right ol a, .nav .nav-left ol a:link, .nav .nav-mid ol a:link, .nav .nav-right ol a:link, .nav .nav-left ol a:visited, .nav .nav-mid ol a:visited, .nav .nav-right ol a:visited {
         height: 50px;
         color: #333333;

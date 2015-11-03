@@ -6,7 +6,7 @@
   .cover {
     width: 100%;
     min-height: 100%;
-    height: 1px;
+    height: $cover-min-height;
     // position: absolute;
     // top: 0;
     // bottom: 0; 
@@ -24,16 +24,16 @@
     }
 
     .face-container {
-      width: 280px;
+      width: $face-image-size;
       
       .face-image {
-        width: 280px;
+        width: $face-image-size;
       }
 
       .face-caption {
         text-align: center;
         font-family: $lora-font-family;
-        font-size: 24px;
+        font-size: $face-caption-font-size;
       }
     }
 

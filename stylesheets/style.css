@@ -13,6 +13,9 @@ body {
 p {
   font-family: "Oxygen", sans-serif; }
 
+section {
+  overflow: hidden; }
+
 .c-outer {
   display: table; }
 
@@ -40,7 +43,7 @@ p {
       .nav .nav-left ul a, .nav .nav-mid ul a, .nav .nav-right ul a, .nav .nav-left ul li, .nav .nav-mid ul li, .nav .nav-right ul li, .nav .nav-left ol a, .nav .nav-mid ol a, .nav .nav-right ol a, .nav .nav-left ol li, .nav .nav-mid ol li, .nav .nav-right ol li {
         display: inline-block;
         height: 50px; }
-      .nav .nav-left ul li, .nav .nav-mid ul li, .nav .nav-right ul li, .nav .nav-left ol li, .nav .nav-mid ol li, .nav .nav-right ol li {
+      .nav .nav-left ul a, .nav .nav-mid ul a, .nav .nav-right ul a, .nav .nav-left ol a, .nav .nav-mid ol a, .nav .nav-right ol a {
         padding: 0 10px; }
       .nav .nav-left ul a, .nav .nav-mid ul a, .nav .nav-right ul a, .nav .nav-left ul a:link, .nav .nav-mid ul a:link, .nav .nav-right ul a:link, .nav .nav-left ul a:visited, .nav .nav-mid ul a:visited, .nav .nav-right ul a:visited, .nav .nav-left ol a, .nav .nav-mid ol a, .nav .nav-right ol a, .nav .nav-left ol a:link, .nav .nav-mid ol a:link, .nav .nav-right ol a:link, .nav .nav-left ol a:visited, .nav .nav-mid ol a:visited, .nav .nav-right ol a:visited {
         height: 50px;
@@ -66,8 +69,12 @@ p {
         .nav .nav-mid ul, .nav .nav-mid ol {
           display: table;
           width: 100%; }
-          .nav .nav-mid ul a, .nav .nav-mid ul li, .nav .nav-mid ol a, .nav .nav-mid ol li {
-            display: table-cell; }
+          .nav .nav-mid ul li, .nav .nav-mid ol li {
+            display: table-cell;
+            text-align: center; }
+          .nav .nav-mid ul a, .nav .nav-mid ol a {
+            display: block;
+            padding: 0; }
         .nav .nav-mid .text {
           display: none; } }
     @media screen and (min-width: 461px) {

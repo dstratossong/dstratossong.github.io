@@ -41,7 +41,7 @@
         height: $nav-height;
       }
 
-      li {
+      a {
         padding: 0 10px;
       }
 
@@ -49,6 +49,7 @@
         height: $nav-height;
         color: $nav-text-color;
         text-decoration: none;
+
       }
 
       li:hover, li:focus {
@@ -84,9 +85,15 @@
         display: table;
         width: 100%;
 
-        a, li {
+        li {
           display: table-cell;
 
+          text-align: center;
+        }
+
+        a {
+          display: block;
+          padding: 0;
         }
       }
 
@@ -123,35 +130,6 @@
     }
   }
 }
-
-// .project-tabs {
-//   width: 100%;
-//   padding: 10px 0 0;
-//   margin-bottom: 0;
-//   display: table;
-//   table-layout: fixed;
-//   text-align: center;
-
-//   .project-tab {
-//     list-style-type: none;
-//     display: table-cell;
-//     width: 25%;
-//     height: auto;
-//     vertical-align: bottom;
-
-//     a, a:link, a:visited {
-//       display: block;
-//       min-height: 100%;
-//       padding: 4px 10px;
-//       color: black;
-//     }
-//     a:hover, a:focus {
-//       color: $primary-color;
-//       text-decoration: none;
-//     }
-//   }
-// }
-
 
 .nav-fixed-top {
   position: fixed;

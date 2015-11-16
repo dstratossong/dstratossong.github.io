@@ -3,13 +3,28 @@
 
 
 // Fonts Import
-$fonts-url:               "//fonts.googleapis.com/css?family=Lora|Anonymous+Pro|Oxygen";
+$fonts-url:               "https://fonts.googleapis.com/css?family=Raleway:200,300,400,700|Inconsolata:400,700|Lora:400,700|Anonymous+Pro:400,700|Oxygen:300,400,700";
+$rale-font-family:        'Raleway', sans-serif;
+$rale-font-x-light:       200;
+$rale-font-light:         300;
+$rale-font-normal:        400;
+$rale-font-m-bold:        600;
+$inco-font-family:        'Inconsolata', ;
+$inco-font-normal:        400;
+$inco-font-bold:          700;
 $lora-font-family:        'Lora', serif;
+$lora-font-normal:        400;
+$lora-font-bold:          700;
 $anon-font-family:        'Anonymous Pro', ;
+$anon-font-normal:        400;
+$anon-font-bold:          700;
 $oxyg-font-family:        'Oxygen', sans-serif;
+$oxyg-font-light:         300;
+$oxyg-font-normal:        400;
+$oxyg-font-bold:          700;
 
 // Colors
-$text-black:              #333333;
+$text-black:              #303030;
 
 // Global
 $global-font-family:      $oxyg-font-family;
@@ -20,14 +35,9 @@ $global-font-color:       $text-black;
 // Navigation
 $nav-height:              50px;
 $nav-font-family:         $oxyg-font-family;
+$nav-font-weight:         $oxyg-font-light;
 $nav-font-size:           18px;
 $nav-line-height:         22px;
 $nav-bg-color:            #f3f3f3;
 $nav-text-color:          $text-black;
 $nav-active-color:        #e4e4e4;
-
-
-// Cover
-$cover-min-height:        600px;
-$face-image-size:         280px;
-$face-caption-font-size:  24px;

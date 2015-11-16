@@ -1,4 +1,4 @@
-@import url("//fonts.googleapis.com/css?family=Lora|Anonymous+Pro|Oxygen");
+@import url("https://fonts.googleapis.com/css?family=Raleway:200,300,400,700|Inconsolata:400,700|Lora:400,700|Anonymous+Pro:400,700|Oxygen:300,400,700");
 html {
   height: 100%; }
 
@@ -7,8 +7,7 @@ body {
   height: 100%;
   font-family: "Oxygen", sans-serif;
   font-size: 18px;
-  line-height: 22px;
-  color: #333333; }
+  color: #303030; }
 
 p {
   font-family: "Oxygen", sans-serif; }
@@ -30,6 +29,7 @@ section {
 .nav {
   position: relative;
   font-family: "Oxygen", sans-serif;
+  font-weight: 300;
   font-size: 18px;
   line-height: 50px;
   padding: 0;
@@ -47,7 +47,7 @@ section {
         padding: 0 10px; }
       .nav .nav-left ul a, .nav .nav-mid ul a, .nav .nav-right ul a, .nav .nav-left ul a:link, .nav .nav-mid ul a:link, .nav .nav-right ul a:link, .nav .nav-left ul a:visited, .nav .nav-mid ul a:visited, .nav .nav-right ul a:visited, .nav .nav-left ol a, .nav .nav-mid ol a, .nav .nav-right ol a, .nav .nav-left ol a:link, .nav .nav-mid ol a:link, .nav .nav-right ol a:link, .nav .nav-left ol a:visited, .nav .nav-mid ol a:visited, .nav .nav-right ol a:visited {
         height: 50px;
-        color: #333333;
+        color: #303030;
         text-decoration: none; }
       .nav .nav-left ul li:hover, .nav .nav-mid ul li:hover, .nav .nav-right ul li:hover, .nav .nav-left ul li:focus, .nav .nav-mid ul li:focus, .nav .nav-right ul li:focus, .nav .nav-left ol li:hover, .nav .nav-mid ol li:hover, .nav .nav-right ol li:hover, .nav .nav-left ol li:focus, .nav .nav-mid ol li:focus, .nav .nav-right ol li:focus {
         background: white; }
@@ -118,13 +118,26 @@ section {
     min-height: 100%;
     width: 100%; }
   .index .cover .face-container {
-    width: 280px; }
+    max-width: 600px;
+    width: 100%; }
     .index .cover .face-container .face-image {
-      width: 280px; }
-    .index .cover .face-container .face-caption {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      width: 240px; }
+    .index .cover .face-container .face-title, .index .cover .face-container .face-description {
       text-align: center;
-      font-family: "Lora", serif;
-      font-size: 24px; }
+      padding: 0 10px; }
+    .index .cover .face-container .face-title {
+      font-family: "Raleway", sans-serif;
+      font-weight: 300;
+      font-size: 48px;
+      margin: 20px 0; }
+    .index .cover .face-container .face-description {
+      font-family: "Raleway", sans-serif;
+      font-weight: 300;
+      font-size: 24px;
+      margin: 0; }
   .index .cover .nav {
     height: 50px;
     background-color: #f3f3f3; }

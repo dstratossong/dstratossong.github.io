@@ -1,5 +1,17 @@
 // Styling for /index.html
 
+// Cover
+$cover-min-height:        600px;
+$face-image-size:         240px;
+$face-description-size:   600px;
+
+$face-title-font-family:  $rale-font-family;
+$face-title-font-weight:  $rale-font-light;
+$face-title-font-size:    48px;
+$face-descr-font-family:  $rale-font-family;
+$face-descr-font-weight:  $rale-font-light;
+$face-descr-font-size:    24px;
+
 
 .index {
 
@@ -7,43 +19,55 @@
     width: 100%;
     min-height: 100%;
     height: $cover-min-height;
-    // position: absolute;
-    // top: 0;
-    // bottom: 0; 
-    // left: 0; 
-    // right: 0;
 
     padding-bottom: $nav-height;
 
 
     .face-center-container {
-      // position: absolute;
-      // min-height: calc(100% - #{$nav-height});
       min-height: 100%;
       width: 100%;
     }
 
     .face-container {
-      width: $face-image-size;
+      max-width: $face-description-size;
+      width: 100%;
       
       .face-image {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
         width: $face-image-size;
       }
 
-      .face-caption {
+      .face-title, .face-description {
         text-align: center;
-        font-family: $lora-font-family;
-        font-size: $face-caption-font-size;
+        padding: 0 10px;
+      }
+
+      .face-title {
+        font-family: $face-title-font-family;
+        font-weight: $face-title-font-weight;
+        font-size: $face-title-font-size;
+        margin: 20px 0;
+      }
+
+      .face-description {
+        font-family: $face-descr-font-family;
+        font-weight: $face-descr-font-weight;
+        font-size: $face-descr-font-size;
+        margin: 0;
       }
     }
 
     .nav {
       height: $nav-height;
-      // margin-bottom: -$nav-height;
 
       background-color: $nav-bg-color;
 
     }
   }
+
+
+  
   
 }

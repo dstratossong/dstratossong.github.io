@@ -66,7 +66,7 @@
     left: 0;
     top: 0;
 
-    @media screen and (max-width: 735px) {
+    @media screen and (max-width: $screen-tablet-max) {
       display: none;
     }
   }
@@ -79,7 +79,7 @@
     display: flex;
     justify-content: center;
 
-    @media screen and (max-width: 460px) {
+    @media screen and (max-width: $screen-mobile-max) {
       width: 100%;
 
       ul, ol {
@@ -103,7 +103,7 @@
       }
     }
 
-    @media screen and (min-width: 461px) {
+    @media screen and (min-width: $screen-tablet-min) {
       .icon {
         display: none;
       }
@@ -126,7 +126,7 @@
     right: 0;
     top: 0;
 
-    @media screen and (max-width: 735px) {
+    @media screen and (max-width: $screen-tablet-max) {
       display: none;
     }
   }
@@ -154,4 +154,65 @@
   @extend .anchor;
 
   top: 0;
+}
+
+.wide {
+  @media screen and (max-width: $screen-thin) {
+    display: none;
+  }
+}
+
+.thin {
+  @media screen and (min-width: $screen-wide) {
+    display: none;
+  }
+}
+
+
+.contained {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+
+  @media screen and (max-width: $screen-mobile-max) {
+    max-width: $container-mobile-max;
+  }
+  @media screen and (min-width: $screen-tablet-min) and (max-width: $screen-tablet-max) {
+    max-width: $container-tablet-max;
+  }
+  @media screen and (min-width: $screen-laptop-min) {
+    max-width: $container-laptop-max;
+  }
+}
+
+.footer {
+  padding: 30px;
+  overflow-x: scroll;
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+
+    td {
+      vertical-align: top;
+      word-wrap: break-word;
+      
+      width: 150px;
+
+      .footer-section-title {
+        font-weight: bold;
+        text-decoration: underline;
+        margin: 10px 0 0;
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 10px;
+        margin: 5px 0;
+
+        li {
+        }
+      }
+    }
+  }
 }

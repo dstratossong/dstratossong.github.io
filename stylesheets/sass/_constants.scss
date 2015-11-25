@@ -25,6 +25,11 @@ $oxyg-font-bold:          700;
 
 // Colors
 $text-black:              #303030;
+$palette-morng-lilac:     #BE80FF;
+$palette-sweet-lilac:     #D3B2D1;
+$palette-plush-lilac:     #66668B;
+$palette-blanc-lilac:     #EFE3F3;
+$palette-light-lilac:     #C3C8E1;
 
 // Global
 $global-font-family:      $oxyg-font-family;
@@ -38,6 +43,19 @@ $nav-font-family:         $oxyg-font-family;
 $nav-font-weight:         $oxyg-font-light;
 $nav-font-size:           18px;
 $nav-line-height:         22px;
-$nav-bg-color:            #f3f3f3;
+$nav-bg-color:            #F3F3F3;
 $nav-text-color:          $text-black;
-$nav-active-color:        #e4e4e4;
+$nav-active-color:        #E4E4E4;
+
+// Screen Sizes
+$screen-mobile-max:       460px;
+$screen-tablet-min:       $screen-mobile-max + 1px;
+$screen-tablet-max:       735px;
+$screen-laptop-min:       $screen-tablet-max + 1px;
+$screen-thin:             845px;
+$screen-wide:             $screen-thin + 1px;
+
+// Container Sizes
+$container-mobile-max:    460px;
+$container-tablet-max:    735px;
+$container-laptop-max:    1440px;

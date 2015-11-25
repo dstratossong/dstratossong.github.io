@@ -2,23 +2,36 @@
 
 // Cover
 $cover-min-height:        600px;
+$cover-min-heightm:       400px;
 $face-image-size:         240px;
-$face-description-size:   600px;
+$face-description-size:   960px;
 
-$face-title-font-family:  $rale-font-family;
-$face-title-font-weight:  $rale-font-light;
+$face-title-font-family:  $lora-font-family;
+$face-title-font-weight:  $lora-font-normal;
 $face-title-font-size:    48px;
+$face-title-font-sizem:   40px;
+$face-title-line-height:  50px;
+$face-title-line-heightm: 42px;
+$face-title-margin-top:   40px;
+$face-title-margin-topm:  30px;
 $face-descr-font-family:  $rale-font-family;
 $face-descr-font-weight:  $rale-font-light;
-$face-descr-font-size:    24px;
+$face-descr-font-size:    23px;
+$face-descr-font-sizem:   19px;
 
+$footer-bg-color:         $palette-plush-lilac;
 
 .index {
 
   .cover {
     width: 100%;
     min-height: 100%;
-    height: $cover-min-height;
+    @media screen and (min-width: $screen-tablet-min) {
+      height: $cover-min-height;
+    }
+    @media screen and (max-width: $screen-mobile-max) {
+      height: $cover-min-heightm;
+    }
 
     padding-bottom: $nav-height;
 
@@ -47,15 +60,30 @@ $face-descr-font-size:    24px;
       .face-title {
         font-family: $face-title-font-family;
         font-weight: $face-title-font-weight;
-        font-size: $face-title-font-size;
-        margin: 20px 0;
+        text-decoration: underline;
+        @media screen and (min-width: $screen-tablet-min) {
+          margin: $face-title-margin-top 0 0 0;
+          font-size: $face-title-font-size;
+          line-height: $face-title-line-height;
+        }
+        @media screen and (max-width: $screen-mobile-max) {
+          margin: $face-title-margin-topm 0 0 0;
+          font-size: $face-title-font-sizem;
+          line-height: $face-title-line-heightm;
+        }
       }
 
       .face-description {
         font-family: $face-descr-font-family;
-        font-weight: $face-descr-font-weight;
-        font-size: $face-descr-font-size;
         margin: 0;
+        font-weight: $face-descr-font-weight;
+
+        @media screen and (min-width: $screen-tablet-min) {
+          font-size: $face-descr-font-size;
+        }
+        @media screen and (max-width: $screen-mobile-max) {
+          font-size: $face-descr-font-sizem;
+        }
       }
     }
 
@@ -67,7 +95,8 @@ $face-descr-font-size:    24px;
     }
   }
 
-
-  
+  #footer-sect {
+    background-color: $footer-bg-color;
+  }
   
 }

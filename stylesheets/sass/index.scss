@@ -19,7 +19,7 @@ $face-descr-font-weight:  $rale-font-light;
 $face-descr-font-size:    23px;
 $face-descr-font-sizem:   19px;
 
-$footer-bg-color:         $palette-plush-lilac;
+$footer-bg-color:         $background-color;
 
 .index {
 
@@ -89,14 +89,52 @@ $footer-bg-color:         $palette-plush-lilac;
 
     .nav {
       height: $nav-height;
-
-      background-color: $nav-bg-color;
-
     }
   }
 
-  #footer-sect {
+  #contact-sect {
+    background: url("http://media.tumblr.com/9ef30dfa645e5feb5fea3d71b8079ecb/tumblr_inline_momefhKB341qz4rgp.jpg") no-repeat center;
+
+    .contact-container {
+
+      text-align: center;
+
+      ul.contact-links {
+        list-style: none;
+        padding: 0;
+        text-align: initial;
+
+        @media screen and (min-width: $screen-tablet-min) {
+          margin: 50px 20% 50px 10%;
+          float: right;
+        }
+
+        @media screen and (max-width: $screen-mobile-max) {
+          margin: 50px 0;
+          display: inline-block;
+        }
+
+        li button, li a.button {
+          padding-left: 40px;
+          font-family: $lora-font-family;
+
+          i {
+            margin: 0 5px;
+          }
+        }
+      }
+    }
+  }
+
+  .footer-sect {
     background-color: $footer-bg-color;
+    overflow: hidden;
+
+    .closing-sentence {
+      color: $text-white;
+      text-align: center;
+      padding: 0 $global-leftright-pad;
+    }
   }
   
 }

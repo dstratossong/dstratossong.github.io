@@ -2,7 +2,7 @@
 // Keep cross-file configuration in this file.
 
 
-// Fonts Import
+// --- Fonts ---
 $fonts-url:               "https://fonts.googleapis.com/css?family=Raleway:200,300,400,700|Inconsolata:400,700|Lora:400,700|Anonymous+Pro:400,700|Oxygen:300,400,700";
 $rale-font-family:        'Raleway', sans-serif;
 $rale-font-x-light:       200;
@@ -23,21 +23,30 @@ $oxyg-font-light:         300;
 $oxyg-font-normal:        400;
 $oxyg-font-bold:          700;
 
-// Colors
+// --- Colors ---
 $text-black:              #303030;
+$text-white:              #CFCFCF;
+
 $palette-morng-lilac:     #BE80FF;
 $palette-sweet-lilac:     #D3B2D1;
 $palette-plush-lilac:     #66668B;
 $palette-blanc-lilac:     #EFE3F3;
 $palette-light-lilac:     #C3C8E1;
+$palette-complementary:   #D2E4FC;
+$palette-gloom-lilac:     #2D2D52;
 
-// Global
+$primary-color:           $palette-sweet-lilac;
+$secondary-color:         $palette-complementary;
+$background-color:        $palette-gloom-lilac;
+
+// --- Global ---
 $global-font-family:      $oxyg-font-family;
 $global-font-size:        18px;
 $global-line-height:      22px;
 $global-font-color:       $text-black;
+$global-leftright-pad:    10px;
 
-// Navigation
+// --- Navigation ---
 $nav-height:              50px;
 $nav-font-family:         $oxyg-font-family;
 $nav-font-weight:         $oxyg-font-light;
@@ -46,8 +55,9 @@ $nav-line-height:         22px;
 $nav-bg-color:            #F3F3F3;
 $nav-text-color:          $text-black;
 $nav-active-color:        #E4E4E4;
+$nav-border-size:         3px;
 
-// Screen Sizes
+// --- Screen Sizes ---
 $screen-mobile-max:       460px;
 $screen-tablet-min:       $screen-mobile-max + 1px;
 $screen-tablet-max:       735px;
@@ -55,7 +65,13 @@ $screen-laptop-min:       $screen-tablet-max + 1px;
 $screen-thin:             845px;
 $screen-wide:             $screen-thin + 1px;
 
-// Container Sizes
+// --- Container Sizes ---
 $container-mobile-max:    460px;
 $container-tablet-max:    735px;
 $container-laptop-max:    1440px;
+
+// --- Button ---
+$button-min-width:        204px;
+$button-padding:          5px 10px;
+$button-margin:           5px;
+$button-font-size:        18px;

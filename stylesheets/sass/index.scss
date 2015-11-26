@@ -94,7 +94,8 @@ $footer-bg-color:         $background-color;
 
   #contact-sect {
     background: url("http://media.tumblr.com/9ef30dfa645e5feb5fea3d71b8079ecb/tumblr_inline_momefhKB341qz4rgp.jpg") no-repeat center;
-
+    background-size: cover;
+    
     .contact-container {
 
       text-align: center;

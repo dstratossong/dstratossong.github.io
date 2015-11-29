@@ -14,9 +14,6 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-p {
-  font-family: "Oxygen", sans-serif; }
-
 section {
   overflow: hidden; }
 
@@ -62,7 +59,9 @@ a.button:hover, button:hover {
   line-height: 50px;
   padding: 0;
   background-color: #F3F3F3;
-  width: 100%; }
+  width: 100%;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
   .nav .nav-left, .nav .nav-mid, .nav .nav-right {
     height: 50px; }
     .nav .nav-left ul, .nav .nav-mid ul, .nav .nav-right ul, .nav .nav-left ol, .nav .nav-mid ol, .nav .nav-right ol {
@@ -163,7 +162,7 @@ a.button:hover, button:hover {
       max-width: 735px; } }
   @media screen and (min-width: 736px) {
     .contained {
-      max-width: 1440px; } }
+      max-width: 1200px; } }
 
 .footer {
   padding: 20px 30px 50px;
@@ -276,6 +275,20 @@ a.button:hover, button:hover {
     color: #CFCFCF;
     text-align: center;
     padding: 0 10px; }
+.index section.content {
+  font-family: "Lora", serif; }
+  .index section.content p {
+    padding: 0 10px; }
+  .index section.content p.section-title {
+    padding: 0 20px;
+    font-size: 26px;
+    text-align: center; }
+  .index section.content p.section-paragraph {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    text-align: center; }
 
 .blog {
   /* Small Screen */

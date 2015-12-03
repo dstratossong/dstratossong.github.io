@@ -19,6 +19,7 @@
 
 .nav {
   position: relative;
+  overflow: hidden;
 
   font-family: $nav-font-family;
   font-weight: $nav-font-weight;
@@ -243,4 +244,113 @@
 }
 .footer::-webkit-scrollbar { 
     display: none; 
+}
+
+.row {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+
+  %col {
+    display: block;
+    text-align: center;
+    vertical-align: top;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .col-laptop {
+    @extend %col;
+
+    @media screen and (min-width: $screen-laptop-min) {
+      display: table-cell;
+    }
+
+    &.col-halign-l {
+      @media screen and (min-width: $screen-laptop-min) {
+        padding-left: 30px;
+        text-align: left;
+      }
+    }
+
+    &.col-halign-r {
+      @media screen and (min-width: $screen-laptop-min) {
+        padding-right: 30px;
+        text-align: right;
+      }
+    }
+
+    &.col-valign-m {
+      @media screen and (min-width: $screen-laptop-min) {
+        vertical-align: middle;
+      }
+    }
+
+    &.col-valign-b {
+      @media screen and (min-width: $screen-laptop-min) {
+        vertical-align: bottom;
+      }
+    }
+  }
+
+  .col-tablet {
+    @extend %col;
+
+    @media screen and (min-width: $screen-tablet-min) {
+      display: table-cell;
+    }
+
+    &.col-halign-l {
+      @media screen and (min-width: $screen-tablet-min) {
+        padding-left: 20px;
+        text-align: left;
+      }
+    }
+
+    &.col-halign-r {
+      @media screen and (min-width: $screen-tablet-min) {
+        padding-right: 20px;
+        text-align: right;
+      }
+    }
+
+    &.col-valign-m {
+      @media screen and (min-width: $screen-tablet-min) {
+        vertical-align: middle;
+      }
+    }
+
+    &.col-valign-b {
+      @media screen and (min-width: $screen-tablet-min) {
+        vertical-align: bottom;
+      }
+    }
+  }
+
+  .col-mobile {
+    @extend %col;
+
+    display: table-cell;
+
+    &.col-halign-l {
+      padding-left: 10px;
+      text-align: left;
+    }
+
+    &.col-halign-r {
+      padding-right: 10px;
+      text-align: right;
+    }
+
+    &.col-valign-m {
+      vertical-align: middle;
+    }
+
+    &.col-valign-b {
+      vertical-align: bottom;
+    }
+  }
+
 }

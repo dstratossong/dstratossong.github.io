@@ -40,6 +40,9 @@ a.button, button {
 a.button:hover, button:hover {
   background: #66668B; }
 
+hr {
+  width: 70%; }
+
 .c-outer {
   display: table; }
 
@@ -53,6 +56,7 @@ a.button:hover, button:hover {
 
 .nav {
   position: relative;
+  overflow: hidden;
   font-family: "Oxygen", sans-serif;
   font-weight: 300;
   font-size: 18px;
@@ -196,6 +200,63 @@ a.button:hover, button:hover {
 .footer::-webkit-scrollbar {
   display: none; }
 
+.row {
+  display: table;
+  width: 100%;
+  table-layout: fixed; }
+  .row .col-laptop, .row .col-tablet, .row .col-mobile {
+    display: block;
+    text-align: center;
+    vertical-align: top; }
+    .row .col-laptop img, .row .col-tablet img, .row .col-mobile img {
+      width: 100%; }
+  @media screen and (min-width: 736px) {
+    .row .col-laptop {
+      display: table-cell; } }
+  @media screen and (min-width: 736px) {
+    .row .col-laptop.col-halign-l {
+      padding-left: 30px;
+      text-align: left; } }
+  @media screen and (min-width: 736px) {
+    .row .col-laptop.col-halign-r {
+      padding-right: 30px;
+      text-align: right; } }
+  @media screen and (min-width: 736px) {
+    .row .col-laptop.col-valign-m {
+      vertical-align: middle; } }
+  @media screen and (min-width: 736px) {
+    .row .col-laptop.col-valign-b {
+      vertical-align: bottom; } }
+  @media screen and (min-width: 461px) {
+    .row .col-tablet {
+      display: table-cell; } }
+  @media screen and (min-width: 461px) {
+    .row .col-tablet.col-halign-l {
+      padding-left: 20px;
+      text-align: left; } }
+  @media screen and (min-width: 461px) {
+    .row .col-tablet.col-halign-r {
+      padding-right: 20px;
+      text-align: right; } }
+  @media screen and (min-width: 461px) {
+    .row .col-tablet.col-valign-m {
+      vertical-align: middle; } }
+  @media screen and (min-width: 461px) {
+    .row .col-tablet.col-valign-b {
+      vertical-align: bottom; } }
+  .row .col-mobile {
+    display: table-cell; }
+    .row .col-mobile.col-halign-l {
+      padding-left: 10px;
+      text-align: left; }
+    .row .col-mobile.col-halign-r {
+      padding-right: 10px;
+      text-align: right; }
+    .row .col-mobile.col-valign-m {
+      vertical-align: middle; }
+    .row .col-mobile.col-valign-b {
+      vertical-align: bottom; }
+
 .index .cover {
   width: 100%;
   min-height: 100%;
@@ -246,6 +307,40 @@ a.button:hover, button:hover {
           font-size: 19px; } }
   .index .cover .nav {
     height: 50px; }
+.index section.content {
+  font-family: "Lora", serif; }
+  .index section.content .section-item {
+    margin: 20px 0; }
+  .index section.content .section-title-container {
+    overflow: hidden;
+    background: linear-gradient(to right, white, #e3e3e3, #e3e3e3, #e3e3e3, white); }
+  .index section.content p {
+    padding: 0 10px; }
+  .index section.content p.section-title {
+    padding: 0 20px;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    color: #2D2D52; }
+  .index section.content p.section-paragraph {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    text-align: center; }
+  .index section.content p.item-title {
+    font-size: 23px;
+    margin-bottom: 0;
+    margin-top: 5px; }
+  .index section.content p.item-description {
+    font-size: 18px;
+    margin: 0;
+    padding: 0 20px; }
+  .index section.content p.item-paragraph {
+    font-size: 18px;
+    padding: 0 20px; }
+  .index section.content img {
+    max-width: 300px; }
 .index #contact-sect {
   background: url("https://media.tumblr.com/9ef30dfa645e5feb5fea3d71b8079ecb/tumblr_inline_momefhKB341qz4rgp.jpg") no-repeat center;
   background-size: cover; }
@@ -275,20 +370,6 @@ a.button:hover, button:hover {
     color: #CFCFCF;
     text-align: center;
     padding: 0 10px; }
-.index section.content {
-  font-family: "Lora", serif; }
-  .index section.content p {
-    padding: 0 10px; }
-  .index section.content p.section-title {
-    padding: 0 20px;
-    font-size: 26px;
-    text-align: center; }
-  .index section.content p.section-paragraph {
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 20px;
-    text-align: center; }
 
 .blog {
   /* Small Screen */

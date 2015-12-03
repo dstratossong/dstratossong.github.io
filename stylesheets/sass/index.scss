@@ -20,8 +20,13 @@ $face-descr-font-size:    23px;
 $face-descr-font-sizem:   19px;
 
 $section-title-font-size: 26px;
+$section-title-color:     $palette-gloom-lilac;
 $section-para-font-size:  20px;
 $content-font-family:     $lora-font-family;
+$item-title-font-size:    23px;
+$item-descr-font-size:    18px;
+
+$section-title-bg-color:  #e3e3e3;
 
 $contact-bg-url:          "https://media.tumblr.com/9ef30dfa645e5feb5fea3d71b8079ecb/tumblr_inline_momefhKB341qz4rgp.jpg";
 
@@ -98,6 +103,63 @@ $footer-bg-color:         $background-color;
     }
   }
 
+  section.content {
+    font-family: $content-font-family;
+
+    .section-item {
+      margin: 20px 0;
+    }
+
+    .section-title-container {
+      overflow: hidden;
+      $gc: $section-title-bg-color;
+      background: linear-gradient(to right, white, $gc, $gc, $gc, white);
+    }
+
+    p {
+      padding: 0 10px;
+    }
+
+    p.section-title {
+      padding: 0 20px;
+
+      font-size: $section-title-font-size;
+      font-weight: bold;
+      text-align: center;
+      color: $section-title-color;
+    }
+
+    p.section-paragraph {
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      
+      font-size: $section-para-font-size;
+      text-align: center;
+    }
+
+    p.item-title {
+      font-size: $item-title-font-size;
+      margin-bottom: 0;
+      margin-top: 5px;
+    }
+
+    p.item-description {
+      font-size: $item-descr-font-size;
+      margin: 0;
+      padding: 0 20px;
+    }
+
+    p.item-paragraph {
+      font-size: $item-descr-font-size;
+      padding: 0 20px;
+    }
+
+    img {
+      max-width: 300px;
+    }
+  }
+
   #contact-sect {
     background: url($contact-bg-url) no-repeat center;
     background-size: cover;
@@ -141,30 +203,6 @@ $footer-bg-color:         $background-color;
       color: $text-white;
       text-align: center;
       padding: 0 $global-leftright-pad;
-    }
-  }
-
-  section.content {
-    font-family: $content-font-family;
-
-    p {
-      padding: 0 10px;
-    }
-
-    p.section-title {
-      padding: 0 20px;
-
-      font-size: $section-title-font-size;
-      text-align: center;
-    }
-
-    p.section-paragraph {
-      max-width: 760px;
-      margin-left: auto;
-      margin-right: auto;
-      
-      font-size: $section-para-font-size;
-      text-align: center;
     }
   }
   

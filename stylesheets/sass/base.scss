@@ -50,3 +50,7 @@ a.button, button {
 a.button:hover, button:hover {
   background: $palette-plush-lilac;
 }
+
+hr {
+  width: $horiz-line-width;
+}

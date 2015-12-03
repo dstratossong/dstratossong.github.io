@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:200,300,400,700|Inconsolata:400,700|Lora:400,700|Anonymous+Pro:400,700|Oxygen:300,400,700");
+@import url("//fonts.googleapis.com/css?family=Raleway:200,300,400,700|Inconsolata:400,700|Lora:400,700|Anonymous+Pro:400,700|Oxygen:300,400,700");
 html {
   height: 100%; }
 
@@ -329,9 +329,12 @@ hr {
     font-size: 20px;
     text-align: center; }
   .index section.content p.item-title {
+    font-family: "Raleway", sans-serif;
     font-size: 23px;
-    margin-bottom: 0;
+    text-decoration: underline;
     margin-top: 5px; }
+  .index section.content p.item-subtitle {
+    margin-bottom: 0; }
   .index section.content p.item-description {
     font-size: 18px;
     margin: 0;
@@ -339,10 +342,16 @@ hr {
   .index section.content p.item-paragraph {
     font-size: 18px;
     padding: 0 20px; }
-  .index section.content img {
+  .index section.content p.item-tags, .index section.content p.item-links {
+    font-family: "Raleway", sans-serif;
+    font-size: 15px;
+    padding: 0 20px; }
+  .index section.content img.waterloo {
     max-width: 300px; }
+  .index section.content img {
+    max-width: 450px; }
 .index #contact-sect {
-  background: url("https://media.tumblr.com/9ef30dfa645e5feb5fea3d71b8079ecb/tumblr_inline_momefhKB341qz4rgp.jpg") no-repeat center;
+  background: url("//media.tumblr.com/9ef30dfa645e5feb5fea3d71b8079ecb/tumblr_inline_momefhKB341qz4rgp.jpg") no-repeat center;
   background-size: cover; }
   .index #contact-sect .contact-container {
     text-align: center; }

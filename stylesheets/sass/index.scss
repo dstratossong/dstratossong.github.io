@@ -25,10 +25,11 @@ $section-para-font-size:  20px;
 $content-font-family:     $lora-font-family;
 $item-title-font-size:    23px;
 $item-descr-font-size:    18px;
+$item-misce-font-size:    15px;
 
 $section-title-bg-color:  #e3e3e3;
 
-$contact-bg-url:          "https://media.tumblr.com/9ef30dfa645e5feb5fea3d71b8079ecb/tumblr_inline_momefhKB341qz4rgp.jpg";
+$contact-bg-url:          "//media.tumblr.com/9ef30dfa645e5feb5fea3d71b8079ecb/tumblr_inline_momefhKB341qz4rgp.jpg";
 
 $footer-bg-color:         $background-color;
 
@@ -139,9 +140,15 @@ $footer-bg-color:         $background-color;
     }
 
     p.item-title {
+      font-family: $rale-font-family;
       font-size: $item-title-font-size;
-      margin-bottom: 0;
+      text-decoration: underline;
+
       margin-top: 5px;
+    }
+
+    p.item-subtitle {
+      margin-bottom: 0;
     }
 
     p.item-description {
@@ -155,8 +162,19 @@ $footer-bg-color:         $background-color;
       padding: 0 20px;
     }
 
-    img {
+    p.item-tags, p.item-links {
+      font-family: $rale-font-family;
+      font-size: $item-misce-font-size;
+
+      padding: 0 20px;
+    }
+
+    img.waterloo {
       max-width: 300px;
+    }
+
+    img {
+      max-width: 450px;
     }
   }
 

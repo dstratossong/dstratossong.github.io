@@ -5,7 +5,7 @@ html {
   height: 100%;
 }
 
-body {
+body:not(.notes) {
   margin: 0;
   height: 100%;
 

@@ -380,41 +380,47 @@ hr {
     text-align: center;
     padding: 0 10px; }
 
-.blog {
-  /* Small Screen */
-  /*Large Screen*/ }
-  .blog .container {
-    margin-bottom: 0; }
-  .blog .author-info {
-    margin: 100px 0;
-    background: #F0FDF4;
-    border-radius: 5px;
-    height: auto;
-    overflow: hidden; }
-    .blog .author-info .image-column {
-      max-width: 200px;
-      width: 100%;
-      padding: 20px; }
-    .blog .author-info .author-text {
-      padding: 0 20px; }
-      .blog .author-info .author-text .author-name {
-        margin-bottom: 0.7em; }
-  @media screen and (max-width: 735px) {
-    .blog .author-info .image-column {
-      display: block;
-      margin: 0 auto; }
-    .blog .author-info .author-text {
-      display: block;
-      text-align: center; } }
-  @media screen and (min-width: 736px) {
-    .blog .author-info .image-column {
-      float: left; }
-    .blog .author-info .author-text {
-      float: none;
-      width: auto;
-      overflow: hidden;
-      padding-right: 40px; }
-    .blog .author-info .author-text .author-name {
-      margin-top: 1em; } }
+.blog .container, .notes .container {
+  margin-bottom: 0; }
+
+.author-info {
+  margin: 100px 0;
+  background: #F0FDF4;
+  border-radius: 5px;
+  height: auto;
+  overflow: hidden; }
+  .author-info .image-column {
+    max-width: 200px;
+    width: 100%;
+    padding: 20px; }
+  .author-info .author-text {
+    padding: 0 20px; }
+    .author-info .author-text .author-name {
+      margin-bottom: 0.7em; }
+
+/* Small Screen */
+@media screen and (max-width: 735px) {
+  .author-info .image-column {
+    display: block;
+    margin: 0 auto; }
+
+  .author-info .author-text {
+    display: block;
+    text-align: center; } }
+/*Large Screen*/
+@media screen and (min-width: 736px) {
+  .author-info .image-column {
+    float: left; }
+
+  .author-info .author-text {
+    float: none;
+    width: auto;
+    overflow: hidden;
+    padding-right: 40px; }
+
+  .author-info .author-text .author-name {
+    margin-top: 1em; } }
+.notes .sequence-diagram, .notes .flow-chart, .notes .MathJax_Display {
+  overflow-x: scroll; }
 
 /*# sourceMappingURL=style.css.map */

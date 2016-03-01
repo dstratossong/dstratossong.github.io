@@ -628,7 +628,7 @@ jr <span class="hljs-variable">$31</span>              ; <span class="hljs-keywo
 lis $<span class="hljs-number">31</span>
 .word <span class="hljs-number">4</span>
 add $<span class="hljs-number">30</span>, $<span class="hljs-number">30</span>, $<span class="hljs-number">31</span>   ; move stack pointer
-add $<span class="hljs-number">31</span>, $<span class="hljs-number">30</span>, $<span class="hljs-number">0</span>    ; get back original <span class="hljs-keyword">return</span> address
+lw $<span class="hljs-number">31</span>, −<span class="hljs-number">4</span>($<span class="hljs-number">30</span>)     ; get back original <span class="hljs-keyword">return</span> address
 
 jr $<span class="hljs-number">31</span>              ; <span class="hljs-keyword">return</span> to OS (or stack upwards)</code></pre>
 
@@ -637,8 +637,6 @@ jr $<span class="hljs-number">31</span>              ; <span class="hljs-keyword
 </blockquote>
 
 <p>Simple rule for stack usage: <strong>If I push, I pop</strong></p>
-
-
 
 <h4 id="recursion-in-mips">Recursion in MIPS</h4>
 

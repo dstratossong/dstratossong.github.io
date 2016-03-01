@@ -135,7 +135,7 @@
 <li><ul>
 <li><a href="#non-deterministic-finite-automata">Non-deterministic Finite Automata</a></li>
 <li><a href="#nfa-interpreter-algorithm">NFA Interpreter Algorithm</a></li>
-<li><a href="#epsilon-nfas"><script type="math/tex" id="MathJax-Element-1">\epsilon</script>-NFAs</a></li>
+<li><a href="#epsilon-nfas"><script type="math/tex" id="MathJax-Element-180">\epsilon</script>-NFAs</a></li>
 <li><a href="#regular-expressions">Regular Expressions</a></li>
 </ul>
 </li>
@@ -143,7 +143,7 @@
 </li>
 <li><a href="#lecture-12-february-11th">Lecture 12: February 11th</a><ul>
 <li><ul>
-<li><a href="#re-to-epsilon-nfa">RE to <script type="math/tex" id="MathJax-Element-2">\epsilon</script>-NFA</a></li>
+<li><a href="#re-to-epsilon-nfa">RE to <script type="math/tex" id="MathJax-Element-181">\epsilon</script>-NFA</a></li>
 <li><a href="#circle-of-life">Circle of Life</a></li>
 <li><a href="#scanning-tokenizing">Scanning (Tokenizing)</a></li>
 <li><a href="#simplified-maximal-munch">Simplified Maximal Munch</a></li>
@@ -191,7 +191,7 @@
 <h2 id="lecture-1-january-5th">Lecture 1: January 5th</h2>
 
 <p>What is a computer?  <br>
-<script type="math/tex" id="MathJax-Element-3">CPU \longleftrightarrow RAM</script></p>
+<script type="math/tex" id="MathJax-Element-182">CPU \longleftrightarrow RAM</script></p>
 
 <blockquote>
   <p><strong>CPU</strong>, or Central Processing Unit, manipulates and control data <br>
@@ -230,7 +230,7 @@
   <p><strong>BIT</strong>, or just bit (plural bits), from the words binary digit, is either 1=on or 0=off. </p>
 </blockquote>
 
-<p>It is obvious that there are <script type="math/tex" id="MathJax-Element-4">2^n</script> distinct sequences of bits with <script type="math/tex" id="MathJax-Element-5">n</script> bits.</p>
+<p>It is obvious that there are <script type="math/tex" id="MathJax-Element-183">2^n</script> distinct sequences of bits with <script type="math/tex" id="MathJax-Element-184">n</script> bits.</p>
 
 
 
@@ -296,11 +296,11 @@ Because it makes a lot of sense in modular math (emulating continuity by looping
 
 <ol>
 <li>Write the number as an unsigned number (take absolute value) <br>
-<script type="math/tex" id="MathJax-Element-6">\lvert -3\rvert = 3 = 011</script> in binary</li>
+<script type="math/tex" id="MathJax-Element-185">\lvert -3\rvert = 3 = 011</script> in binary</li>
 <li>Negate the bits <br>
-invert <script type="math/tex" id="MathJax-Element-7">011 = 100</script> (taking 1’s complement)</li>
+invert <script type="math/tex" id="MathJax-Element-186">011 = 100</script> (taking 1’s complement)</li>
 <li>Add 1 <br>
-<script type="math/tex" id="MathJax-Element-8">100 + 001 = 101 = -3</script> in 2’s complement</li>
+<script type="math/tex" id="MathJax-Element-187">100 + 001 = 101 = -3</script> in 2’s complement</li>
 </ol>
 
 <p>To find an integer from a 2’s complement sequence of bits, simply revert these steps.</p>
@@ -318,7 +318,7 @@ invert <script type="math/tex" id="MathJax-Element-7">011 = 100</script> (taking
 </ul>
 
 <p>We can use hexadecimal to simplify binary sequences. <br>
-1010 1111 1001 1000 <script type="math/tex" id="MathJax-Element-9">\longleftrightarrow</script> 0xAF98</p>
+1010 1111 1001 1000 <script type="math/tex" id="MathJax-Element-188">\longleftrightarrow</script> 0xAF98</p>
 
 
 
@@ -401,7 +401,7 @@ invert <script type="math/tex" id="MathJax-Element-7">011 = 100</script> (taking
 <h4 id="our-machine-a-stored-program-computer">Our Machine: A Stored Program Computer</h4>
 
 <blockquote>
-  <p><strong>MIPS</strong> is 18 different 32-bit instructions encoded in 2 basic instruction formats. The CPU has 32 registers (plus <code>PC</code>, <code>IR</code>, <code>LO</code> and <code>HI</code>), and the RAM has 32-bit words, and have addresses starting from 0, and increment by 4 (bytes) until <script type="math/tex" id="MathJax-Element-10">2^{32} - 4</script></p>
+  <p><strong>MIPS</strong> is 18 different 32-bit instructions encoded in 2 basic instruction formats. The CPU has 32 registers (plus <code>PC</code>, <code>IR</code>, <code>LO</code> and <code>HI</code>), and the RAM has 32-bit words, and have addresses starting from 0, and increment by 4 (bytes) until <script type="math/tex" id="MathJax-Element-189">2^{32} - 4</script></p>
 </blockquote>
 
 <p>For example, the instruction in assmebly language, </p>
@@ -694,7 +694,7 @@ jr $<span class="hljs-number">31</span>              ; <span class="hljs-keyword
 
 
 
-<div class="sequence-diagram"><svg height="282" version="1.1" width="459" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.5px; top: -0.765625px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.2</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><marker id="raphael-marker-endblock55-obj30" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj35" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj40" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj43" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker></defs><rect x="10" y="20" width="147" height="37" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="20" y="30" width="127" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="83.5" y="38.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Assembly language</tspan></text><rect x="10" y="225" width="147" height="37" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="20" y="235" width="127" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="83.5" y="243.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Assembly language</tspan></text><path fill="none" stroke="#000000" d="M83.5,57L83.5,225" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="177" y="20" width="90" height="37" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="187" y="30" width="70" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="222" y="38.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Assembler</tspan></text><rect x="177" y="225" width="90" height="37" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="187" y="235" width="70" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="222" y="243.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Assembler</tspan></text><path fill="none" stroke="#000000" d="M222,57L222,225" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="287" y="20" width="142" height="37" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="297" y="30" width="122" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="358" y="38.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Machine Language</tspan></text><rect x="287" y="225" width="142" height="37" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="297" y="235" width="122" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="358" y="243.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Machine Language</tspan></text><path fill="none" stroke="#000000" d="M358,57L358,225" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="137.25" y="73.5" width="31" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="152.75" y="82" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">input</tspan></text><path fill="none" stroke="#000000" d="M83.5,94C83.5,94,192.2185906469822,94,217.00940208845714,94" stroke-width="2" marker-end="url(#raphael-marker-endblock55-obj30)" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="247" y="114" width="46" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="270" y="122.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Pass 1</tspan></text><path fill="none" stroke="#000000" d="M222,109L242,109" stroke-width="2" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#000000" d="M242,109L242,141" stroke-width="2" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#000000" d="M242,141C242,141,232.9191131591797,141,226.9952533841133,141" stroke-width="2" stroke-dasharray="0" marker-end="url(#raphael-marker-endblock55-obj35)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="247" y="151" width="46" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="270" y="159.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Pass 2</tspan></text><path fill="none" stroke="#000000" d="M222,146L242,146" stroke-width="2" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#000000" d="M242,146L242,178" stroke-width="2" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#000000" d="M242,178C242,178,232.9191131591797,178,226.9952533841133,178" stroke-width="2" stroke-dasharray="0" marker-end="url(#raphael-marker-endblock55-obj40)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="270" y="184.5" width="40" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="290" y="193" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">output</tspan></text><path fill="none" stroke="#000000" d="M222,205C222,205,328.4621887207031,205,352.9983962774277,205" stroke-width="2" marker-end="url(#raphael-marker-endblock55-obj43)" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path></svg></div>
+<div class="sequence-diagram"><svg height="294" version="1.1" width="443.4375" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.5px; top: -0.765625px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.2</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><marker id="raphael-marker-endblock55-obj74" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj79" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj84" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj87" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker></defs><rect x="10" y="20" width="140.6875" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="19.984375" y="30" width="120.6875" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="80.34375" y="39.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Assembly language</tspan></text><rect x="10" y="235" width="140.6875" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="19.984375" y="245" width="120.6875" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="80.34375" y="254.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Assembly language</tspan></text><path fill="none" stroke="#000000" d="M80.34375,59L80.34375,235" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="170.6875" y="20" width="85.4375" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="180.703125" y="30" width="65.4375" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="213.40625" y="39.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Assembler</tspan></text><rect x="170.6875" y="235" width="85.4375" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="180.703125" y="245" width="65.4375" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="213.40625" y="254.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Assembler</tspan></text><path fill="none" stroke="#000000" d="M213.40625,59L213.40625,235" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="276.125" y="20" width="137.3125" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="286.109375" y="30" width="117.3125" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="344.78125" y="39.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Machine Language</tspan></text><rect x="276.125" y="235" width="137.3125" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="286.109375" y="245" width="117.3125" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="344.78125" y="254.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Machine Language</tspan></text><path fill="none" stroke="#000000" d="M344.78125,59L344.78125,235" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="130.140625" y="74.5" width="33.4375" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="146.875" y="84" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">input</tspan></text><path fill="none" stroke="#000000" d="M80.34375,98C80.34375,98,184.21920737996697,98,208.4128563888753,98" stroke-width="2" marker-end="url(#raphael-marker-endblock55-obj74)" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="238.390625" y="118" width="38.71875" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="257.765625" y="127.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Pass 1</tspan></text><path fill="none" stroke="#000000" d="M213.40625,113L233.40625,113" stroke-width="2" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#000000" d="M233.40625,113L233.40625,147" stroke-width="2" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#000000" d="M233.40625,147C233.40625,147,224.3253631591797,147,218.4015033841133,147" stroke-width="2" stroke-dasharray="0" marker-end="url(#raphael-marker-endblock55-obj79)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="238.390625" y="157" width="38.71875" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="257.765625" y="166.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Pass 2</tspan></text><path fill="none" stroke="#000000" d="M213.40625,152L233.40625,152" stroke-width="2" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#000000" d="M233.40625,152L233.40625,186" stroke-width="2" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#000000" d="M233.40625,186C233.40625,186,224.3253631591797,186,218.4015033841133,186" stroke-width="2" stroke-dasharray="0" marker-end="url(#raphael-marker-endblock55-obj84)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="257.625" y="191.5" width="42.90625" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="279.09375" y="201" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">output</tspan></text><path fill="none" stroke="#000000" d="M213.40625,215C213.40625,215,315.7377726659179,215,339.7716898545441,215" stroke-width="2" marker-end="url(#raphael-marker-endblock55-obj87)" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path></svg></div>
 
 <blockquote>
   <p><strong>Pass 1:</strong> The assembly program is interpretated and results in an intermediate representation and generates a symbol table. <strong>Pass 2</strong> generates the machine language </p>
@@ -930,7 +930,7 @@ fortytwo:
 <li>Pass 2 <br>
 <ul><li>output cookie (static)</li>
 <li>size of MERL file  <br>
-<ul><li>(header = 12 bytes) + (program size) + (8 <script type="math/tex" id="MathJax-Element-11">\times</script> relation_table.size bytes)</li></ul></li>
+<ul><li>(header = 12 bytes) + (program size) + (8 <script type="math/tex" id="MathJax-Element-190">\times</script> relation_table.size bytes)</li></ul></li>
 <li>size of header + program <br>
 <ul><li>(header = 12 bytes) + (program size)</li></ul></li>
 <li>output notes at the end</li></ul></li>
@@ -1229,27 +1229,27 @@ jalr $<span class="hljs-number">3</span>
   <p>An <strong>alphabet</strong> is a finite set of symbols. We usually denote an alphabet with the Greek letter Sigma. Note that it is not necessarily an ASCII character. </p>
 </blockquote>
 
-<p>For example: <script type="math/tex; mode=display" id="MathJax-Element-12">\Sigma_1 = \{ a, b, c \} </script> <script type="math/tex; mode=display" id="MathJax-Element-13">\Sigma_2 = \{ \Delta, \text{blue}, 173\}</script></p>
+<p>For example: <script type="math/tex; mode=display" id="MathJax-Element-191">\Sigma_1 = \{ a, b, c \} </script> <script type="math/tex; mode=display" id="MathJax-Element-192">\Sigma_2 = \{ \Delta, \text{blue}, 173\}</script></p>
 
 <blockquote>
   <p>A <strong>word</strong> (aka string, sentence) is a finite sequence of symbols from the alphabet. </p>
 </blockquote>
 
-<p>For example, words over <script type="math/tex" id="MathJax-Element-14">\Sigma_1</script> could be <script type="math/tex" id="MathJax-Element-15">w_1 = abba</script>. The empty word is denoted <script type="math/tex" id="MathJax-Element-16">\epsilon</script> (or <script type="math/tex" id="MathJax-Element-17">\lambda</script>).</p>
+<p>For example, words over <script type="math/tex" id="MathJax-Element-193">\Sigma_1</script> could be <script type="math/tex" id="MathJax-Element-194">w_1 = abba</script>. The empty word is denoted <script type="math/tex" id="MathJax-Element-195">\epsilon</script> (or <script type="math/tex" id="MathJax-Element-196">\lambda</script>).</p>
 
 <blockquote>
   <p>A <strong>language</strong> is a set of words (not necessarily finite). </p>
 </blockquote>
 
-<p>For example, a language over <script type="math/tex" id="MathJax-Element-18">\Sigma_1</script> could be <script type="math/tex; mode=display" id="MathJax-Element-19">L_1 = \{ a, aaa, aaaaa \}</script> <script type="math/tex; mode=display" id="MathJax-Element-20">L_2 = \{ b, ba, baa, baaa, \ldots \}</script> <script type="math/tex; mode=display" id="MathJax-Element-21">L_3 = \{ \}</script> <script type="math/tex; mode=display" id="MathJax-Element-22">L_4 = \{ \epsilon \}</script> Note that <script type="math/tex" id="MathJax-Element-23">L_2</script> is an infinite language.</p>
+<p>For example, a language over <script type="math/tex" id="MathJax-Element-197">\Sigma_1</script> could be <script type="math/tex; mode=display" id="MathJax-Element-198">L_1 = \{ a, aaa, aaaaa \}</script> <script type="math/tex; mode=display" id="MathJax-Element-199">L_2 = \{ b, ba, baa, baaa, \ldots \}</script> <script type="math/tex; mode=display" id="MathJax-Element-200">L_3 = \{ \}</script> <script type="math/tex; mode=display" id="MathJax-Element-201">L_4 = \{ \epsilon \}</script> Note that <script type="math/tex" id="MathJax-Element-202">L_2</script> is an infinite language.</p>
 
 <blockquote>
-  <p>We denote <script type="math/tex" id="MathJax-Element-24">\lvert W \rvert</script> as the size of <script type="math/tex" id="MathJax-Element-25">W</script>, where <script type="math/tex" id="MathJax-Element-26">W</script> is a word or language. </p>
+  <p>We denote <script type="math/tex" id="MathJax-Element-203">\lvert W \rvert</script> as the size of <script type="math/tex" id="MathJax-Element-204">W</script>, where <script type="math/tex" id="MathJax-Element-205">W</script> is a word or language. </p>
 </blockquote>
 
 
 
-<p><script type="math/tex; mode=display" id="MathJax-Element-27">\lvert L_1 \rvert = 3</script> <script type="math/tex; mode=display" id="MathJax-Element-28">\lvert L_2 \rvert = \infty</script> <script type="math/tex; mode=display" id="MathJax-Element-29">\lvert L_3 \rvert = 0</script> <script type="math/tex; mode=display" id="MathJax-Element-30">\lvert L_4 \rvert = 1</script> <script type="math/tex; mode=display" id="MathJax-Element-31">\lvert w_1 \rvert = 4</script></p>
+<p><script type="math/tex; mode=display" id="MathJax-Element-206">\lvert L_1 \rvert = 3</script> <script type="math/tex; mode=display" id="MathJax-Element-207">\lvert L_2 \rvert = \infty</script> <script type="math/tex; mode=display" id="MathJax-Element-208">\lvert L_3 \rvert = 0</script> <script type="math/tex; mode=display" id="MathJax-Element-209">\lvert L_4 \rvert = 1</script> <script type="math/tex; mode=display" id="MathJax-Element-210">\lvert w_1 \rvert = 4</script></p>
 
 <blockquote>
   <p><strong>Specification</strong> is a statement of what is in the language. Analogous to the English dictionary for the English language.</p>
@@ -1264,7 +1264,7 @@ jalr $<span class="hljs-number">3</span>
 </ul>
 
 <blockquote>
-  <p><strong>Recognition</strong> determines if a word is in a language. Formally, given a language <script type="math/tex" id="MathJax-Element-32">L</script> and a word <script type="math/tex" id="MathJax-Element-33">w</script>, recognition is whether <script type="math/tex" id="MathJax-Element-34">w \in L</script> – true or false.</p>
+  <p><strong>Recognition</strong> determines if a word is in a language. Formally, given a language <script type="math/tex" id="MathJax-Element-211">L</script> and a word <script type="math/tex" id="MathJax-Element-212">w</script>, recognition is whether <script type="math/tex" id="MathJax-Element-213">w \in L</script> – true or false.</p>
 </blockquote>
 
 <p>Although, in practice, when recognition returns:</p>
@@ -1316,7 +1316,7 @@ jalr $<span class="hljs-number">3</span>
 
 <p>Let’s first look at an example: </p>
 
-<p>Let <script type="math/tex" id="MathJax-Element-35">\Sigma = \{ \text{ASCII characters} \} - \{ \text{CR} \}</script></p>
+<p>Let <script type="math/tex" id="MathJax-Element-214">\Sigma = \{ \text{ASCII characters} \} - \{ \text{CR} \}</script></p>
 
 <ul>
 <li><code>L1 = {$0, $1, $2, ... , $31}</code> <br>
@@ -1342,15 +1342,15 @@ jalr $<span class="hljs-number">3</span>
 <li>finite languages</li>
 <li>union <br>
 <ul><li>of two sets</li>
-<li><script type="math/tex" id="MathJax-Element-36">T_1 \cup T_2 = \{ x \mid x \in T_1 \text{ or } x \in T_2 \}</script></li>
+<li><script type="math/tex" id="MathJax-Element-215">T_1 \cup T_2 = \{ x \mid x \in T_1 \text{ or } x \in T_2 \}</script></li>
 <li>still finite</li></ul></li>
 <li>concatenation <br>
-<ul><li><script type="math/tex" id="MathJax-Element-37">T_1 \cdot T_2 = \{ xy \mid x \in T_1 \text{ and } y \in T_2 \}</script></li>
+<ul><li><script type="math/tex" id="MathJax-Element-216">T_1 \cdot T_2 = \{ xy \mid x \in T_1 \text{ and } y \in T_2 \}</script></li>
 <li>still finite</li></ul></li>
 <li>repetition <br>
 <ul><li>Kleene Closure</li>
-<li><script type="math/tex" id="MathJax-Element-38">T^* = \{\epsilon\} \cup \{ xy \mid x\in T \text{ and } y\in T^* \}</script></li>
-<li><script type="math/tex" id="MathJax-Element-39">T^* = \bigcup_{k=0}^{\infty} T^k</script></li>
+<li><script type="math/tex" id="MathJax-Element-217">T^* = \{\epsilon\} \cup \{ xy \mid x\in T \text{ and } y\in T^* \}</script></li>
+<li><script type="math/tex" id="MathJax-Element-218">T^* = \bigcup_{k=0}^{\infty} T^k</script></li>
 <li>infinite</li></ul></li>
 </ul>
 
@@ -1372,7 +1372,7 @@ jalr $<span class="hljs-number">3</span>
 <li>states: describes what is true now <br>
 <ul><li>e.g. odd, happy</li></ul></li>
 <li>transitions:  <br>
-<ul><li>e.g. <script type="math/tex" id="MathJax-Element-40">A \xrightarrow{x} B</script></li>
+<ul><li>e.g. <script type="math/tex" id="MathJax-Element-219">A \xrightarrow{x} B</script></li>
 <li>if I am in state A and read input x, move to state B</li></ul></li>
 <li>start state: <br>
 <ul><li>the state to start from</li></ul></li>
@@ -1384,7 +1384,7 @@ jalr $<span class="hljs-number">3</span>
 
 
 
-<p><script type="math/tex; mode=display" id="MathJax-Element-41">\text{start} \xrightarrow{.} \text{dot} \xrightarrow{w} \text{dotw} \xrightarrow{o} \text{dotwo} \xrightarrow{r} \text{dotwor} \xrightarrow{d} (\text{dotword}) </script></p>
+<p><script type="math/tex; mode=display" id="MathJax-Element-220">\text{start} \xrightarrow{.} \text{dot} \xrightarrow{w} \text{dotw} \xrightarrow{o} \text{dotwo} \xrightarrow{r} \text{dotwor} \xrightarrow{d} (\text{dotword}) </script></p>
 
 <p>See asm.rkt or lexer.cpp for the implementation</p>
 
@@ -1403,14 +1403,14 @@ jalr $<span class="hljs-number">3</span>
 </ul>
 
 <blockquote>
-  <p>If we call this DFA <script type="math/tex" id="MathJax-Element-42">M</script>, then our language is <script type="math/tex" id="MathJax-Element-43">L(M)</script></p>
+  <p>If we call this DFA <script type="math/tex" id="MathJax-Element-221">M</script>, then our language is <script type="math/tex" id="MathJax-Element-222">L(M)</script></p>
 </blockquote>
 
 <p>Example 2: MIPS labels (definition), where the alphabet is ASCII characters</p>
 
 
 
-<p><script type="math/tex; mode=display" id="MathJax-Element-44">\text{start} \xrightarrow{a-zA-Z} \text{id} \xrightarrow{:} (\text{defn})</script> <script type="math/tex; mode=display" id="MathJax-Element-45">\text{id} \xrightarrow{a-zA-Z0-9} \text{id}</script></p>
+<p><script type="math/tex; mode=display" id="MathJax-Element-613">\text{start} \xrightarrow{a-zA-Z} \text{id} \xrightarrow{:} (\text{defn})</script> <script type="math/tex; mode=display" id="MathJax-Element-614">\text{id} \xrightarrow{a-zA-Z0-9} \text{id}</script></p>
 
 <table>
 <thead>
@@ -1429,7 +1429,7 @@ jalr $<span class="hljs-number">3</span>
 </tr>
 <tr>
   <td><code>a:</code></td>
-  <td><script type="math/tex" id="MathJax-Element-46">\epsilon</script> (empty word)</td>
+  <td><script type="math/tex" id="MathJax-Element-615">\epsilon</script> (empty word)</td>
 </tr>
 </tbody></table>
 
@@ -1437,29 +1437,30 @@ jalr $<span class="hljs-number">3</span>
 <p>Examples: Let $\Sigma = { a, b, c }</p>
 
 <ul>
-<li><p>strings with exactly one <code>a</code>, and exactly one <code>b</code> and no <code>c</code></p></li>
-<li><p>strings with at least one <code>a</code></p></li>
-<li><p>strings with an even number of <code>a</code>’s</p></li>
-<li><p>strings with an even number of a’s and odd number of <code>b</code>’s</p></li>
+<li>strings with exactly one <code>a</code>, and exactly one <code>b</code> and no <code>c</code> <br>
+<img src="https://meetdavidsong.com/images/cs241-images/dfa-example-1.png" alt="DFA Example 1" title=""></li>
+<li>strings with at least one <code>a</code> <br>
+<img src="https://meetdavidsong.com/images/cs241-images/dfa-example-2.png" alt="DFA Example 2" title=""></li>
+<li>strings with an even number of <code>a</code>’s <br>
+<img src="https://meetdavidsong.com/images/cs241-images/dfa-example-3.png" alt="DFA Example 3" title=""></li>
+<li>strings with an even number of a’s and odd number of <code>b</code>’s <br>
+<img src="https://meetdavidsong.com/images/cs241-images/dfa-example-4.png" alt="DFA Example 4" title=""> <br>
+Note, it is possible that <script type="math/tex" id="MathJax-Element-616">L(M) = L(M')</script> even though <script type="math/tex" id="MathJax-Element-617">M \neq M'</script>. </li>
 </ul>
 
-<p>Note, it is possible that <script type="math/tex" id="MathJax-Element-47">L(M) = L(M')</script> even though <script type="math/tex" id="MathJax-Element-48">M \neq M'</script>. </p>
-
 <blockquote>
-  <p>A DFA is a 5-tuple <script type="math/tex" id="MathJax-Element-49">(\Sigma, Q, q_0, A, \delta)</script> where</p>
+  <p>A DFA is a 5-tuple <script type="math/tex" id="MathJax-Element-618">(\Sigma, Q, q_0, A, \delta)</script> where</p>
   
   <ul>
-  <li>finite alphabet <script type="math/tex" id="MathJax-Element-50">\Sigma</script></li>
-  <li>finite set of states <script type="math/tex" id="MathJax-Element-51">Q</script></li>
-  <li>start state <script type="math/tex" id="MathJax-Element-52">q_0 \in Q</script></li>
-  <li>set of final/accepting states <script type="math/tex" id="MathJax-Element-53">A \subseteq Q</script></li>
-  <li>transition function <script type="math/tex" id="MathJax-Element-54">\delta: Q \times \Sigma \to Q</script></li>
+  <li>finite alphabet <script type="math/tex" id="MathJax-Element-619">\Sigma</script></li>
+  <li>finite set of states <script type="math/tex" id="MathJax-Element-620">Q</script></li>
+  <li>start state <script type="math/tex" id="MathJax-Element-621">q_0 \in Q</script></li>
+  <li>set of final/accepting states <script type="math/tex" id="MathJax-Element-622">A \subseteq Q</script></li>
+  <li>transition function <script type="math/tex" id="MathJax-Element-623">\delta: Q \times \Sigma \to Q</script></li>
   </ul>
 </blockquote>
 
-
-
-<p><script type="math/tex; mode=display" id="MathJax-Element-55">\Sigma = \{ a, b, c \} \\ Q = \{ noA, someA \} \\ q_0 = noA \\ A = \{ someA \} \\ \delta(noA, a) = someA \\ \delta(noA, b) = noA \\ \delta(noA, c) = noA \\ \delta(someA, a) = someA \\ \delta(someA, b) = someA \\ \delta(someA, c) = someA</script></p>
+<p><script type="math/tex; mode=display" id="MathJax-Element-234">\Sigma = \{ a, b, c \} \\ Q = \{ noA, someA \} \\ q_0 = noA \\ A = \{ someA \} \\ \delta(noA, a) = someA \\ \delta(noA, b) = noA \\ \delta(noA, c) = noA \\ \delta(someA, a) = someA \\ \delta(someA, b) = someA \\ \delta(someA, c) = someA</script></p>
 
 <p>This formal definition corresponds to our DFA for the language strings with at least one <code>a</code>.</p>
 
@@ -1467,7 +1468,7 @@ jalr $<span class="hljs-number">3</span>
 
 <h4 id="dfa-interpreter-algorithm">DFA Interpreter Algorithm</h4>
 
-<p>Input: A word <script type="math/tex" id="MathJax-Element-56">w = w_1w_2\ldots w_n</script> where each <script type="math/tex" id="MathJax-Element-57">w_i \in \Sigma</script> <br>
+<p>Input: A word <script type="math/tex" id="MathJax-Element-235">w = w_1w_2\ldots w_n</script> where each <script type="math/tex" id="MathJax-Element-236">w_i \in \Sigma</script> <br>
 Output: true if accepted, false if rejected</p>
 
 <p>Pseudocode: </p>
@@ -1483,7 +1484,7 @@ Output: true if accepted, false if rejected</p>
 <p>The problem now, is to implement the transition function somehow. Because the transition function can be big (as seen above in the definition), we do not want to check every combination. We implement this with a tuple-key dictionary, with O(1) look-up time.</p>
 
 <p>Where are DFAs used? <br>
-<script type="math/tex" id="MathJax-Element-58">CPU = DFA</script> <br>
+<script type="math/tex" id="MathJax-Element-237">CPU = DFA</script> <br>
 Every computer you will ever own. In fact, a Turning machine, is loosely a DFA and a tape (CPU and Memory)</p>
 
 
@@ -1494,28 +1495,26 @@ Every computer you will ever own. In fact, a Turning machine, is loosely a DFA a
 
 <h4 id="non-deterministic-finite-automata">Non-deterministic Finite Automata</h4>
 
-<p>Let <script type="math/tex" id="MathJax-Element-59">L = \{ bba, baa, bbaa, bbbaa, bbbbaa, \ldots \}</script>, which is either 2 b’s followed by an a, or 1 or more b’s followed by 2 a’s. <br>
+<p>Let <script type="math/tex" id="MathJax-Element-359">L = \{ bba, baa, bbaa, bbbaa, bbbbaa, \ldots \}</script>, which is either 2 b’s followed by an a, or 1 or more b’s followed by 2 a’s. <br>
 Try to derive this using a DFA. It will be ugly.</p>
 
 <p>Let’s use a NFA. </p>
 
-<p><a href="">image_for nfa</a></p>
+<p><img src="https://meetdavidsong.com/images/cs241-images/nfa.png" alt="NFA" title=""></p>
 
 <blockquote>
-  <p>In an NFA, the difference is that transitions from a state do not need to be unique. Formally, this means: <script type="math/tex; mode=display" id="MathJax-Element-60">T: Q \times \Sigma \to \mathcal{P}(Q)</script> that is, instead of <script type="math/tex" id="MathJax-Element-61">\delta</script>, <script type="math/tex" id="MathJax-Element-62">T</script> is a <em>relation</em> that returns a set of states. </p>
+  <p>In an NFA, the difference is that transitions from a state do not need to be unique. Formally, this means: <script type="math/tex; mode=display" id="MathJax-Element-360">T: Q \times \Sigma \to \mathcal{P}(Q)</script> that is, instead of <script type="math/tex" id="MathJax-Element-361">\delta</script>, <script type="math/tex" id="MathJax-Element-362">T</script> is a <em>relation</em> that returns a set of states. </p>
 </blockquote>
 
 <p>This means that we can be in “multiple states”. We recognize words if one path we go down ends in an accepting state.</p>
 
-
-
-<p><script type="math/tex; mode=display" id="MathJax-Element-63">T(start, B) = \{B_1, B_2\}</script></p>
+<p><script type="math/tex; mode=display" id="MathJax-Element-242">T(start, B) = \{B_1, B_2\}</script></p>
 
 
 
 <h4 id="nfa-interpreter-algorithm">NFA Interpreter Algorithm</h4>
 
-<p>Input: A word <script type="math/tex" id="MathJax-Element-64">w = w_1w_2\ldots w_n</script> with each <script type="math/tex" id="MathJax-Element-65">w_i \in \Sigma</script> <br>
+<p>Input: A word <script type="math/tex" id="MathJax-Element-243">w = w_1w_2\ldots w_n</script> with each <script type="math/tex" id="MathJax-Element-244">w_i \in \Sigma</script> <br>
 Output: true if accepted, false if rejected</p>
 
 
@@ -1537,33 +1536,31 @@ Output: true if accepted, false if rejected</p>
   <p>NFAs and DFAs represent the equivalent set of languages. In other words, there exists a DFA for every NFA. </p>
 </blockquote>
 
-<p>To prove this, see that all DFAs are NFAs, or <script type="math/tex" id="MathJax-Element-66">\{DFAs\} \subseteq \{NFAs\}</script></p>
+<p>To prove this, see that all DFAs are NFAs, or <script type="math/tex" id="MathJax-Element-378">\{DFAs\} \subseteq \{NFAs\}</script></p>
 
 <p>To prove other direction, we use subset construction. </p>
 
 <p>The question we ask is: What set of states am I in for each possible input from the current state? </p>
 
-<p><a href="">image_for subset_construction</a></p>
+<p><img src="https://meetdavidsong.com/images/cs241-images/subset-construction.jpg" alt="Subset Construction" title=""></p>
 
 <p>See that the size of our DFA could be exponential in size compared to its NFA counterpart. </p>
 
-<p>Exercise: Write a NFA and its DFA counterpart for all words over <script type="math/tex" id="MathJax-Element-67">\Sigma = \{ a, b \}</script> with <script type="math/tex" id="MathJax-Element-68">aba</script> as a subword.</p>
+<p>Exercise: Write a NFA and its DFA counterpart for all words over <script type="math/tex" id="MathJax-Element-379">\Sigma = \{ a, b \}</script> with <script type="math/tex" id="MathJax-Element-380">aba</script> as a subword.</p>
 
-
-
-<h4 id="epsilon-nfas"><script type="math/tex" id="MathJax-Element-69">\epsilon</script>-NFAs</h4>
+<h4 id="epsilon-nfas"><script type="math/tex" id="MathJax-Element-248">\epsilon</script>-NFAs</h4>
 
 <ul>
 <li>allow transition between states on “no input”</li>
 <li>can be used as “glue for joining” machines together</li>
 </ul>
 
-<p>It is obvious that <script type="math/tex" id="MathJax-Element-70">\epsilon</script>-NFAs can be converted to NFAs. </p>
+<p>It is obvious that <script type="math/tex" id="MathJax-Element-249">\epsilon</script>-NFAs can be converted to NFAs. </p>
 
 <ol>
-<li>take <script type="math/tex" id="MathJax-Element-71">\epsilon</script> shortcuts</li>
+<li>take <script type="math/tex" id="MathJax-Element-250">\epsilon</script> shortcuts</li>
 <li>pull back final states</li>
-<li>remove <script type="math/tex" id="MathJax-Element-72">\epsilon</script> transitions</li>
+<li>remove <script type="math/tex" id="MathJax-Element-251">\epsilon</script> transitions</li>
 <li>remove dead states</li>
 </ol>
 
@@ -1575,12 +1572,12 @@ Output: true if accepted, false if rejected</p>
   <p>A Regular Expression (RE) can be</p>
   
   <ul>
-  <li><script type="math/tex" id="MathJax-Element-73">\emptyset</script></li>
-  <li><script type="math/tex" id="MathJax-Element-74">\epsilon</script></li>
-  <li><script type="math/tex" id="MathJax-Element-75">a</script>, where <script type="math/tex" id="MathJax-Element-76">a \in \Sigma</script></li>
-  <li><script type="math/tex" id="MathJax-Element-77">E_1E_2</script> where <script type="math/tex" id="MathJax-Element-78">E_1</script> and <script type="math/tex" id="MathJax-Element-79">E_2</script> are REs</li>
-  <li><script type="math/tex" id="MathJax-Element-80">E_1 \vert E_2</script> where <script type="math/tex" id="MathJax-Element-81">E_1</script> and <script type="math/tex" id="MathJax-Element-82">E_2</script> are REs</li>
-  <li><script type="math/tex" id="MathJax-Element-83">E^*</script> where <script type="math/tex" id="MathJax-Element-84">E</script> is a RE</li>
+  <li><script type="math/tex" id="MathJax-Element-252">\emptyset</script></li>
+  <li><script type="math/tex" id="MathJax-Element-253">\epsilon</script></li>
+  <li><script type="math/tex" id="MathJax-Element-254">a</script>, where <script type="math/tex" id="MathJax-Element-255">a \in \Sigma</script></li>
+  <li><script type="math/tex" id="MathJax-Element-256">E_1E_2</script> where <script type="math/tex" id="MathJax-Element-257">E_1</script> and <script type="math/tex" id="MathJax-Element-258">E_2</script> are REs</li>
+  <li><script type="math/tex" id="MathJax-Element-259">E_1 \vert E_2</script> where <script type="math/tex" id="MathJax-Element-260">E_1</script> and <script type="math/tex" id="MathJax-Element-261">E_2</script> are REs</li>
+  <li><script type="math/tex" id="MathJax-Element-262">E^*</script> where <script type="math/tex" id="MathJax-Element-263">E</script> is a RE</li>
   </ul>
 </blockquote>
 
@@ -1609,22 +1606,22 @@ $ Sigma = {<span class="hljs-operator">a</span>, b}     L = {<span class="hljs-o
 
 
 
-<h4 id="re-to-epsilon-nfa">RE to <script type="math/tex" id="MathJax-Element-85">\epsilon</script>-NFA</h4>
+<h4 id="re-to-epsilon-nfa">RE to <script type="math/tex" id="MathJax-Element-264">\epsilon</script>-NFA</h4>
 
 <ul>
-<li><script type="math/tex" id="MathJax-Element-86">\emptyset</script> (image)</li>
-<li><script type="math/tex" id="MathJax-Element-87">\epsilon</script> (image)</li>
-<li><script type="math/tex" id="MathJax-Element-88">a</script>, where <script type="math/tex" id="MathJax-Element-89">a \in \Sigma</script> (image)</li>
-<li><script type="math/tex" id="MathJax-Element-90">E_1E_2</script> where <script type="math/tex" id="MathJax-Element-91">E_1</script> and <script type="math/tex" id="MathJax-Element-92">E_2</script> are REs <br>
-<ul><li>wire accepting states of <script type="math/tex" id="MathJax-Element-93">E_1</script> to start state of <script type="math/tex" id="MathJax-Element-94">E_2</script> with <script type="math/tex" id="MathJax-Element-95">\epsilon</script></li>
-<li>delete make accepting states of <script type="math/tex" id="MathJax-Element-96">E_1</script> nonaccepting</li></ul></li>
-<li><script type="math/tex" id="MathJax-Element-97">E_1 \vert E_2</script> where <script type="math/tex" id="MathJax-Element-98">E_1</script> and <script type="math/tex" id="MathJax-Element-99">E_2</script> are REs <br>
+<li><script type="math/tex" id="MathJax-Element-265">\emptyset</script> (image)</li>
+<li><script type="math/tex" id="MathJax-Element-266">\epsilon</script> (image)</li>
+<li><script type="math/tex" id="MathJax-Element-267">a</script>, where <script type="math/tex" id="MathJax-Element-268">a \in \Sigma</script> (image)</li>
+<li><script type="math/tex" id="MathJax-Element-269">E_1E_2</script> where <script type="math/tex" id="MathJax-Element-270">E_1</script> and <script type="math/tex" id="MathJax-Element-271">E_2</script> are REs <br>
+<ul><li>wire accepting states of <script type="math/tex" id="MathJax-Element-272">E_1</script> to start state of <script type="math/tex" id="MathJax-Element-273">E_2</script> with <script type="math/tex" id="MathJax-Element-274">\epsilon</script></li>
+<li>delete make accepting states of <script type="math/tex" id="MathJax-Element-275">E_1</script> nonaccepting</li></ul></li>
+<li><script type="math/tex" id="MathJax-Element-276">E_1 \vert E_2</script> where <script type="math/tex" id="MathJax-Element-277">E_1</script> and <script type="math/tex" id="MathJax-Element-278">E_2</script> are REs <br>
 <ul><li>create new start state</li>
-<li>wire to start states of both <script type="math/tex" id="MathJax-Element-100">E_1</script> and <script type="math/tex" id="MathJax-Element-101">E_2</script> using <script type="math/tex" id="MathJax-Element-102">\epsilon</script></li></ul></li>
-<li><script type="math/tex" id="MathJax-Element-103">E^*</script> where <script type="math/tex" id="MathJax-Element-104">E</script> is a RE <br>
+<li>wire to start states of both <script type="math/tex" id="MathJax-Element-279">E_1</script> and <script type="math/tex" id="MathJax-Element-280">E_2</script> using <script type="math/tex" id="MathJax-Element-281">\epsilon</script></li></ul></li>
+<li><script type="math/tex" id="MathJax-Element-282">E^*</script> where <script type="math/tex" id="MathJax-Element-283">E</script> is a RE <br>
 <ul><li>create new start state</li>
-<li>wire to start of <script type="math/tex" id="MathJax-Element-105">E</script> using epsilon</li>
-<li>wire accepting states of <script type="math/tex" id="MathJax-Element-106">E</script> to new start state</li></ul></li>
+<li>wire to start of <script type="math/tex" id="MathJax-Element-284">E</script> using epsilon</li>
+<li>wire accepting states of <script type="math/tex" id="MathJax-Element-285">E</script> to new start state</li></ul></li>
 </ul>
 
 
@@ -1640,7 +1637,7 @@ $ Sigma = {<span class="hljs-operator">a</span>, b}     L = {<span class="hljs-o
   <li>specified by a regular expression</li>
   <li>accepted by a DFA</li>
   <li>accepted by a NFA</li>
-  <li>accepted by a <script type="math/tex" id="MathJax-Element-107">\epsilon</script>-NFA</li>
+  <li>accepted by a <script type="math/tex" id="MathJax-Element-391">\epsilon</script>-NFA</li>
   </ul>
 </blockquote>
 
@@ -1657,9 +1654,9 @@ $ Sigma = {<span class="hljs-operator">a</span>, b}     L = {<span class="hljs-o
   <p>A <strong>transducer</strong> is a DFA with output. That is, transitions look like input/output.</p>
 </blockquote>
 
-<p>Example: Remove stutters from <script type="math/tex" id="MathJax-Element-108">\Sigma = \{ a, b \}</script></p>
+<p>Example: Remove stutters from <script type="math/tex" id="MathJax-Element-392">\Sigma = \{ a, b \}</script></p>
 
-<p>[image_for transducer]</p>
+<p><img src="https://meetdavidsong.com/images/cs241-images/transducer.png" alt="Transducer" title=""></p>
 
 <ul>
 <li>Mealy Machine - output is on a transition</li>
@@ -1669,13 +1666,11 @@ $ Sigma = {<span class="hljs-operator">a</span>, b}     L = {<span class="hljs-o
 <li>It is not difficult to combine these into one DFA that recognizes a word as some token type</li>
 </ul>
 
-
-
 <h4 id="scanning-tokenizing">Scanning (Tokenizing)</h4>
 
 <p>The scanning problem:  <br>
-Input: some string <script type="math/tex" id="MathJax-Element-109">w</script> and a language <script type="math/tex" id="MathJax-Element-110">L</script> <br>
-Output: <script type="math/tex" id="MathJax-Element-111">w_1w_2\ldots w_n = w</script> where <script type="math/tex" id="MathJax-Element-112">w_i \in L</script> for all <script type="math/tex" id="MathJax-Element-113">i</script></p>
+Input: some string <script type="math/tex" id="MathJax-Element-288">w</script> and a language <script type="math/tex" id="MathJax-Element-289">L</script> <br>
+Output: <script type="math/tex" id="MathJax-Element-290">w_1w_2\ldots w_n = w</script> where <script type="math/tex" id="MathJax-Element-291">w_i \in L</script> for all <script type="math/tex" id="MathJax-Element-292">i</script></p>
 
 <p>There may be more than one possible answer: <code>0x1234abcd</code></p>
 
@@ -1712,13 +1707,13 @@ many.times <span class="hljs-keyword">do</span>
 <ul>
 <li>lexical analysis <br>
 <ul><li>scanning (tokenizing)</li>
-<li>WLP4 text file <script type="math/tex" id="MathJax-Element-114">\to</script> WLP4 tokens</li></ul></li>
+<li>WLP4 text file <script type="math/tex" id="MathJax-Element-293">\to</script> WLP4 tokens</li></ul></li>
 <li>syntactic analysis <br>
 <ul><li>parsing</li>
-<li>WLP4 tokens <script type="math/tex" id="MathJax-Element-115">\to</script> parse tree</li></ul></li>
+<li>WLP4 tokens <script type="math/tex" id="MathJax-Element-294">\to</script> parse tree</li></ul></li>
 <li>semantic (context-sensitive) analysis</li>
 <li>synthesis (code-generation) <br>
-<ul><li>parse tree <script type="math/tex" id="MathJax-Element-116">\to</script> MIPS</li></ul></li>
+<ul><li>parse tree <script type="math/tex" id="MathJax-Element-295">\to</script> MIPS</li></ul></li>
 </ul>
 
 <p>We have these different stages to generate different types of outputs to the developer. </p>
@@ -1727,7 +1722,7 @@ many.times <span class="hljs-keyword">do</span>
 
 <h4 id="non-regular-languages">Non-regular Languages</h4>
 
-<p>Example: Give a DFA over <script type="math/tex" id="MathJax-Element-117">\Sigma = \{ a, b \}</script> for the same number of a’s and b’s</p>
+<p>Example: Give a DFA over <script type="math/tex" id="MathJax-Element-296">\Sigma = \{ a, b \}</script> for the same number of a’s and b’s</p>
 
 <p>We can’t do this with DFAs (provable using Pumping Lemma). This is not a regular language, but it is <em>context-free</em>. </p>
 
@@ -1808,11 +1803,11 @@ many.times <span class="hljs-keyword">do</span>
   <p>A <strong>context-free grammar</strong> consists of</p>
   
   <ul>
-  <li><script type="math/tex" id="MathJax-Element-118">N</script>: a finite set of non-terminals (non-ending)</li>
-  <li><script type="math/tex" id="MathJax-Element-119">T</script>: a finite set of terminals (ending)</li>
-  <li><script type="math/tex" id="MathJax-Element-120">P</script>: a finite set of production rules (rewriting rules) <br>
-  <script type="math/tex" id="MathJax-Element-121">A \to \beta, A \in N, \beta \in (N \cup T)*</script></li>
-  <li><script type="math/tex" id="MathJax-Element-122">S \in N</script>: start symbol</li>
+  <li><script type="math/tex" id="MathJax-Element-297">N</script>: a finite set of non-terminals (non-ending)</li>
+  <li><script type="math/tex" id="MathJax-Element-298">T</script>: a finite set of terminals (ending)</li>
+  <li><script type="math/tex" id="MathJax-Element-299">P</script>: a finite set of production rules (rewriting rules) <br>
+  <script type="math/tex" id="MathJax-Element-300">A \to \beta, A \in N, \beta \in (N \cup T)*</script></li>
+  <li><script type="math/tex" id="MathJax-Element-301">S \in N</script>: start symbol</li>
   </ul>
 </blockquote>
 
@@ -1888,20 +1883,20 @@ S = S (<span class="hljs-keyword">by</span> convention, left side <span class="h
 <p>Formal definitions:</p>
 
 <blockquote>
-  <p>We say that <script type="math/tex" id="MathJax-Element-123">\alpha A \beta</script> <strong>directly derives</strong> <script type="math/tex" id="MathJax-Element-124">\alpha\gamma\beta</script> if there exists a production rule <script type="math/tex" id="MathJax-Element-125">A \to \gamma</script>. Also called a derivation step. We write it with <script type="math/tex" id="MathJax-Element-126">\Rightarrow</script>. <br>
-  We say that <script type="math/tex" id="MathJax-Element-127">\alpha A \beta</script> <strong>derives</strong> <script type="math/tex" id="MathJax-Element-128">\alpha\gamma\beta</script> if there exists <script type="math/tex" id="MathJax-Element-129">\theta_1, \theta_2, \ldots</script> such that <script type="math/tex; mode=display" id="MathJax-Element-130">\alpha A \beta \Rightarrow \alpha \theta_1 \beta \Rightarrow \alpha \theta_2 \beta \Rightarrow \ldots \Rightarrow \alpha\gamma\beta</script> <br>
-  G derives <script type="math/tex" id="MathJax-Element-131">w \in T^*</script> if <script type="math/tex; mode=display" id="MathJax-Element-132">S \Rightarrow^* w</script>. <br>
-  <script type="math/tex" id="MathJax-Element-133">L(G) = \{ w \vert S \Rightarrow^* w \text{ and } w \in T^* \}</script> <br>
-  <script type="math/tex" id="MathJax-Element-134">L</script> is context-free if there exists a CFG <script type="math/tex" id="MathJax-Element-135">G</script> such that <script type="math/tex" id="MathJax-Element-136">L(G)=L</script>.</p>
+  <p>We say that <script type="math/tex" id="MathJax-Element-302">\alpha A \beta</script> <strong>directly derives</strong> <script type="math/tex" id="MathJax-Element-303">\alpha\gamma\beta</script> if there exists a production rule <script type="math/tex" id="MathJax-Element-304">A \to \gamma</script>. Also called a derivation step. We write it with <script type="math/tex" id="MathJax-Element-305">\Rightarrow</script>. <br>
+  We say that <script type="math/tex" id="MathJax-Element-306">\alpha A \beta</script> <strong>derives</strong> <script type="math/tex" id="MathJax-Element-307">\alpha\gamma\beta</script> if there exists <script type="math/tex" id="MathJax-Element-308">\theta_1, \theta_2, \ldots</script> such that <script type="math/tex; mode=display" id="MathJax-Element-309">\alpha A \beta \Rightarrow \alpha \theta_1 \beta \Rightarrow \alpha \theta_2 \beta \Rightarrow \ldots \Rightarrow \alpha\gamma\beta</script> <br>
+  G derives <script type="math/tex" id="MathJax-Element-310">w \in T^*</script> if <script type="math/tex; mode=display" id="MathJax-Element-311">S \Rightarrow^* w</script>. <br>
+  <script type="math/tex" id="MathJax-Element-312">L(G) = \{ w \vert S \Rightarrow^* w \text{ and } w \in T^* \}</script> <br>
+  <script type="math/tex" id="MathJax-Element-313">L</script> is context-free if there exists a CFG <script type="math/tex" id="MathJax-Element-314">G</script> such that <script type="math/tex" id="MathJax-Element-315">L(G)=L</script>.</p>
 </blockquote>
 
 
 
 <h4 id="derivation-as-proofs">Derivation as Proofs</h4>
 
-<p>In a regular language, we have DFA <script type="math/tex" id="MathJax-Element-137">M</script> and word <script type="math/tex" id="MathJax-Element-138">w</script>. The language “accepts” or “rejects” word <script type="math/tex" id="MathJax-Element-139">w</script>.</p>
+<p>In a regular language, we have DFA <script type="math/tex" id="MathJax-Element-316">M</script> and word <script type="math/tex" id="MathJax-Element-317">w</script>. The language “accepts” or “rejects” word <script type="math/tex" id="MathJax-Element-318">w</script>.</p>
 
-<p>In a context-free language, we have CFG <script type="math/tex" id="MathJax-Element-140">G</script> and a word <script type="math/tex" id="MathJax-Element-141">w</script>. If word is accepted, we have a sequence of rewrites that <strong>proves</strong> that it is accepted. (It becomes harder to prove that a word is rejected) </p>
+<p>In a context-free language, we have CFG <script type="math/tex" id="MathJax-Element-319">G</script> and a word <script type="math/tex" id="MathJax-Element-320">w</script>. If word is accepted, we have a sequence of rewrites that <strong>proves</strong> that it is accepted. (It becomes harder to prove that a word is rejected) </p>
 
 
 
@@ -1909,11 +1904,9 @@ S = S (<span class="hljs-keyword">by</span> convention, left side <span class="h
 
 <p>Example:  <br>
 parse tree for derivation of <code>10+1</code> <br>
-<a href="">image_for parse_tree</a></p>
+<img src="https://meetdavidsong.com/images/cs241-images/parse-tree.jpg" alt="Parse Tree" title=""></p>
 
 <p>Leaf nodes are terminal, and internal nodes are non-terminal. A DFS over the tree printing only the leaf nodes gives the final word.</p>
-
-
 
 <h4 id="meaning-of-a-parse-tree">Meaning of a Parse Tree</h4>
 
@@ -1941,13 +1934,13 @@ E1 -&gt; E2 + E3    E1.<span class="hljs-keyword">val</span> = E2.<span class="h
 Sally was given a book by Joyce. </p>
 
 <blockquote>
-  <p>A string <script type="math/tex" id="MathJax-Element-142">x</script> is <strong>ambiguous</strong> if there exists more than one parse tree for <script type="math/tex" id="MathJax-Element-143">x</script>. <br>
-  A CFG <script type="math/tex" id="MathJax-Element-144">G</script> is <strong>ambiguous</strong> if some word <script type="math/tex" id="MathJax-Element-145">x \in L(G)</script> is ambiguous. </p>
+  <p>A string <script type="math/tex" id="MathJax-Element-321">x</script> is <strong>ambiguous</strong> if there exists more than one parse tree for <script type="math/tex" id="MathJax-Element-322">x</script>. <br>
+  A CFG <script type="math/tex" id="MathJax-Element-323">G</script> is <strong>ambiguous</strong> if some word <script type="math/tex" id="MathJax-Element-324">x \in L(G)</script> is ambiguous. </p>
 </blockquote>
 
 <p>The following are equivalent: </p>
 
-<p>A word <script type="math/tex" id="MathJax-Element-146">x</script>:</p>
+<p>A word <script type="math/tex" id="MathJax-Element-325">x</script>:</p>
 
 <ul>
 <li>has more than 2 parse trees</li>
@@ -1962,11 +1955,9 @@ Sally was given a book by Joyce. </p>
 <pre class="prettyprint"><code class=" hljs r">E -&gt; E-E -&gt; E-E+E -&gt; <span class="hljs-keyword">...</span> -&gt; <span class="hljs-number">1</span>-<span class="hljs-number">10</span>+<span class="hljs-number">11</span>
 E -&gt; E+E -&gt; E-E+E -&gt; <span class="hljs-keyword">...</span> -&gt; <span class="hljs-number">1</span>-<span class="hljs-number">10</span>+<span class="hljs-number">11</span></code></pre>
 
-<p><a href="">image_for grammar_ambiguity</a></p>
+<p><img src="https://meetdavidsong.com/images/cs241-images/grammar-ambiguity.jpg" alt="Grammar Ambiguity" title=""></p>
 
 <p>We note that when we evaluate a parse tree recursively, the two similar trees evaluates to be different values. </p>
-
-
 
 <h4 id="fixing-ambiguity">Fixing Ambiguity</h4>
 
@@ -2007,13 +1998,11 @@ E -&gt; E+E -&gt; E-E+E -&gt; <span class="hljs-keyword">...</span> -&gt; <span 
 <pre class="prettyprint"><code class=" hljs lasso">E <span class="hljs-subst">-&gt; </span>B<span class="hljs-attribute">-E</span> <span class="hljs-subst">-&gt; </span>D<span class="hljs-attribute">-E</span> <span class="hljs-subst">-&gt; </span><span class="hljs-number">1</span><span class="hljs-attribute">-E</span> <span class="hljs-subst">-&gt; </span><span class="hljs-number">1</span><span class="hljs-attribute">-B</span><span class="hljs-subst">+</span>E <span class="hljs-subst">-&gt; </span><span class="hljs-attribute">...</span> <span class="hljs-subst">-&gt; </span><span class="hljs-number">1</span><span class="hljs-subst">-</span><span class="hljs-number">10</span><span class="hljs-subst">+</span><span class="hljs-number">11</span>
   <span class="hljs-number">2</span>      <span class="hljs-number">5</span>      <span class="hljs-number">6</span>      <span class="hljs-number">1</span></code></pre>
 
-<p><a href="">image_for associativity_problem</a></p>
+<p><img src="https://meetdavidsong.com/images/cs241-images/associativity-problem.jpg" alt="Associativity Problem" title=""></p>
 
 <p>Mathematics, as we know it, is left-associative. Our rule gave us right-associative.</p>
 
 <p>We change our rule again to represent this:</p>
-
-
 
 <pre class="prettyprint"><code class=" hljs r"><span class="hljs-number">1.</span> E -&gt; E+B
 <span class="hljs-number">2.</span> E -&gt; E-B
@@ -2041,9 +2030,7 @@ E -&gt; E+E -&gt; E-E+E -&gt; <span class="hljs-keyword">...</span> -&gt; <span 
 
 <p>Wrong!!</p>
 
-<p><a href="">image_for associativity_multiplication</a></p>
-
-
+<p><img src="https://meetdavidsong.com/images/cs241-images/associativity-multiplication.jpg" alt="Associativity Multiplication" title=""></p>
 
 <h4 id="fixing-precedence">Fixing Precedence</h4>
 
@@ -2071,11 +2058,9 @@ Let’s make new non-terminals</p>
 <pre class="prettyprint"><code class=" hljs r">S -&gt; S+P -&gt; <span class="hljs-keyword">...</span> -&gt; <span class="hljs-number">1</span>+P -&gt; <span class="hljs-number">1</span>+P*B -&gt; <span class="hljs-number">1</span>+B*B -&gt; <span class="hljs-keyword">...</span> -&gt; <span class="hljs-number">1</span>+<span class="hljs-number">10</span>*<span class="hljs-number">11</span>
   <span class="hljs-number">1</span>                    <span class="hljs-number">4</span>        <span class="hljs-number">6</span></code></pre>
 
-<p><a href="">image_for multiplication_tree_correct</a></p>
+<p><img src="https://meetdavidsong.com/images/cs241-images/multiplication-tree-correct.jpg" alt="Multiplication Tree Correct" title=""></p>
 
 <p>Exercise: add parentheses. </p>
-
-
 
 <pre class="prettyprint"><code class=" hljs "></code></pre>
 
@@ -2083,10 +2068,10 @@ Let’s make new non-terminals</p>
 
 <h4 id="proof-by-example-regular-languages-are-context-free">Proof by Example: Regular Languages are Context-Free</h4>
 
-<p>If <script type="math/tex" id="MathJax-Element-147">L</script> is a regular language, then there exists a regular expression <script type="math/tex" id="MathJax-Element-148">R</script> such that <script type="math/tex; mode=display" id="MathJax-Element-149">L(R) = L</script></p>
+<p>If <script type="math/tex" id="MathJax-Element-326">L</script> is a regular language, then there exists a regular expression <script type="math/tex" id="MathJax-Element-327">R</script> such that <script type="math/tex; mode=display" id="MathJax-Element-328">L(R) = L</script></p>
 
-<p>Suppose <script type="math/tex" id="MathJax-Element-150">R = a^*b\vert (cde)^*</script> <br>
-We construct a CFG <script type="math/tex" id="MathJax-Element-151">G</script> such that <script type="math/tex" id="MathJax-Element-152">L(G) = L</script> as follows:</p>
+<p>Suppose <script type="math/tex" id="MathJax-Element-329">R = a^*b\vert (cde)^*</script> <br>
+We construct a CFG <script type="math/tex" id="MathJax-Element-330">G</script> such that <script type="math/tex" id="MathJax-Element-331">L(G) = L</script> as follows:</p>
 
 
 
@@ -2102,7 +2087,7 @@ We construct a CFG <script type="math/tex" id="MathJax-Element-151">G</script> s
 
 <h4 id="parsing">Parsing</h4>
 
-<p>Given a grammar <script type="math/tex" id="MathJax-Element-153">G</script> and a word <script type="math/tex" id="MathJax-Element-154">w</script>, find a derivation for <script type="math/tex" id="MathJax-Element-155">w</script>. <br>
+<p>Given a grammar <script type="math/tex" id="MathJax-Element-332">G</script> and a word <script type="math/tex" id="MathJax-Element-333">w</script>, find a derivation for <script type="math/tex" id="MathJax-Element-334">w</script>. <br>
 Two strategies:</p>
 
 <ol>

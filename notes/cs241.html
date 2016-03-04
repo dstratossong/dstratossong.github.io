@@ -656,17 +656,16 @@ jr $<span class="hljs-number">31</span>              ; <span class="hljs-keyword
 <ol>
 <li>name of function</li>
 <li>save registers <code>sw</code> <br>
-<ul><li>save <code>$31</code></li></ul></li>
+<ul><li>save <code>$31</code></li>
+<li>any other registers you use</li></ul></li>
 <li>check base case(s)</li>
 <li>recursive case(s) <br>
 <ul><li>compute “next” value(s)</li>
 <li>call myself</li>
 <li>compute my return value</li></ul></li>
-<li>restore registers</li>
+<li>restore saved registers</li>
 <li>return to caller</li>
 </ol>
-
-
 
 <h4 id="binary-trees-in-ram">Binary trees in RAM</h4>
 
@@ -780,11 +779,9 @@ lw <span class="hljs-variable">$3</span> <span class="hljs-number">4</span>(<spa
 lw <span class="hljs-variable">$3</span>, <span class="hljs-number">4</span>(<span class="hljs-variable">$30</span>       ; <span class="hljs-constant">Unclosed</span> bracket
 lw lw <span class="hljs-variable">$3</span> <span class="hljs-number">4</span>(<span class="hljs-variable">$30</span>)    ; <span class="hljs-constant">Too</span> many instructions
 lw <span class="hljs-variable">$3</span>, <span class="hljs-number">4</span>(<span class="hljs-variable">$30</span>), <span class="hljs-variable">$7</span>  ; <span class="hljs-constant">Too</span> many arguments
-lw <span class="hljs-variable">$3</span>, <span class="hljs-number">4</span>(<span class="hljs-variable">$32</span>)      ;; <span class="hljs-constant">Register</span> error
+lw <span class="hljs-variable">$3</span>, <span class="hljs-number">4</span>(<span class="hljs-variable">$32</span>)      ; <span class="hljs-constant">Register</span> error
 lw <span class="hljs-variable">$3</span>, <span class="hljs-number">4444444444444444444444</span>(<span class="hljs-variable">$30</span>) ; <span class="hljs-constant">Immediate</span> value too high
 lw <span class="hljs-variable">$3</span>, <span class="hljs-number">5</span>(<span class="hljs-variable">$30</span>)      ; <span class="hljs-constant">Offset</span> is <span class="hljs-keyword">not</span> multiple of <span class="hljs-number">4</span></code></pre>
-
-
 
 <h2 id="lecture-6-january-21th">Lecture 6: January 21th</h2>
 
@@ -2100,6 +2097,511 @@ For example: <code>B+B*B -&gt; B+P</code></li>
 
 
 <h2 id="lecture-15-march-1st">Lecture 15: March 1st</h2>
+
+<p>There is a backtracking algorithm for parsing in any CFG</p>
+
+<ul>
+<li>try each rule in turn</li>
+<li>if we can move “forward”, do so</li>
+<li>if we cannot move “forward”, go back a step and try the “next” rule</li>
+<li>stop when we find the derivation</li>
+</ul>
+
+<p>This algorithm will finish guaranteed - but running time is exponential. Alternatively we will look at two linear-time algorithms.</p>
+
+<p>Recall: Context-free languages are recognized with a finite control and one stack. </p>
+
+<p>For example: balanced parentheses</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs perl">(()())
+( = <span class="hljs-keyword">push</span>
+) = <span class="hljs-keyword">pop</span></code></pre>
+
+<p>As long as we do not pop an empty stack, and the stack height is 0 at the end of the word, the recognizer returns true. </p>
+
+<h4 id="augmenting-grammars">Augmenting Grammars</h4>
+
+<p>Empty words and empty stacks can cause hassles.</p>
+
+<p>We augment out grammars by adding “beginning” and “ending” characters. For example - we augment with rule 1:</p>
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>S' -&gt; ⊢ S ⊣
+<span class="hljs-bullet">2. </span>S -&gt; AyB
+<span class="hljs-bullet">3. </span>A -&gt; ab
+<span class="hljs-bullet">4. </span>A -&gt; cd
+<span class="hljs-bullet">5. </span>B -&gt; z
+<span class="hljs-bullet">6. </span>B -&gt; wz</code></pre>
+
+<p>Demonstrate:</p>
+
+<pre class="prettyprint"><code class=" hljs haml">word: ⊢a..w...
+S' -&gt; ⊢S⊣
+   -<span class="ruby">&gt; ⊢<span class="hljs-constant">AyB</span>⊣
+</span>   -<span class="ruby">&gt; ⊢abyB⊣
+</span>   -<span class="ruby">&gt; ⊢abywz⊣</span></code></pre>
+
+<p>Invariant: </p>
+
+<blockquote>
+  <p>derivation = input read + stack</p>
+</blockquote>
+
+<h4 id="stack-example">Stack Example</h4>
+
+<table>
+<thead>
+<tr>
+  <th align="center">Derivation</th>
+  <th align="left">Input read</th>
+  <th align="right">Input to be read</th>
+  <th>Stack</th>
+  <th>Actions</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td align="center">S’</td>
+  <td align="left">epsilon</td>
+  <td align="right">⊢abywz⊣</td>
+  <td>S’</td>
+  <td>rule 1</td>
+</tr>
+<tr>
+  <td align="center">⊢S⊣</td>
+  <td align="left">epsilon</td>
+  <td align="right">⊢abywz⊣</td>
+  <td>⊢S⊣</td>
+  <td>match ⊢</td>
+</tr>
+<tr>
+  <td align="center">⊢S⊣</td>
+  <td align="left">⊢</td>
+  <td align="right">abywz⊣</td>
+  <td>S⊣</td>
+  <td>rule 2</td>
+</tr>
+<tr>
+  <td align="center">⊢AyB⊣</td>
+  <td align="left">⊢</td>
+  <td align="right">abywz⊣</td>
+  <td>AyB⊣</td>
+  <td>rule 3</td>
+</tr>
+<tr>
+  <td align="center">⊢abyB⊣</td>
+  <td align="left">⊢</td>
+  <td align="right">abywz⊣</td>
+  <td>abyB⊣</td>
+  <td>match a</td>
+</tr>
+<tr>
+  <td align="center">⊢abyB⊣</td>
+  <td align="left">⊢a</td>
+  <td align="right">bywz⊣</td>
+  <td>byB⊣</td>
+  <td>match b</td>
+</tr>
+<tr>
+  <td align="center">⊢abyB⊣</td>
+  <td align="left">⊢ab</td>
+  <td align="right">ywz⊣</td>
+  <td>yB⊣</td>
+  <td>match y</td>
+</tr>
+<tr>
+  <td align="center">⊢abyB⊣</td>
+  <td align="left">⊢aby</td>
+  <td align="right">wz⊣</td>
+  <td>B⊣</td>
+  <td>rule 6</td>
+</tr>
+<tr>
+  <td align="center">⊢abywz⊣</td>
+  <td align="left">⊢aby</td>
+  <td align="right">wz⊣</td>
+  <td>wz⊣</td>
+  <td>match w</td>
+</tr>
+<tr>
+  <td align="center">⊢abywz⊣</td>
+  <td align="left">⊢abyw</td>
+  <td align="right">wz⊣</td>
+  <td>z⊣</td>
+  <td>match z</td>
+</tr>
+<tr>
+  <td align="center">⊢abywz⊣</td>
+  <td align="left">⊢abywz</td>
+  <td align="right">wz⊣</td>
+  <td>⊣</td>
+  <td>match ⊣</td>
+</tr>
+<tr>
+  <td align="center">⊢abywz⊣</td>
+  <td align="left">⊢abywz⊣</td>
+  <td align="right">epsilon</td>
+  <td>epsilon</td>
+  <td>ACCEPT</td>
+</tr>
+</tbody></table>
+
+
+<p>Observations: <br>
+How do we apply these rules? What does “expand” mean?</p>
+
+<ul>
+<li>pop the stack (LHS of a rule)</li>
+<li>push the RHS of a rule, in reverse!</li>
+</ul>
+
+<h4 id="ll1-parsing">LL(1) Parsing</h4>
+
+<p>We need <script type="math/tex" id="MathJax-Element-833">Predict(A, x) = A \to \alpha</script>  so long as </p>
+
+<ul>
+<li><script type="math/tex" id="MathJax-Element-834">A</script> is on top of the stack, and</li>
+<li><script type="math/tex" id="MathJax-Element-835">x</script> is the first symbol of input to be read</li>
+</ul>
+
+<blockquote>
+  <p>Definition of an <strong>LL(1) grammar</strong>: <br>
+  For all <script type="math/tex" id="MathJax-Element-836">A\in N</script> and <script type="math/tex" id="MathJax-Element-837">x \in T</script>, <script type="math/tex; mode=display" id="MathJax-Element-838">Predict(A, x) \leq 1</script></p>
+</blockquote>
+
+<p>missing_for <br>
+First terminal symbol <br>
+Search trees</p>
+
+<h4 id="constructing-a-predictor-table">Constructing a Predictor Table</h4>
+
+<table>
+<thead>
+<tr>
+  <th>nonter\ter</th>
+  <th>a</th>
+  <th>b</th>
+  <th>c</th>
+  <th>d</th>
+  <th>y</th>
+  <th>w</th>
+  <th>z</th>
+  <th>⊢</th>
+  <th>⊣</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>S’</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>1</td>
+  <td>E</td>
+</tr>
+<tr>
+  <td>S</td>
+  <td>2</td>
+  <td>E</td>
+  <td>2</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+</tr>
+<tr>
+  <td>A</td>
+  <td>3</td>
+  <td>E</td>
+  <td>4</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+</tr>
+<tr>
+  <td>B</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>6</td>
+  <td>5</td>
+  <td>E</td>
+  <td>E</td>
+</tr>
+</tbody></table>
+
+
+<p>E = error</p>
+
+<p><img src="construct-predict-table.jpg" alt="image_for" title=""></p>
+
+<p>We now make a small change by adding a rule 7:</p>
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">7. </span>B -&gt; epsilon</code></pre>
+
+<p>Note that we do not change anything on the predictor table, but we didn’t stop on a terminal symbol. We ask ourselves: what terminal symbols can follow B? Answer: nothing!</p>
+
+<p><img src="whats-the-follow.jpg" alt="image_for" title=""></p>
+
+<p>But we observe that Follow(B) = Follow(S) = ⊣ <br>
+So we add <script type="math/tex" id="MathJax-Element-852">Predict(B, ⊣) = 7</script></p>
+
+<p>Example: <code>⊢cdy⊣</code> (omitted)</p>
+
+<h4 id="algorithm-to-construct-predictor-table">Algorithm to construct predictor table</h4>
+
+<p>Below, <script type="math/tex" id="MathJax-Element-1140">\alpha, \beta \in (N \cup T)*</script>, <script type="math/tex" id="MathJax-Element-1141">x,y \in T</script>, <script type="math/tex" id="MathJax-Element-1142">A \in N</script></p>
+
+<p><script type="math/tex" id="MathJax-Element-1143">Empty(alpha) =</script> true if <script type="math/tex" id="MathJax-Element-1144">\alpha \Rightarrow^* \epsilon</script> <br>
+                       # can alpha disappear? <br>
+                       # ask: can a non-terminal disappear? <br>
+                              (depth-first search)</p>
+
+<p>First(alpha) = { x | alpha =&gt;* x beta } <br>
+                       # starting from alpha, what can I generate <br>
+                       # as a first terminal symbol? <br>
+                              (search trees)</p>
+
+<p>Follow(A) = { y | S’ =&gt;* alpha A y beta } <br>
+                       # starting from the start symbol,  <br>
+                       # does the terminal y ever appear  <br>
+                       # following non-terminal A?</p>
+
+<p>We get predictor from these helpers <script type="math/tex; mode=display" id="MathJax-Element-1145">Predict(A, x) = \{A \rightarrow \alpha \mid x \in First(\alpha) \} \cup \{ A\rightarrow\beta \mid ...</script></p>
+
+
+
+<h4 id="ll1-parsing-algorithm">LL(1) Parsing Algorithm</h4>
+
+
+
+<pre class="prettyprint"><code class=" hljs applescript">Input: w
+push S'
+<span class="hljs-keyword">for</span> each x <span class="hljs-keyword">in</span> w {
+  <span class="hljs-keyword">while</span> (top <span class="hljs-keyword">of</span> stack <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> A <span class="hljs-keyword">in</span> N) {
+    pop A
+    <span class="hljs-keyword">if</span> Predict(A, x) = {A -&gt; alpha}
+      push_in_reverse alpha
+    <span class="hljs-keyword">else</span>
+      reject          <span class="hljs-comment"># no rule to expand by</span>
+  }
+  pop c               <span class="hljs-comment"># must be non-terminal</span>
+  <span class="hljs-keyword">if</span> c != x reject    <span class="hljs-comment"># try to match</span>
+}
+accept w</code></pre>
+
+
+
+<h2 id="lecture-15-march-3rd">Lecture 15: March 3rd</h2>
+
+<h4 id="non-ll1-grammars">Non LL(1) Grammars</h4>
+
+
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>S -&gt; ab
+<span class="hljs-bullet">2. </span>S -&gt; acb</code></pre>
+
+<p>Our predictor table would have more than 1 rule in it. But it is LL(2).</p>
+
+<table>
+<thead>
+<tr>
+  <th>nonter\ter</th>
+  <th>aa</th>
+  <th>ab</th>
+  <th>ac</th>
+  <th>ba</th>
+  <th>bb</th>
+  <th>bc</th>
+  <th>ca</th>
+  <th>cb</th>
+  <th>cc</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>…</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+</tbody></table>
+
+
+<p>However, note that our grammar has only 2 words - that it is finite.  <br>
+We should at least make all finite grammars LL(1).</p>
+
+<h4 id="factoring">Factoring</h4>
+
+
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>E -&gt; aX
+<span class="hljs-bullet">2. </span>X -&gt; b
+<span class="hljs-bullet">3. </span>X -&gt; cb</code></pre>
+
+<p>We’ve combined our original rule 1 and 2 into 1, and added a new non-terminal state.  <br>
+It is indeed LL(1) because we can create a predictor table with only 1 rule in each cell.</p>
+
+<h4 id="non-llk">Non LL(k)</h4>
+
+<p><script type="math/tex; mode=display" id="MathJax-Element-1162">L \{ a^nb^m \mid n \geq m \geq 0 \}</script> </p>
+
+<p>Grammar (ambiguous): </p>
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>S -&gt; epsilon
+<span class="hljs-bullet">2. </span>S -&gt; aSb
+<span class="hljs-bullet">3. </span>S -&gt; aS</code></pre>
+
+<p>Rule 2 matches a and b, and rule 3 gives an unmatched a.</p>
+
+<p>Grammar (unambiguous):</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>S -&gt; A
+<span class="hljs-bullet">2. </span>S -&gt; B
+<span class="hljs-bullet">3. </span>A -&gt; epsilon
+<span class="hljs-bullet">4. </span>A -&gt; aAb
+<span class="hljs-bullet">5. </span>B -&gt; aA
+<span class="hljs-bullet">6. </span>B -&gt; aB</code></pre>
+
+<p>LL(k) grammars needs the next k inputs to figure out the next step. However, this example pretty much needs the whole input. This, of course, is not suitable for top-down parsing. </p>
+
+<h4 id="bottom-up-parsing">Bottom-up Parsing</h4>
+
+<p>We look at our first LL(1) example:</p>
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>S' -&gt; ⊢ S ⊣
+<span class="hljs-bullet">2. </span>S -&gt; AyB
+<span class="hljs-bullet">3. </span>A -&gt; ab
+<span class="hljs-bullet">4. </span>A -&gt; cd
+<span class="hljs-bullet">5. </span>B -&gt; z
+<span class="hljs-bullet">6. </span>B -&gt; wz</code></pre>
+
+<p>Recall that a stack in LL/top-down parsing is used in the following way: </p>
+
+<pre class="prettyprint"><code class=" hljs fix"><span class="hljs-attribute">input processed + stack </span>=<span class="hljs-string"> current derivation</span></code></pre>
+
+<p>(stack read from top to bottom)</p>
+
+<p>For LR/bottom-up parsing, we have </p>
+
+<pre class="prettyprint"><code class=" hljs livecodeserver">stack + input <span class="hljs-built_in">to</span> be <span class="hljs-built_in">read</span> = current derivation</code></pre>
+
+<p>(stack read from bottom to top)</p>
+
+<p><a href="https://www.student.cs.uwaterloo.ca/~cs241/tmjvasiga/lec16_17.pdf">slide 4</a></p>
+
+<p>Shift: shifting a token from one place to another (push) <br>
+Reduce: size of the stack may be reduced (pop RHS, push LHS)</p>
+
+<p>Somehow, we shifted at just the right time, and reduced just at the right time. How do we know this?</p>
+
+<p>Recall that for LL(1) parsing, we had a predictor table. For LR(1) parsing, we have an oracle, in the form of a DFA.</p>
+
+<p>But this is difficult to do.</p>
+
+<p>Donald Knuth proved a theorem that can construct a DFA (reall,y a transducer) for LR(1) grammars (1965)</p>
+
+<h4 id="building-an-lr0-automation">Building an LR(0) Automation</h4>
+
+<ul>
+<li>L - left-to-right input</li>
+<li>R - rightmost derivation</li>
+<li>0 - 0 tokens of look ahead (!)</li>
+</ul>
+
+<blockquote>
+  <p>An <strong>item</strong> is a production with a dot (<script type="math/tex" id="MathJax-Element-1312">\cdot</script>) somewhere on the RHS (which indicates a partially completed rule)</p>
+</blockquote>
+
+<p>How to construct the automation:</p>
+
+<ul>
+<li>make the start state the first rule, with the dot (<script type="math/tex" id="MathJax-Element-1313">\cdot</script>) in front of the left-most symbol of the RHS</li>
+<li>for each state, label an arc with the symbol that follows <script type="math/tex" id="MathJax-Element-1314">\cdot</script> and advance the <script type="math/tex" id="MathJax-Element-1315">\cdot</script> one position to the right of the next state</li>
+<li>if the <script type="math/tex" id="MathJax-Element-1316">\cdot</script> predcedes a non-terminal (e.g. A) add all productions with the non-terminal A on the LHS to the current state, with the <script type="math/tex" id="MathJax-Element-1317">\cdot</script> in the leftmost position</li>
+</ul>
+
+<p>Small example CFG: </p>
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>S' -&gt; ⊢ E ⊣
+<span class="hljs-bullet">2. </span>E -&gt; E + T
+<span class="hljs-bullet">3. </span>E -&gt; T
+<span class="hljs-bullet">4. </span>T -&gt; id</code></pre>
+
+
+
+<pre class="prettyprint"><code class=" hljs haskell"><span class="hljs-title">state</span> <span class="hljs-number">1</span>
+<span class="hljs-type">S'</span> -&gt; • ⊢ <span class="hljs-type">E</span> ⊣ 
+
+<span class="hljs-title">state</span> <span class="hljs-number">2</span>
+<span class="hljs-type">S'</span> -&gt; ⊢ • <span class="hljs-type">E</span> ⊣
+<span class="hljs-type">E</span> -&gt; • <span class="hljs-type">E</span> + <span class="hljs-type">T</span>
+<span class="hljs-type">E</span> -&gt; • <span class="hljs-type">T</span>
+<span class="hljs-type">T</span> -&gt; • id
+
+<span class="hljs-title">state</span> <span class="hljs-number">3</span>
+<span class="hljs-type">S'</span> -&gt; ⊢ <span class="hljs-type">E</span> • ⊣
+<span class="hljs-type">E</span> -&gt; <span class="hljs-type">E</span> • + <span class="hljs-type">T</span>
+
+<span class="hljs-title">state</span> <span class="hljs-number">4</span>
+<span class="hljs-type">S'</span> -&gt; ⊢ <span class="hljs-type">E</span> ⊣ •
+
+<span class="hljs-title">state</span> <span class="hljs-number">5</span>
+<span class="hljs-type">E</span> -&gt; <span class="hljs-type">T</span> •
+
+<span class="hljs-title">state</span> <span class="hljs-number">6</span>
+<span class="hljs-type">T</span> -&gt; id •
+
+<span class="hljs-title">state</span> <span class="hljs-number">7</span>
+<span class="hljs-type">E</span> -&gt; <span class="hljs-type">E</span> + • <span class="hljs-type">T</span>
+<span class="hljs-type">T</span> -&gt; • id
+
+<span class="hljs-title">state</span> <span class="hljs-number">8</span>
+<span class="hljs-type">E</span> -&gt; <span class="hljs-type">E</span> + <span class="hljs-type">T</span> •
+
+<span class="hljs-number">1</span> -&gt; <span class="hljs-number">2</span>
+  ⊢
+<span class="hljs-number">2</span> -&gt; <span class="hljs-number">3</span>
+  <span class="hljs-type">E</span>
+<span class="hljs-number">3</span> -&gt; <span class="hljs-number">4</span>
+
+<span class="hljs-number">3</span> -&gt; <span class="hljs-number">7</span>
+
+<span class="hljs-number">2</span> -&gt; <span class="hljs-number">6</span>
+
+</code></pre>
+
+<h4 id="using-the-automaton">Using the Automaton</h4>
+
+<p>For each input token</p>
+
+<ul>
+<li>start in the start state</li>
+<li>read the stack (from the bottom up) and read the current input, and do the action indicated for the current input <br>
+<ul><li>if there is a transition out of our current state on the current input, then shift (push) that input onto the stack</li>
+<li>we know we can reduce if the current state has only one item and the • is the rightmost symbol</li>
+<li>to reduce, pop the RHS off the stack, reread the stack (from the bottom-up), follow the transition for the LHS and push the LHS onto the stack</li></ul></li>
+<li>Accept if S’ on the stack when all input is read</li>
+</ul>
+
+<p><a href=""></a></p>
 
 <div class="author-info">
   <div class="image-column">

@@ -2527,15 +2527,15 @@ Reduce: size of the stack may be reduced (pop RHS, push LHS)</p>
 </ul>
 
 <blockquote>
-  <p>An <strong>item</strong> is a production with a dot (<script type="math/tex" id="MathJax-Element-1312">\cdot</script>) somewhere on the RHS (which indicates a partially completed rule)</p>
+  <p>An <strong>item</strong> is a production with a dot (•) somewhere on the RHS (which indicates a partially completed rule)</p>
 </blockquote>
 
 <p>How to construct the automation:</p>
 
 <ul>
-<li>make the start state the first rule, with the dot (<script type="math/tex" id="MathJax-Element-1313">\cdot</script>) in front of the left-most symbol of the RHS</li>
-<li>for each state, label an arc with the symbol that follows <script type="math/tex" id="MathJax-Element-1314">\cdot</script> and advance the <script type="math/tex" id="MathJax-Element-1315">\cdot</script> one position to the right of the next state</li>
-<li>if the <script type="math/tex" id="MathJax-Element-1316">\cdot</script> predcedes a non-terminal (e.g. A) add all productions with the non-terminal A on the LHS to the current state, with the <script type="math/tex" id="MathJax-Element-1317">\cdot</script> in the leftmost position</li>
+<li>make the start state the first rule, with the dot (•) in front of the left-most symbol of the RHS</li>
+<li>for each state, label an arc with the symbol that follows • and advance the • one position to the right of the next state</li>
+<li>if the • precedes a non-terminal (e.g. A) add all productions with the non-terminal A on the LHS to the current state, with the • in the leftmost position</li>
 </ul>
 
 <p>Small example CFG: </p>

@@ -1,1 +1,2738 @@
-Cannot read property 'withoutComments' of undefined
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<!-- Meta Tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="David Song">
+<!-- <meta name="description" content=""> -->
+
+<!-- Title -->
+<title>CS 241 Notes</title>
+
+<!-- Assets -->
+<link rel="stylesheet" href="//stackedit.io/res-min/themes/base.css" />
+<link rel="stylesheet" href="../stylesheets/style.css" />
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+
+<body class="blog notes">
+
+<div class="container">
+
+<h1 id="cs-241-class-notes">CS 241 Class Notes</h1>
+
+<blockquote>
+  <p><strong>Foundations of Sequential Programs:</strong> <a href="https://www.student.cs.uwaterloo.ca/~cs241/">Website</a> <br>
+  <strong>Professor:</strong> Troy Vasiga, <a href="https://cs.uwaterloo.ca/faculty-staff/contacts/troy-vasiga">webpage</a>, troy.vasiga@uwaterloo.ca <br>
+  <strong>Resources:</strong> <a href="https://www.student.cs.uwaterloo.ca/~cs241/tmjvasiga/">Slides</a>, <a href="https://www.student.cs.uwaterloo.ca/~cs241/W16_Outline.pdf">Syllabus</a> <br>
+  <strong>Assignments:</strong> 25% (10, 2.5% each), <a href="https://marmoset.student.cs.uwaterloo.ca/">Marmoset</a> with release tests <br>
+  <strong>Midterm:</strong> 25% on March 1st, 2016, 4:30pm-6:20pm <br>
+  <strong>Final:</strong> 50% – must pass the weighted exam average</p>
+</blockquote>
+
+<p><div class="toc">
+<ul>
+<li><a href="#cs-241-class-notes">CS 241 Class Notes</a><ul>
+<li><a href="#lecture-1-january-5th">Lecture 1: January 5th</a><ul>
+<li><ul>
+<li><a href="#integers">Integers</a></li>
+<li><a href="#characters">Characters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-2-january-7th">Lecture 2: January 7th</a><ul>
+<li><ul>
+<li><a href="#words">Words</a></li>
+<li><a href="#our-machine-a-stored-program-computer">Our Machine: A Stored Program Computer</a></li>
+<li><a href="#communication-between-cpu-and-ram">Communication between CPU and RAM</a></li>
+<li><a href="#machine-cycle">Machine Cycle</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-3-january-12th">Lecture 3: January 12th</a><ul>
+<li><ul>
+<li><a href="#special-registers">Special Registers</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#array-accesses-mipsarray">Array accesses (mips.array)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-4-january-14th">Lecture 4: January 14th</a><ul>
+<li><ul>
+<li><a href="#output">Output</a></li>
+<li><a href="#storing-and-restoring-registers">Storing and Restoring Registers</a></li>
+<li><a href="#procedures">Procedures</a></li>
+<li><a href="#recursion-in-mips">Recursion in MIPS</a></li>
+<li><a href="#binary-trees-in-ram">Binary trees in RAM</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-5-january-19th">Lecture 5: January 19th</a><ul>
+<li><ul>
+<li><a href="#assembler">Assembler</a></li>
+<li><a href="#pass-1-analysis-phase">Pass 1 (analysis phase)</a></li>
+<li><a href="#pass-2-synthesis">Pass 2 (synthesis)</a></li>
+<li><a href="#efficiency-of-symbol-table">Efficiency of symbol table</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-6-january-21th">Lecture 6: January 21th</a><ul>
+<li><ul>
+<li><a href="#loader">Loader</a></li>
+<li><a href="#merl">MERL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-7-january-26th">Lecture 7: January 26th</a><ul>
+<li><ul>
+<li><a href="#merlifying">MERLifying</a></li>
+<li><a href="#merl-assembler">MERL Assembler</a></li>
+<li><a href="#loader-1">Loader</a></li>
+<li><a href="#combining-programs">Combining Programs</a></li>
+<li><a href="#modifying-the-assembler">Modifying the Assembler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-8-january-28th">Lecture 8: January 28th</a><ul>
+<li><ul>
+<li><a href="#adding-more-merl-notes">Adding more MERL Notes</a></li>
+<li><a href="#assembler-changes-for-import-and-export">Assembler changes for import and export</a></li>
+<li><a href="#linker">Linker</a></li>
+<li><a href="#static-linking-vs-dynamic-linking">Static Linking vs Dynamic Linking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-9-february-2nd">Lecture 9: February 2nd</a><ul>
+<li><ul>
+<li><a href="#formal-languages">Formal Languages</a></li>
+<li><a href="#language-classes">Language Classes</a></li>
+<li><a href="#organization-of-compilation">Organization of Compilation</a></li>
+<li><a href="#regular-languages">Regular Languages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-10-february-4th">Lecture 10: February 4th</a><ul>
+<li><ul>
+<li><a href="#finite-automata-recognition">Finite Automata (Recognition)</a></li>
+<li><a href="#dfa-interpreter-algorithm">DFA Interpreter Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-11-february-9th">Lecture 11: February 9th</a><ul>
+<li><ul>
+<li><a href="#non-deterministic-finite-automata">Non-deterministic Finite Automata</a></li>
+<li><a href="#nfa-interpreter-algorithm">NFA Interpreter Algorithm</a></li>
+<li><a href="#epsilon-nfas"><script type="math/tex" id="MathJax-Element-1">\epsilon</script>-NFAs</a></li>
+<li><a href="#regular-expressions">Regular Expressions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-12-february-11th">Lecture 12: February 11th</a><ul>
+<li><ul>
+<li><a href="#re-to-epsilon-nfa">RE to <script type="math/tex" id="MathJax-Element-2">\epsilon</script>-NFA</a></li>
+<li><a href="#circle-of-life">Circle of Life</a></li>
+<li><a href="#scanning-tokenizing">Scanning (Tokenizing)</a></li>
+<li><a href="#simplified-maximal-munch">Simplified Maximal Munch</a></li>
+</ul>
+</li>
+<li><a href="#context-free-languages">Context-Free Languages</a><ul>
+<li><a href="#non-regular-languages">Non-regular Languages</a></li>
+<li><a href="#context-free-languages-1">Context-Free Languages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-13-february-23rd">Lecture 13: February 23rd</a><ul>
+<li><ul>
+<li><a href="#a-context-free-grammar">A Context-Free Grammar</a></li>
+<li><a href="#deriving-accb">Deriving accb</a></li>
+<li><a href="#example-balanced-parentheses">Example: balanced parentheses</a></li>
+<li><a href="#example-binary-expressions">Example: Binary Expressions</a></li>
+<li><a href="#derivation-as-proofs">Derivation as Proofs</a></li>
+<li><a href="#parse-trees">Parse Trees</a></li>
+<li><a href="#meaning-of-a-parse-tree">Meaning of a Parse Tree</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-14-february-25th">Lecture 14: February 25th</a><ul>
+<li><ul>
+<li><a href="#fixing-ambiguity">Fixing Ambiguity</a></li>
+<li><a href="#fixing-precedence">Fixing Precedence</a></li>
+<li><a href="#proof-by-example-regular-languages-are-context-free">Proof by Example: Regular Languages are Context-Free</a></li>
+<li><a href="#parsing">Parsing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-15-march-1st">Lecture 15: March 1st</a><ul>
+<li><ul>
+<li><a href="#augmenting-grammars">Augmenting Grammars</a></li>
+<li><a href="#stack-example">Stack Example</a></li>
+<li><a href="#ll1-parsing">LL(1) Parsing</a></li>
+<li><a href="#constructing-a-predictor-table">Constructing a Predictor Table</a></li>
+<li><a href="#algorithm-to-construct-predictor-table">Algorithm to construct predictor table</a></li>
+<li><a href="#ll1-parsing-algorithm">LL(1) Parsing Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture-15-march-3rd">Lecture 15: March 3rd</a><ul>
+<li><ul>
+<li><a href="#non-ll1-grammars">Non LL(1) Grammars</a></li>
+<li><a href="#factoring">Factoring</a></li>
+<li><a href="#non-llk">Non LL(k)</a></li>
+<li><a href="#bottom-up-parsing">Bottom-up Parsing</a></li>
+<li><a href="#building-an-lr0-automation">Building an LR(0) Automation</a></li>
+<li><a href="#using-the-automaton">Using the Automaton</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</p>
+
+
+
+<h2 id="lecture-1-january-5th">Lecture 1: January 5th</h2>
+
+<p>What is a computer?  <br>
+<script type="math/tex" id="MathJax-Element-3">CPU \longleftrightarrow RAM</script></p>
+
+<blockquote>
+  <p><strong>CPU</strong>, or Central Processing Unit, manipulates and control data <br>
+  <strong>RAM</strong>, or Random Access Memory, stores data. In RAM, each block is the same size, and each block has its own address.</p>
+</blockquote>
+
+<p>In this course, we abstract the implementation of each component of the computer. </p>
+
+<blockquote>
+  <p><strong>Binary Data</strong> is a sequence of bits, which may have multiple interpretations (integer, two’s complement, floating point number, ASCII string). Interpretation is in the eye of the beholder. <br>
+  <strong>Machine Language</strong> is a sequence of bits <em>with one specific meaning</em> tied to the architecture. </p>
+</blockquote>
+
+<p>Architectures:</p>
+
+<ul>
+<li>Intel vs Motorola</li>
+<li>32-bit vs 64-bit</li>
+</ul>
+
+<blockquote>
+  <p><strong>Assembly Language</strong> is a simple textual representation of machine language that is more human-readable. </p>
+</blockquote>
+
+<p>It is relatively easy to translate assembly language into machine language. That is, assembly language is an <em>abstraction</em> of machine language.</p>
+
+<blockquote>
+  <p><strong>Abstraction</strong> is the process of hiding details to see a bigger picture.</p>
+  
+  <p><strong>Assembler</strong> is a program that reads in an assembly language program (a program) and writes out a machine language program (a program)</p>
+</blockquote>
+
+<p>In this course, we will be learning about programs that reads a program and writes a program.</p>
+
+<blockquote>
+  <p><strong>BIT</strong>, or just bit (plural bits), from the words binary digit, is either 1=on or 0=off. </p>
+</blockquote>
+
+<p>It is obvious that there are <script type="math/tex" id="MathJax-Element-4">2^n</script> distinct sequences of bits with <script type="math/tex" id="MathJax-Element-5">n</script> bits.</p>
+
+
+
+<h4 id="integers">Integers</h4>
+
+<p>Let’s look at a sequence of 3 bits, and its unsigned and 2’s complement interpretations.</p>
+
+<table>
+<thead>
+<tr>
+  <th>bits</th>
+  <th>unsigned</th>
+  <th>2’s complement</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>000</td>
+  <td>0</td>
+  <td>0</td>
+</tr>
+<tr>
+  <td>001</td>
+  <td>1</td>
+  <td>1</td>
+</tr>
+<tr>
+  <td>010</td>
+  <td>2</td>
+  <td>2</td>
+</tr>
+<tr>
+  <td>011</td>
+  <td>3</td>
+  <td>3</td>
+</tr>
+<tr>
+  <td>100</td>
+  <td>4</td>
+  <td>-4</td>
+</tr>
+<tr>
+  <td>101</td>
+  <td>5</td>
+  <td>-3</td>
+</tr>
+<tr>
+  <td>110</td>
+  <td>6</td>
+  <td>-2</td>
+</tr>
+<tr>
+  <td>111</td>
+  <td>7</td>
+  <td>-1</td>
+</tr>
+</tbody></table>
+
+
+<p>Why does two’s complement seem unjust, jumping from 3 down to -4?  <br>
+Because it makes a lot of sense in modular math (emulating continuity by looping, instead of jumping to origin). </p>
+
+<p>How to find -3 in 2’s complement representation with 3 bits?</p>
+
+<ol>
+<li>Write the number as an unsigned number (take absolute value) <br>
+<script type="math/tex" id="MathJax-Element-6">\lvert -3\rvert = 3 = 011</script> in binary</li>
+<li>Negate the bits <br>
+invert <script type="math/tex" id="MathJax-Element-7">011 = 100</script> (taking 1’s complement)</li>
+<li>Add 1 <br>
+<script type="math/tex" id="MathJax-Element-8">100 + 001 = 101 = -3</script> in 2’s complement</li>
+</ol>
+
+<p>To find an integer from a 2’s complement sequence of bits, simply revert these steps.</p>
+
+
+
+<h4 id="characters">Characters</h4>
+
+<p>Commonly 8 bits, let’s look at 00001010</p>
+
+<ul>
+<li>Unsigned integer: 10</li>
+<li>2’s complement integer: 10</li>
+<li>ASCII: <code>\n</code> the newline character</li>
+</ul>
+
+<p>We can use hexadecimal to simplify binary sequences. <br>
+1010 1111 1001 1000 <script type="math/tex" id="MathJax-Element-9">\longleftrightarrow</script> 0xAF98</p>
+
+
+
+<h2 id="lecture-2-january-7th">Lecture 2: January 7th</h2>
+
+<blockquote>
+  <p><strong>ASCII</strong> is the American Standard Code for Information Interchange. </p>
+  
+  <ul>
+  <li>“standard” ASCII: single table of 128 characters (7 bits)</li>
+  <li>“extended” ASCII: multiple standards, 128 .. 255</li>
+  <li>Unicode (e.g., UTF-8): 8 bits:  <br>
+  <ul><li>if first bit is 0, then standard ASCII</li>
+  <li>if first bit is 1, then 7-bits encodes alphabet, and uses additional bytes to encode the character</li></ul></li>
+  </ul>
+</blockquote>
+
+
+
+<h4 id="words">Words</h4>
+
+<blockquote>
+  <p>A <strong>Word</strong> is the size of one instruction. </p>
+  
+  <ul>
+  <li>also the size of one “unit” of RAM</li>
+  <li>also the size of one address in RAM.</li>
+  </ul>
+</blockquote>
+
+<table>
+<thead>
+<tr>
+  <th>word size</th>
+  <th>time</th>
+  <th>key machines</th>
+  <th>size</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>8 bits</td>
+  <td>1950’s</td>
+  <td></td>
+  <td>256 B</td>
+</tr>
+<tr>
+  <td>16 bits</td>
+  <td>1970-80’s</td>
+  <td>Commodore</td>
+  <td>64 kB</td>
+</tr>
+<tr>
+  <td>32 bits</td>
+  <td>1980-90’s</td>
+  <td>Intel</td>
+  <td>4 GB</td>
+</tr>
+<tr>
+  <td>64 bits</td>
+  <td>2000’s</td>
+  <td>PS2</td>
+  <td>too much</td>
+</tr>
+</tbody></table>
+
+
+<blockquote>
+  <p>A <strong>File</strong> is a sequence of bytes.</p>
+</blockquote>
+
+<p><code>cat</code> concatenates the file, and outputs the file as ASCII.  <br>
+<code>xxd</code> displays the file in hexadecimal (or binary)</p>
+
+<blockquote>
+  <p>Interpretation is in the eye of the beholder.</p>
+</blockquote>
+
+
+
+<h4 id="our-machine-a-stored-program-computer">Our Machine: A Stored Program Computer</h4>
+
+<blockquote>
+  <p><strong>MIPS</strong> is 18 different 32-bit instructions encoded in 2 basic instruction formats. The CPU has 32 registers (plus <code>PC</code>, <code>IR</code>, <code>LO</code> and <code>HI</code>), and the RAM has 32-bit words, and have addresses starting from 0, and increment by 4 (bytes) until <script type="math/tex" id="MathJax-Element-10">2^{32} - 4</script></p>
+</blockquote>
+
+<p>For example, the instruction in assmebly language, </p>
+
+
+
+<pre class="prettyprint"><code class=" hljs bash">add <span class="hljs-variable">$1</span>, <span class="hljs-variable">$2</span>, <span class="hljs-variable">$3</span></code></pre>
+
+<p>translates to the MIPS machine language as</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs ">000000 00010 00011 00001 000 0010 0000
+0x00430820</code></pre>
+
+
+
+<h4 id="communication-between-cpu-and-ram">Communication between CPU and RAM</h4>
+
+<blockquote>
+  <p>The CPU and RAM communicate using a <strong>bus</strong>. Putting a value into RAM is a <strong>store</strong> using <code>sw</code>, and reading a value from RAM is <strong>load</strong> using <code>lw</code>.</p>
+</blockquote>
+
+
+
+<h4 id="machine-cycle">Machine Cycle</h4>
+
+<blockquote>
+  <p><strong>PC</strong> is the program counter, which holds the address of the next instruction to execute. <strong>IR</strong> is the instruction register</p>
+</blockquote>
+
+<p>The machine runs in a fetch-decode-execute-loop:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs applescript">PC &lt;- <span class="hljs-number">0</span>
+loop:
+  fetch instruction <span class="hljs-keyword">in</span> memory <span class="hljs-keyword">at</span> PC
+  place <span class="hljs-property">word</span> <span class="hljs-keyword">in</span> IR
+  PC &lt;- PC + <span class="hljs-number">4</span>
+  decode <span class="hljs-keyword">and</span> execute <span class="hljs-keyword">the</span> instruction <span class="hljs-keyword">that</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">in</span> IR</code></pre>
+
+
+
+<h2 id="lecture-3-january-12th">Lecture 3: January 12th</h2>
+
+<p>For example, suppose we have in ram:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs bash"><span class="hljs-number">0</span> <span class="hljs-string">"add <span class="hljs-variable">$3</span>, <span class="hljs-variable">$1</span>, <span class="hljs-variable">$2</span>"</span>
+<span class="hljs-number">4</span> <span class="hljs-string">"mult <span class="hljs-variable">$3</span>, <span class="hljs-variable">$3</span>"</span>
+<span class="hljs-number">8</span> <span class="hljs-string">"mflo <span class="hljs-variable">$3</span>"</span></code></pre>
+
+<p>When the program starts:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs r">PC = <span class="hljs-number">0</span>
+IR = <span class="hljs-string">"add $3, $1, $2"</span>
+PC = <span class="hljs-number">4</span>
+[execute]
+IR = <span class="hljs-string">"mult $3, $3"</span>
+PC = <span class="hljs-number">8</span>
+[execute]
+<span class="hljs-keyword">...</span></code></pre>
+
+<p>Note: In this course, we are writing <em>subprograms</em>, and thus we always <em>return</em> (using <code>$31</code>).</p>
+
+<p>Note (2): You can branch backwards (immediate value is interpreted as 2’s compliment)</p>
+
+<p>The explanations for MIPS instructions are skipped and only a <a href="https://www.student.cs.uwaterloo.ca/~cs241/mips/mipsref.pdf">reference sheet</a> is provided.</p>
+
+
+
+<h4 id="special-registers">Special Registers</h4>
+
+
+
+<pre class="prettyprint"><code class=" hljs bash"><span class="hljs-variable">$0</span>  - always zero
+<span class="hljs-variable">$29</span> - (special)
+<span class="hljs-variable">$30</span> - (special)
+<span class="hljs-variable">$31</span> - initially <span class="hljs-keyword">set</span> to be the <span class="hljs-keyword">return</span> address</code></pre>
+
+
+
+<h4 id="examples">Examples</h4>
+
+<p>Example 4: Calculate 13 + … + 1, store in <code>$3</code> and return <br>
+Shows a loop.</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs bash">lis <span class="hljs-variable">$2</span>
+.word <span class="hljs-number">13</span>
+add <span class="hljs-variable">$3</span>, <span class="hljs-variable">$0</span>, <span class="hljs-variable">$0</span>
+add <span class="hljs-variable">$3</span>, <span class="hljs-variable">$3</span>, <span class="hljs-variable">$2</span>
+lis <span class="hljs-variable">$1</span>
+.word -<span class="hljs-number">1</span>
+add <span class="hljs-variable">$2</span>, <span class="hljs-variable">$2</span>, <span class="hljs-variable">$1</span>
+bne <span class="hljs-variable">$2</span>, <span class="hljs-variable">$0</span>, -<span class="hljs-number">5</span>
+jr <span class="hljs-variable">$31</span></code></pre>
+
+<blockquote>
+  <p><strong>Labels</strong> are names that are each an indication of the address of an instruction.</p>
+</blockquote>
+
+
+
+<h4 id="array-accesses-mipsarray">Array accesses (mips.array)</h4>
+
+<p>Asks array size, followed by n integers <br>
+Stores base address of array in <code>$1</code> and size in <code>$2</code> <br>
+Example 3: Read element 5 into <code>$3</code></p>
+
+
+
+<pre class="prettyprint"><code class=" hljs perl">lis <span class="hljs-variable">$5</span>
+.word <span class="hljs-number">5</span>          ; load <span class="hljs-number">5</span> into <span class="hljs-variable">$5</span>
+lis <span class="hljs-variable">$4</span>
+.word <span class="hljs-number">4</span>          ; load <span class="hljs-number">4</span> into <span class="hljs-variable">$4</span>
+mult <span class="hljs-variable">$5</span>, <span class="hljs-variable">$4</span>
+mflo <span class="hljs-variable">$5</span>          ; multiply <span class="hljs-number">4</span> <span class="hljs-keyword">and</span> <span class="hljs-number">5</span> to <span class="hljs-variable">$5</span>
+add <span class="hljs-variable">$3</span>, <span class="hljs-variable">$5</span>, <span class="hljs-variable">$1</span>   ; add <span class="hljs-number">5</span><span class="hljs-variable">*4</span> to base address 
+lw <span class="hljs-variable">$3</span>, <span class="hljs-number">0</span>(<span class="hljs-variable">$5</span>)     ; load array at <span class="hljs-keyword">index</span> <span class="hljs-number">5</span> to <span class="hljs-variable">$3</span>
+jr <span class="hljs-variable">$3</span>1           ; returns</code></pre>
+
+
+
+<h2 id="lecture-4-january-14th">Lecture 4: January 14th</h2>
+
+
+
+<h4 id="output">Output</h4>
+
+<blockquote>
+  <p>Special address in memory: <code>0xffff000c</code> <br>
+  If a word is stored in this location, the word is sent to standard output (see CS 350, interrupts)</p>
+</blockquote>
+
+<p>In other words, if you <code>sw</code> a word into that memory address, the operating system will print it to STDOUT</p>
+
+<p>In MIPS it will only print ASCII and one character at a time</p>
+
+<p>Example 5: output string </p>
+
+
+
+<pre class="prettyprint"><code class=" hljs mel">; load <span class="hljs-keyword">memory</span> addr
+lis <span class="hljs-variable">$2</span>
+.word <span class="hljs-number">0xffff000c</span>
+
+; load ASCII A
+lis <span class="hljs-variable">$1</span>
+.word <span class="hljs-number">0x00000065</span> 
+
+; <span class="hljs-keyword">print</span> A
+sw <span class="hljs-variable">$1</span>, <span class="hljs-number">0</span>(<span class="hljs-variable">$2</span>)</code></pre>
+
+<hr>
+
+<p>Back to Labels, we should be able to use labels in our branch statements.</p>
+
+
+
+<h4 id="storing-and-restoring-registers">Storing and Restoring Registers</h4>
+
+<p>We wish to keep register vales intact. You have only 32 registers that you can use… but <code>$0</code> is always 0, <code>$31</code> is the return address, and <code>$29</code> is also special (for some reason)</p>
+
+<blockquote>
+  <p>Register 30, or <code>$30</code> is called the <strong>stack pointer.</strong></p>
+</blockquote>
+
+
+
+<h4 id="procedures">Procedures</h4>
+
+<p>Example 6a: Calling a procedure - use <code>jalr</code></p>
+
+
+
+<pre class="prettyprint"><code class=" hljs delphi">sw $<span class="hljs-number">31</span>, -<span class="hljs-number">4</span>($<span class="hljs-number">30</span>)     ; save $<span class="hljs-number">31</span> <span class="hljs-keyword">on</span> stack
+lis $<span class="hljs-number">31</span>
+.word <span class="hljs-number">4</span>
+sub $<span class="hljs-number">30</span>, $<span class="hljs-number">30</span>, $<span class="hljs-number">31</span>   ; move up the stack
+
+lis $<span class="hljs-number">1</span>              ; load <span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">address</span>
+.<span class="hljs-title">word</span> <span class="hljs-title">myFunc</span> 
+<span class="hljs-title">lis</span> $2              ;</span> load <span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">parameter</span>
+.<span class="hljs-title">word</span> 13
+<span class="hljs-title">jalr</span> $1             ;</span> saved PC <span class="hljs-keyword">to</span> $<span class="hljs-number">31</span>, <span class="hljs-keyword">and</span> change PC <span class="hljs-keyword">to</span> $<span class="hljs-number">1</span>
+
+...                 ; (later)</code></pre>
+
+<p>Example 6b: A procedure - just called from above</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs bash">myFunc:
+sw <span class="hljs-variable">$1</span>, -<span class="hljs-number">4</span>(<span class="hljs-variable">$30</span>)
+sw <span class="hljs-variable">$2</span>, -<span class="hljs-number">8</span>(<span class="hljs-variable">$30</span>)      ; save registers on stack
+lis <span class="hljs-variable">$1</span>
+.word <span class="hljs-number">8</span>
+sub <span class="hljs-variable">$30</span>, <span class="hljs-variable">$30</span>, <span class="hljs-variable">$1</span>
+
+add <span class="hljs-variable">$3</span>, <span class="hljs-variable">$0</span>, <span class="hljs-variable">$0</span>      ; clear <span class="hljs-variable">$3</span>
+beginLoop:
+...                 ; loop stuff
+
+lis <span class="hljs-variable">$1</span>
+.word <span class="hljs-number">8</span>
+add <span class="hljs-variable">$30</span>, <span class="hljs-variable">$30</span>, <span class="hljs-variable">$1</span>
+lw <span class="hljs-variable">$1</span>, -<span class="hljs-number">4</span>(<span class="hljs-variable">$30</span>)
+lw <span class="hljs-variable">$1</span>, -<span class="hljs-number">8</span>(<span class="hljs-variable">$30</span>)      ; load registers from stack
+
+jr <span class="hljs-variable">$31</span>              ; <span class="hljs-keyword">return</span> to <span class="hljs-built_in">caller</span></code></pre>
+
+<p>Back to the caller</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs r"><span class="hljs-keyword">...</span>                 ; (see above)
+
+lis $<span class="hljs-number">31</span>
+.word <span class="hljs-number">4</span>
+add $<span class="hljs-number">30</span>, $<span class="hljs-number">30</span>, $<span class="hljs-number">31</span>   ; move stack pointer
+lw $<span class="hljs-number">31</span>, −<span class="hljs-number">4</span>($<span class="hljs-number">30</span>)     ; get back original <span class="hljs-keyword">return</span> address
+
+jr $<span class="hljs-number">31</span>              ; <span class="hljs-keyword">return</span> to OS (or stack upwards)</code></pre>
+
+<blockquote>
+  <p>Register 3 or <code>$3</code> is the return value</p>
+</blockquote>
+
+<p>Simple rule for stack usage: <strong>If I push, I pop</strong></p>
+
+
+
+<h4 id="recursion-in-mips">Recursion in MIPS</h4>
+
+<p>Troy’s tips for recursions:</p>
+
+<ol>
+<li>Trust yourself - don’t try to look ahead</li>
+<li>Make a plan and document it <br>
+<ul><li>base case(s): find out if I am in it - produce a value and return</li>
+<li>recursive case(s): compute the next smallest value and recurse on it</li></ul></li>
+</ol>
+
+<p>See Example 7: <a href="https://www.student.cs.uwaterloo.ca/~cs241/slides/ex7a.pdf">calling</a>, <a href="https://www.student.cs.uwaterloo.ca/~cs241/slides/ex7b.pdf">procedure</a></p>
+
+<p>Template for MIPS recursion:</p>
+
+<ol>
+<li>name of function</li>
+<li>save registers <code>sw</code> <br>
+<ul><li>save <code>$31</code></li>
+<li>any other registers you use</li></ul></li>
+<li>check base case(s)</li>
+<li>recursive case(s) <br>
+<ul><li>compute “next” value(s)</li>
+<li>call myself</li>
+<li>compute my return value</li></ul></li>
+<li>restore saved registers</li>
+<li>return to caller</li>
+</ol>
+
+
+
+<h4 id="binary-trees-in-ram">Binary trees in RAM</h4>
+
+<p>Each node is 3 words – root (value), left index and right index</p>
+
+
+
+<h2 id="lecture-5-january-19th">Lecture 5: January 19th</h2>
+
+
+
+<h4 id="assembler">Assembler</h4>
+
+<blockquote>
+  <p>Input to an assember is a sequence of characters; Output from an assembler is a sequence of bits.</p>
+</blockquote>
+
+<p>This definition is very generic - and for good reason: </p>
+
+<blockquote>
+  <p>An assembler should output some error if the sequence of characters do not align with the architecture. </p>
+</blockquote>
+
+
+
+<div class="sequence-diagram"><svg height="282" version="1.1" width="459" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.5px; top: -0.765625px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.2</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><marker id="raphael-marker-endblock55-obj30" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj35" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj40" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj43" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker></defs><rect x="10" y="20" width="147" height="37" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="20" y="30" width="127" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="83.5" y="38.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Assembly language</tspan></text><rect x="10" y="225" width="147" height="37" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="20" y="235" width="127" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="83.5" y="243.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Assembly language</tspan></text><path fill="none" stroke="#000000" d="M83.5,57L83.5,225" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="177" y="20" width="90" height="37" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="187" y="30" width="70" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="222" y="38.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Assembler</tspan></text><rect x="177" y="225" width="90" height="37" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="187" y="235" width="70" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="222" y="243.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Assembler</tspan></text><path fill="none" stroke="#000000" d="M222,57L222,225" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="287" y="20" width="142" height="37" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="297" y="30" width="122" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="358" y="38.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Machine Language</tspan></text><rect x="287" y="225" width="142" height="37" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="297" y="235" width="122" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="358" y="243.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Machine Language</tspan></text><path fill="none" stroke="#000000" d="M358,57L358,225" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="137.25" y="73.5" width="31" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="152.75" y="82" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">input</tspan></text><path fill="none" stroke="#000000" d="M83.5,94C83.5,94,192.2185906469822,94,217.00940208845714,94" stroke-width="2" marker-end="url(#raphael-marker-endblock55-obj30)" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="247" y="114" width="46" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="270" y="122.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Pass 1</tspan></text><path fill="none" stroke="#000000" d="M222,109L242,109" stroke-width="2" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#000000" d="M242,109L242,141" stroke-width="2" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#000000" d="M242,141C242,141,232.9191131591797,141,226.9952533841133,141" stroke-width="2" stroke-dasharray="0" marker-end="url(#raphael-marker-endblock55-obj35)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="247" y="151" width="46" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="270" y="159.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Pass 2</tspan></text><path fill="none" stroke="#000000" d="M222,146L242,146" stroke-width="2" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#000000" d="M242,146L242,178" stroke-width="2" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#000000" d="M242,178C242,178,232.9191131591797,178,226.9952533841133,178" stroke-width="2" stroke-dasharray="0" marker-end="url(#raphael-marker-endblock55-obj40)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="270" y="184.5" width="40" height="17" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="290" y="193" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">output</tspan></text><path fill="none" stroke="#000000" d="M222,205C222,205,328.4621887207031,205,352.9983962774277,205" stroke-width="2" marker-end="url(#raphael-marker-endblock55-obj43)" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path></svg></div>
+
+<blockquote>
+  <p><strong>Pass 1:</strong> The assembly program is interpretated and results in an intermediate representation and generates a symbol table. <strong>Pass 2</strong> generates the machine language </p>
+</blockquote>
+
+<p>There are two passes because some labels are used before declared (e.g. in a simple if statement using <code>beq</code>), or after. This is called a forward reference and backward reference, respectively. Some assembly languages do not allow forward references.</p>
+
+<p>Note: Defining assembly language rigorously requires the use of DFAs, context-free grammars using regular expressions.</p>
+
+<blockquote>
+  <p><strong>Syntax:</strong> form or structure of a language; clearly different for each language <br>
+  <strong>Semantics:</strong> meaning of a language; defines how a language is interpreted</p>
+</blockquote>
+
+<p>We need to keep track of location (where we are) and labels (where we want to go).</p>
+
+<p>A pass is a read through the code, exactly once. </p>
+
+
+
+<h4 id="pass-1-analysis-phase">Pass 1 (analysis phase)</h4>
+
+<ul>
+<li>tokenization <br>
+<ul><li>input: sequence of characters, e.g. <code>a d d (space) $ 1 , (space) ...</code></li>
+<li>output: sequence of tokens, i.e. <code>&lt;ADD&gt;&lt;REG&gt;&lt;COMMA&gt;...</code> tokens</li>
+<li>this is an abstraction - we don’t care what the tokens actually do</li>
+<li>it is much easier to check the syntax of an instruction after it is tokenized (clearly)</li></ul></li>
+<li>must generate an intermediate representation <br>
+<ul><li>can do nothing - leave to pass 2</li>
+<li>could remove comments</li>
+<li>can do everything we can</li></ul></li>
+<li>must generate a symbol table <br>
+<ul><li>stores the address and name of each label definition</li>
+<li><code>(label1, 0x0), (label2, 0xc), ...</code></li>
+<li>keeping track of where you are (location)</li></ul></li>
+</ul>
+
+
+
+<h4 id="pass-2-synthesis">Pass 2 (synthesis)</h4>
+
+<p>Read in intermediate representation and symbol table, and synthesizes binary machine language program</p>
+
+<p>Encoding:</p>
+
+<ul>
+<li><code>beq</code> instruction (with <code>dest</code> from symbol table): <code>i = (dest - PC)/4</code> <br>
+Note that branch instruction: <code>PC = PC + i*4 = dest</code>!</li>
+<li><code>.word</code> instruction: <code>dest</code> <br>
+Note that word is simply absolute</li>
+<li>everything else: pretty simple</li>
+</ul>
+
+
+
+<h4 id="efficiency-of-symbol-table">Efficiency of symbol table</h4>
+
+<p>Sequence of key-value (label-address) pairs - dictionary</p>
+
+<ul>
+<li>insert: Pass 1</li>
+<li>delete: never probably</li>
+<li>lookup: Pass 2 AND 1!</li>
+</ul>
+
+<p><strong>Important</strong>: Lookup in pass 1 is to ensure that the program is correct! That is, to avoid duplicate</p>
+
+<p>Note: insert and lookup needs <code>O(1)</code> running time.</p>
+
+<p>Error checking: Pass 1</p>
+
+<ul>
+<li>Duplicate label definition</li>
+<li>Label syntax</li>
+<li>Basic syntax</li>
+</ul>
+
+<p>Error checking: Pass 2 (or earlier)</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs ruby">bew <span class="hljs-variable">$3</span>, <span class="hljs-variable">$4</span>, fred   ; <span class="hljs-constant">Undefined</span> label
+lw <span class="hljs-variable">$3</span> <span class="hljs-number">4</span>(<span class="hljs-variable">$30</span>)       ; <span class="hljs-constant">Missing</span> comma
+lw <span class="hljs-variable">$3</span>, <span class="hljs-number">4</span>(<span class="hljs-variable">$30</span>       ; <span class="hljs-constant">Unclosed</span> bracket
+lw lw <span class="hljs-variable">$3</span> <span class="hljs-number">4</span>(<span class="hljs-variable">$30</span>)    ; <span class="hljs-constant">Too</span> many instructions
+lw <span class="hljs-variable">$3</span>, <span class="hljs-number">4</span>(<span class="hljs-variable">$30</span>), <span class="hljs-variable">$7</span>  ; <span class="hljs-constant">Too</span> many arguments
+lw <span class="hljs-variable">$3</span>, <span class="hljs-number">4</span>(<span class="hljs-variable">$32</span>)      ; <span class="hljs-constant">Register</span> error
+lw <span class="hljs-variable">$3</span>, <span class="hljs-number">4444444444444444444444</span>(<span class="hljs-variable">$30</span>) ; <span class="hljs-constant">Immediate</span> value too high
+lw <span class="hljs-variable">$3</span>, <span class="hljs-number">5</span>(<span class="hljs-variable">$30</span>)      ; <span class="hljs-constant">Offset</span> is <span class="hljs-keyword">not</span> multiple of <span class="hljs-number">4</span></code></pre>
+
+
+
+<h2 id="lecture-6-january-21th">Lecture 6: January 21th</h2>
+
+<p>Error checking philosophy: Accept those instructions which are valid, and reject everything else.</p>
+
+<blockquote>
+  <p><code>&lt;&lt;</code> is the <strong>bitshift left</strong> operator <br>
+  <code>&amp;</code> is the <strong>bitwise-and</strong> operator <br>
+  <code>|</code> is the <strong>bitwise-or</strong> operator <br>
+  <code>&gt;&gt;</code> is the <strong>bitshift right</strong> operator</p>
+</blockquote>
+
+<p>See <a href="https://www.student.cs.uwaterloo.ca/~cs241/slides/encoding_beq_all.pdf">Encoding BEQ</a></p>
+
+<hr>
+
+<p>Truth: your program is not loaded at memory location 0; it is usually taken up by the OS.</p>
+
+
+
+<h4 id="loader">Loader</h4>
+
+<blockquote>
+  <p>The <strong>loader</strong> is part of the OS, that takes a machine language program (binary) and loads it at some memory location</p>
+  
+  <ol>
+  <li>find some RAM that is free and big enough</li>
+  <li>copy program to that RAM</li>
+  <li>execute the program</li>
+  </ol>
+</blockquote>
+
+<p>Loader pseudocode (v0.5):</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs livecodeserver">loop
+  decide which program <span class="hljs-built_in">to</span> run
+  figure out <span class="hljs-built_in">length</span> <span class="hljs-operator">of</span> <span class="hljs-operator">the</span> program (n)
+  find n <span class="hljs-keyword">words</span> <span class="hljs-operator">of</span> storage <span class="hljs-keyword">at</span> address alpha
+  <span class="hljs-built_in">read</span> program <span class="hljs-keyword">into</span> memory <span class="hljs-keyword">at</span> alpha
+  <span class="hljs-built_in">set</span> up program (e.g., twoints)
+  <span class="hljs-built_in">put</span> alpha <span class="hljs-keyword">into</span> <span class="hljs-operator">a</span> register (say $<span class="hljs-number">19</span>)
+  jalr $<span class="hljs-number">19</span>
+<span class="hljs-function"><span class="hljs-keyword">end</span></span></code></pre>
+
+<p>Key points: </p>
+
+<ul>
+<li>To get the size of the program, the size should be with the program.</li>
+<li>The microloader (part of firmware/BIOS) loads the loader. This process is called bootstrapping.</li>
+</ul>
+
+<p>There is something else that the loader does.</p>
+
+
+
+<h4 id="merl">MERL</h4>
+
+<p>There is a problem with absolute addresses for labels; they are incorrect if the program is loaded at a memory address that isn’t <code>0x0</code>:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs bash">lis <span class="hljs-variable">$3</span>
+.word fortytwo
+lw <span class="hljs-variable">$3</span>, <span class="hljs-number">0</span>(<span class="hljs-variable">$3</span>)
+jr <span class="hljs-variable">$31</span>
+fortytwo:
+.word <span class="hljs-number">42</span></code></pre>
+
+<blockquote>
+  <p><strong>MERL</strong> is a file format that stands for MIPS Executable, Relocatable, Linkable</p>
+</blockquote>
+
+
+
+<h2 id="lecture-7-january-26th">Lecture 7: January 26th</h2>
+
+<p>A MERL file format defines several things that it must have:</p>
+
+<ul>
+<li>Header cookie <br>
+<ul><li>a marker that identifies the file as a MERL file</li>
+<li>specifically, 1 word: <code>0x10000002</code> at the beginning of the file</li>
+<li>it equates to <code>beq $0, $0, 2</code>, which skips the next two words</li>
+<li>Note: necessary, not sufficient condition</li></ul></li>
+<li>Length of entire .merl file (in bytes, 1 word)</li>
+<li>Length of header + MIPS program (in bytes, 1 word)</li>
+<li>Program code (the actual MIPS program)</li>
+<li>Notes of what to change <br>
+<ul><li>Relocation entry (two words): <code>.word 0x1</code>, followed by <code>.word &lt;location&gt;</code> <br>
+<ul><li>this means there is a <code>.word &lt;label&gt;</code> at <code>&lt;location&gt;</code> that needs fixing</li></ul></li>
+<li>and more.</li></ul></li>
+</ul>
+
+
+
+<h4 id="merlifying">MERLifying</h4>
+
+<p>Back to our example from above:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs bash">lis <span class="hljs-variable">$3</span>
+.word fortytwo
+lw <span class="hljs-variable">$3</span>, <span class="hljs-number">0</span>(<span class="hljs-variable">$3</span>)
+jr <span class="hljs-variable">$31</span>
+fortytwo:
+.word <span class="hljs-number">42</span></code></pre>
+
+<p>Let’s put addresses in place:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs bash"><span class="hljs-number">0</span>x0:  <span class="hljs-number">0</span>x10000002              ; HEADER
+<span class="hljs-number">0</span>x4:  <span class="hljs-number">0</span>x000000028
+<span class="hljs-number">0</span>x8:  <span class="hljs-number">0</span>x000000020
+<span class="hljs-number">0</span>xc:  lis <span class="hljs-variable">$3</span>                  ; PROGRAM
+<span class="hljs-number">0</span>x10: .word fortytwo
+<span class="hljs-number">0</span>x14: lw <span class="hljs-variable">$3</span>, <span class="hljs-number">0</span>(<span class="hljs-variable">$3</span>)
+<span class="hljs-number">0</span>x18: jr <span class="hljs-variable">$31</span>
+      fortytwo:
+<span class="hljs-number">0</span>x1c: <span class="hljs-number">0</span>x0000002a
+<span class="hljs-number">0</span>x20: <span class="hljs-number">0</span>x00000001              ; NOTES
+<span class="hljs-number">0</span>x24: <span class="hljs-number">0</span>x00000010</code></pre>
+
+<p>Note that this program is still executable - because the first word is a branch instruction</p>
+
+
+
+<h4 id="merl-assembler">MERL Assembler</h4>
+
+<p>We need to change our assembler to create more data that the MERL format demands. </p>
+
+<p>Changes: </p>
+
+<ul>
+<li>Pass 1 <br>
+<ul><li>start counter at 0xc</li>
+<li>keep track of all <code>.word &lt;label&gt;</code> commands: keep them in a relation table</li></ul></li>
+<li>Pass 2 <br>
+<ul><li>output cookie (static)</li>
+<li>size of MERL file  <br>
+<ul><li>(header = 12 bytes) + (program size) + (8 <script type="math/tex" id="MathJax-Element-11">\times</script> relation_table.size bytes)</li></ul></li>
+<li>size of header + program <br>
+<ul><li>(header = 12 bytes) + (program size)</li></ul></li>
+<li>output notes at the end</li></ul></li>
+</ul>
+
+
+
+<h4 id="loader-1">Loader</h4>
+
+<p>Loader Pseudocode (v1.0):</p>
+
+
+
+<pre class="prettyprint"><code class="language-ruby hljs ">read_header     <span class="hljs-comment"># check cookie</span>
+                <span class="hljs-comment"># size of the entire program</span>
+                <span class="hljs-comment"># size of the header + program = code_length</span>
+alpha = find_free_RAM(code_length)
+instructions.each <span class="hljs-keyword">do</span> |instruction, i|
+  <span class="hljs-constant">MEM</span>[alpha + i] = instruction
+relocation_entries.each <span class="hljs-keyword">do</span> |<span class="hljs-number">_</span>, location|
+  <span class="hljs-constant">MEM</span>[alpha + location] += alpha
+<span class="hljs-variable">$19</span> = alpha
+jalr alpha</code></pre>
+
+<p>Example:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs avrasm"><span class="hljs-label">A:</span>
+<span class="hljs-preprocessor">.word</span> B
+<span class="hljs-label">B:</span>
+<span class="hljs-preprocessor">.word</span> <span class="hljs-number">7</span>
+<span class="hljs-label">C:</span>
+<span class="hljs-preprocessor">.word</span> <span class="hljs-number">0xa</span>
+<span class="hljs-label">D:</span>
+<span class="hljs-preprocessor">.word</span> C</code></pre>
+
+<table>
+<thead>
+<tr>
+  <th>Symbol</th>
+  <th>Location</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>A</td>
+  <td>0xc</td>
+</tr>
+<tr>
+  <td>B</td>
+  <td>0x10</td>
+</tr>
+<tr>
+  <td>C</td>
+  <td>0x14</td>
+</tr>
+<tr>
+  <td>D</td>
+  <td>0x18</td>
+</tr>
+</tbody></table>
+
+
+<table>
+<thead>
+<tr>
+  <th>Relocation</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>0xc</td>
+</tr>
+<tr>
+  <td>0x18</td>
+</tr>
+</tbody></table>
+
+
+<p>Assembled:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs http"><span class="hljs-attribute">00</span>: <span class="hljs-string">0x10000002     ; HEADER</span>
+<span class="hljs-attribute">04</span>: <span class="hljs-string">0x0000002c</span>
+<span class="hljs-attribute">08</span>: <span class="hljs-string">0x0000001c</span>
+<span class="hljs-attribute">0c</span>: <span class="hljs-string">0x00000010     ; PROGRAM</span>
+<span class="hljs-attribute">10</span>: <span class="hljs-string">0x00000007</span>
+<span class="hljs-attribute">14</span>: <span class="hljs-string">0x0000000a</span>
+<span class="hljs-attribute">18</span>: <span class="hljs-string">0x00000014</span>
+<span class="hljs-attribute">1c</span>: <span class="hljs-string">0x00000001     ; NOTES</span>
+<span class="hljs-attribute">20</span>: <span class="hljs-string">0x0000000c</span>
+<span class="hljs-attribute">24</span>: <span class="hljs-string">0x00000001</span>
+<span class="hljs-attribute">28</span>: <span class="hljs-string">0x00000018</span></code></pre>
+
+
+
+<h4 id="combining-programs">Combining Programs</h4>
+
+<p>Sometimes we want to combine programs together (because we’ve divided programs into modules, classes, functions, etc). And we want to do this whenever we wish.</p>
+
+<p>Option 1: Concatenate all files</p>
+
+<ul>
+<li>Productivity: require all programs before assembling - everyone is everyone else’s bottleneck</li>
+<li>Bug tracking: difficult to find origin of bugs - loses modular structure</li>
+<li>Duplicates: labels might overlap - but we don’t want unique labels across all files</li>
+</ul>
+
+<p>Option 2: Linker</p>
+
+<p>Let’s try assembling these files separately. We will combine these assembled programs together with a linker. </p>
+
+<ul>
+<li>There may be cyclic symbol definition prerequisites - assembler will not be able to find label definitions</li>
+</ul>
+
+
+
+<h4 id="modifying-the-assembler">Modifying the Assembler</h4>
+
+<p>MERL defines two more Note formats: ESR (external symbol definition) and ESD (external symbol reference); that is, import and export</p>
+
+<ul>
+<li>Import: what I need from other programs outside of me</li>
+<li>Export: what I provide for other programs</li>
+</ul>
+
+<p>These are respectively the <code>.import</code> and <code>.export</code> directives.</p>
+
+<p>If the assembler finds a label that is not defined locally, it will look to see if the this label is imported.</p>
+
+
+
+<h2 id="lecture-8-january-28th">Lecture 8: January 28th</h2>
+
+
+
+<h4 id="adding-more-merl-notes">Adding more MERL Notes</h4>
+
+<ol>
+<li><p>Relocation entry</p>
+
+<pre class="prettyprint"><code class=" hljs brainfuck"><span class="hljs-comment">0x01</span>                     <span class="hljs-literal">-</span><span class="hljs-literal">-</span> <span class="hljs-comment">format</span> <span class="hljs-comment">code</span>
+&lt;<span class="hljs-comment">location</span>&gt;
+</code></pre></li>
+<li><p>ESD (external symbol definition)</p>
+
+<pre class="prettyprint"><code class=" hljs livecodeserver"><span class="hljs-number">0x05</span>                     <span class="hljs-comment">-- format code</span>
+&lt;location <span class="hljs-operator">of</span> label def&gt;
+n
+&lt;n <span class="hljs-keyword">chars</span> <span class="hljs-operator">in</span> ASCII&gt;       <span class="hljs-comment">-- label name</span>
+</code></pre></li>
+<li><p>ESR (external symbol reference)</p>
+
+<pre class="prettyprint"><code class=" hljs livecodeserver"><span class="hljs-number">0x11</span>                     <span class="hljs-comment">-- format code</span>
+&lt;location <span class="hljs-operator">of</span> usage&gt;
+n
+&lt;n <span class="hljs-keyword">chars</span> <span class="hljs-operator">in</span> ASCII&gt;       <span class="hljs-comment">-- label name</span>
+</code></pre></li>
+</ol>
+
+<p>See <a href="https://www.student.cs.uwaterloo.ca/~cs241/tmjvasiga/lec08_linking_slides.pdf">Linking</a> for example.</p>
+
+
+
+<h4 id="assembler-changes-for-import-and-export">Assembler changes for import and export</h4>
+
+<p>Pass 1 changes:</p>
+
+<ul>
+<li>when I see a <code>.export &lt;label&gt;</code> <br>
+<ul><li>keep it in a (separate) relation table, “exported”</li></ul></li>
+<li>when I see definition of label <br>
+<ul><li>update exported table</li>
+<li>check if imported</li></ul></li>
+<li>when I see a <code>.import &lt;ext_label&gt;</code> <br>
+<ul><li>keep it in another (separate) relation table, “imported”</li></ul></li>
+</ul>
+
+<p>Pass 2 changes:</p>
+
+<ul>
+<li>when I see usage of label <br>
+<ul><li>check imported table if not in symbol table <br>
+<ul><li>write out ESR</li>
+<li>put in address 0</li></ul></li></ul></li>
+<li>for each exported name <br>
+<ul><li>write out an ESD</li>
+<li>or error if label address not presented (in pass 1)</li></ul></li>
+</ul>
+
+
+
+<h4 id="linker">Linker</h4>
+
+<blockquote>
+  <p>The <strong>linker</strong> combines several MERL files into one executable program.</p>
+</blockquote>
+
+<ol>
+<li>Concatenate the programs into 1 large MERL file <br>
+<ul><li>create the header</li>
+<li>copy the program part of each MERL file, one after another</li>
+<li>keep the sizes of each part</li></ul></li>
+<li>Construct ESD <br>
+<ul><li>combine each individual ESD into combined ESDs <br>
+<ul><li>make sure address is consistent in combined program</li></ul></li>
+<li>check that there are no duplicate exports</li></ul></li>
+<li>Use ESR <br>
+<ul><li>for each ESR, look up in ESD <br>
+<ul><li>if found, add value to usage <br>
+<ul><li>find appropriate location of usage</li>
+<li>if <code>.word &lt;label&gt;</code>, replace label with absolute address</li>
+<li>if <code>bne</code> or <code>beq</code>, replace immediate value with offset <br>
+<ul><li>you can figure out which one by checking the first 16 bits</li>
+<li>we set all to 0 if it is <code>.word &lt;label&gt;</code></li></ul></li></ul></li>
+<li>if not found <br>
+<ul><li>DON’T JUST THROW AN ERROR <br>
+<ul><li>we may want to link these with more programs!</li>
+<li>remember that the combined </li></ul></li>
+<li>keep the ESR but with the appropriate address</li>
+<li>note: if combined ESR table is empty, then the program is ready to run</li></ul></li></ul></li></ul></li>
+<li>Relocate (internally) <br>
+<ul><li>change location to appropriate address in the relocation entry</li>
+<li>for local relocations (i.e., not handled by ESR), add offset to the actual word (not just relocation entry)</li></ul></li>
+</ol>
+
+
+
+<h4 id="static-linking-vs-dynamic-linking">Static Linking vs Dynamic Linking</h4>
+
+<p>Static linking: </p>
+
+<ul>
+<li>assemble and link all code <br>
+<ul><li>one large executable</li>
+<li>self-contained</li></ul></li>
+<li>e.g. <br>
+<ul><li><code>#include</code> in C and C++</li></ul></li>
+</ul>
+
+<p>Dynamic linking:</p>
+
+<ul>
+<li><p>do linking at execution time</p>
+
+<pre class="prettyprint"><code class=" hljs livecodeserver">; <span class="hljs-built_in">create</span> <span class="hljs-operator">a</span> <span class="hljs-keyword">string</span> helper1
+; $<span class="hljs-number">1</span> point <span class="hljs-built_in">to</span> <span class="hljs-operator">the</span> <span class="hljs-keyword">string</span>
+lis $<span class="hljs-number">29</span>
+.<span class="hljs-built_in">word</span> binLoader
+jalr $<span class="hljs-number">29</span>
+jalr $<span class="hljs-number">3</span>
+</code></pre></li>
+</ul>
+
+<p>Here, binLoader searches through the library to find “helper1”</p>
+
+<blockquote>
+  <p><strong>DLLs</strong> are Dynamically Linked Library, as part of the Windows Operating System</p>
+</blockquote>
+
+
+
+<h2 id="lecture-9-february-2nd">Lecture 9: February 2nd</h2>
+
+<p>Remark: Let’s look back on our journey on the dessert island.</p>
+
+<p>We got our hands on a microchip, and obviously it runs on the MIPS architecture.</p>
+
+<p>MIPS</p>
+
+<ul>
+<li>binary</li>
+<li>assembler</li>
+<li>loading</li>
+<li>linking</li>
+</ul>
+
+<p>But we remember that we had higher level structures - if statements and for loops for example.</p>
+
+
+
+<h4 id="formal-languages">Formal Languages</h4>
+
+<p>Given a language, we want to know if it is correct. We wish to be as precise as possible. Defining this precision of specification and recognition, gives us:</p>
+
+<ul>
+<li>a means of universal communication (mathematics)</li>
+<li>determine the power and limits of communication</li>
+<li>guides our practice – implement and design a compiler</li>
+</ul>
+
+<p>Our definitions are based on set theory.</p>
+
+<blockquote>
+  <p>An <strong>alphabet</strong> is a finite set of symbols. We usually denote an alphabet with the Greek letter Sigma. Note that it is not necessarily an ASCII character. </p>
+</blockquote>
+
+<p>For example: <script type="math/tex; mode=display" id="MathJax-Element-12">\Sigma_1 = \{ a, b, c \} </script> <script type="math/tex; mode=display" id="MathJax-Element-13">\Sigma_2 = \{ \Delta, \text{blue}, 173\}</script></p>
+
+<blockquote>
+  <p>A <strong>word</strong> (aka string, sentence) is a finite sequence of symbols from the alphabet. </p>
+</blockquote>
+
+<p>For example, words over <script type="math/tex" id="MathJax-Element-14">\Sigma_1</script> could be <script type="math/tex" id="MathJax-Element-15">w_1 = abba</script>. The empty word is denoted <script type="math/tex" id="MathJax-Element-16">\epsilon</script> (or <script type="math/tex" id="MathJax-Element-17">\lambda</script>).</p>
+
+<blockquote>
+  <p>A <strong>language</strong> is a set of words (not necessarily finite). </p>
+</blockquote>
+
+<p>For example, a language over <script type="math/tex" id="MathJax-Element-18">\Sigma_1</script> could be <script type="math/tex; mode=display" id="MathJax-Element-19">L_1 = \{ a, aaa, aaaaa \}</script> <script type="math/tex; mode=display" id="MathJax-Element-20">L_2 = \{ b, ba, baa, baaa, \ldots \}</script> <script type="math/tex; mode=display" id="MathJax-Element-21">L_3 = \{ \}</script> <script type="math/tex; mode=display" id="MathJax-Element-22">L_4 = \{ \epsilon \}</script> Note that <script type="math/tex" id="MathJax-Element-23">L_2</script> is an infinite language.</p>
+
+<blockquote>
+  <p>We denote <script type="math/tex" id="MathJax-Element-24">\lvert W \rvert</script> as the size of <script type="math/tex" id="MathJax-Element-25">W</script>, where <script type="math/tex" id="MathJax-Element-26">W</script> is a word or language. </p>
+</blockquote>
+
+
+
+<p><script type="math/tex; mode=display" id="MathJax-Element-27">\lvert L_1 \rvert = 3</script> <script type="math/tex; mode=display" id="MathJax-Element-28">\lvert L_2 \rvert = \infty</script> <script type="math/tex; mode=display" id="MathJax-Element-29">\lvert L_3 \rvert = 0</script> <script type="math/tex; mode=display" id="MathJax-Element-30">\lvert L_4 \rvert = 1</script> <script type="math/tex; mode=display" id="MathJax-Element-31">\lvert w_1 \rvert = 4</script></p>
+
+<blockquote>
+  <p><strong>Specification</strong> is a statement of what is in the language. Analogous to the English dictionary for the English language.</p>
+</blockquote>
+
+<p>It should be</p>
+
+<ul>
+<li>precise (mandatory)</li>
+<li>easy to express (ideally)</li>
+<li>automatable (ideally)</li>
+</ul>
+
+<blockquote>
+  <p><strong>Recognition</strong> determines if a word is in a language. Formally, given a language <script type="math/tex" id="MathJax-Element-32">L</script> and a word <script type="math/tex" id="MathJax-Element-33">w</script>, recognition is whether <script type="math/tex" id="MathJax-Element-34">w \in L</script> – true or false.</p>
+</blockquote>
+
+<p>Although, in practice, when recognition returns:</p>
+
+<ul>
+<li>false: they give the location and type of error</li>
+<li>true: they give a certificate of correctness (i.e. the compiled code)</li>
+</ul>
+
+<p>Let’s try to formally specify WLP4 (Waterloo Language Plus Pointers Plus Procedures)</p>
+
+<ul>
+<li>alphabets - WLP4 tokens <br>
+<ul><li>IF, ELSE, WHILE, GT, LT, …</li></ul></li>
+<li>word - WLP4 program <br>
+<ul><li>sequence of tokens</li></ul></li>
+<li>language - set of valid WLP4 programs</li>
+</ul>
+
+<p>Note, other programming languages work similarly, i.e. alphabet, word and languages are defined similarly.</p>
+
+
+
+<h4 id="language-classes">Language Classes</h4>
+
+<p>A set of languages may share common characteristics. For example, English have Romantic language and Germanic language roots. Noam Chomsky, MIT, is a linguist, in Computer Science. He defined the Chomsky Hierarchy</p>
+
+<ul>
+<li>finite languages</li>
+<li>regular languages</li>
+<li>context-free languages</li>
+<li>context-sensitive languages</li>
+</ul>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Chomsky-hierarchy.svg" alt="enter image description here" title=""></p>
+
+<p>Image from <a href="https://en.wikipedia.org/wiki/Chomsky_hierarchy">Wikipedia: Chomsky Hierarchy</a></p>
+
+
+
+<h4 id="organization-of-compilation">Organization of Compilation</h4>
+
+<ul>
+<li>lexical analysis - regular languages</li>
+<li>syntactic analysis - context-free languages</li>
+<li>context-sensitive analysis (semantic) analysis - context-sensitive languages</li>
+<li>synthesis (code generation) - context-sensitive languages</li>
+</ul>
+
+<p>Let’s first look at an example: </p>
+
+<p>Let <script type="math/tex" id="MathJax-Element-35">\Sigma = \{ \text{ASCII characters} \} - \{ \text{CR} \}</script></p>
+
+<ul>
+<li><code>L1 = {$0, $1, $2, ... , $31}</code> <br>
+<ul><li>finite language</li></ul></li>
+<li><code>L2 = valid labels in MIPS</code> <br>
+<ul><li>regular language</li></ul></li>
+<li><code>L3 = valid load word (lw) offsets</code> <br>
+<ul><li>finite language</li></ul></li>
+<li><code>L4 = valid line of AL for A3P3</code> <br>
+<ul><li>finite language</li></ul></li>
+<li><code>L5 = valid line of AL for A3P4</code> <br>
+<ul><li>context-sensitive language</li>
+<li>depends on what is already defined</li></ul></li>
+</ul>
+
+
+
+<h4 id="regular-languages">Regular Languages</h4>
+
+<p>Construction: our basic building blocks:</p>
+
+<ul>
+<li>finite languages</li>
+<li>union <br>
+<ul><li>of two sets</li>
+<li><script type="math/tex" id="MathJax-Element-36">T_1 \cup T_2 = \{ x \mid x \in T_1 \text{ or } x \in T_2 \}</script></li>
+<li>still finite</li></ul></li>
+<li>concatenation <br>
+<ul><li><script type="math/tex" id="MathJax-Element-37">T_1 \cdot T_2 = \{ xy \mid x \in T_1 \text{ and } y \in T_2 \}</script></li>
+<li>still finite</li></ul></li>
+<li>repetition <br>
+<ul><li>Kleene Closure</li>
+<li><script type="math/tex" id="MathJax-Element-38">T^* = \{\epsilon\} \cup \{ xy \mid x\in T \text{ and } y\in T^* \}</script></li>
+<li><script type="math/tex" id="MathJax-Element-39">T^* = \bigcup_{k=0}^{\infty} T^k</script></li>
+<li>infinite</li></ul></li>
+</ul>
+
+
+
+<h2 id="lecture-10-february-4th">Lecture 10: February 4th</h2>
+
+
+
+<h4 id="finite-automata-recognition">Finite Automata (Recognition)</h4>
+
+<blockquote>
+  <p>Regular languages can be recognized by <strong>finite automata</strong>.</p>
+</blockquote>
+
+<p>We begin with <strong>deterministic finite automata</strong> (DFAs)</p>
+
+<ul>
+<li>states: describes what is true now <br>
+<ul><li>e.g. odd, happy</li></ul></li>
+<li>transitions:  <br>
+<ul><li>e.g. <script type="math/tex" id="MathJax-Element-40">A \xrightarrow{x} B</script></li>
+<li>if I am in state A and read input x, move to state B</li></ul></li>
+<li>start state: <br>
+<ul><li>the state to start from</li></ul></li>
+<li>final states: or accepting states <br>
+<ul><li>if, after reading all input, I am in an accepting state, then accept the input</li></ul></li>
+</ul>
+
+<p>Example 1: selected opcodes from MIPS assembly language, where alphabet is the ASCII characters</p>
+
+
+
+<p><script type="math/tex; mode=display" id="MathJax-Element-41">\text{start} \xrightarrow{.} \text{dot} \xrightarrow{w} \text{dotw} \xrightarrow{o} \text{dotwo} \xrightarrow{r} \text{dotwor} \xrightarrow{d} (\text{dotword}) </script></p>
+
+<p>See asm.rkt or lexer.cpp for the implementation</p>
+
+<p>Observe about Finite Automata: </p>
+
+<ul>
+<li>ability to trace: <br>
+<ul><li>only ever in one state at a time</li></ul></li>
+<li>transitions out of a state are unique <br>
+<ul><li>deterministic</li></ul></li>
+<li>errors <br>
+<ul><li>implicit error state</li>
+<li>anything that is not a defined transition is an error</li></ul></li>
+<li>size of this language <br>
+<ul><li>number of ways to end on an accepting state</li></ul></li>
+</ul>
+
+<blockquote>
+  <p>If we call this DFA <script type="math/tex" id="MathJax-Element-42">M</script>, then our language is <script type="math/tex" id="MathJax-Element-43">L(M)</script></p>
+</blockquote>
+
+<p>Example 2: MIPS labels (definition), where the alphabet is ASCII characters</p>
+
+
+
+<p><script type="math/tex; mode=display" id="MathJax-Element-44">\text{start} \xrightarrow{a-zA-Z} \text{id} \xrightarrow{:} (\text{defn})</script> <script type="math/tex; mode=display" id="MathJax-Element-45">\text{id} \xrightarrow{a-zA-Z0-9} \text{id}</script></p>
+
+<table>
+<thead>
+<tr>
+  <th>accepted words</th>
+  <th>rejected words</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td><code>x17:</code></td>
+  <td><code>boo</code></td>
+</tr>
+<tr>
+  <td><code>blahblah:</code></td>
+  <td><code>17x:</code></td>
+</tr>
+<tr>
+  <td><code>a:</code></td>
+  <td><script type="math/tex" id="MathJax-Element-46">\epsilon</script> (empty word)</td>
+</tr>
+</tbody></table>
+
+
+<p>Examples: Let $\Sigma = { a, b, c }</p>
+
+<ul>
+<li>strings with exactly one <code>a</code>, and exactly one <code>b</code> and no <code>c</code> <br>
+<img src="https://meetdavidsong.com/images/cs241-images/dfa-example-1.png" alt="DFA Example 1" title=""></li>
+<li>strings with at least one <code>a</code> <br>
+<img src="https://meetdavidsong.com/images/cs241-images/dfa-example-2.png" alt="DFA Example 2" title=""></li>
+<li>strings with an even number of <code>a</code>’s <br>
+<img src="https://meetdavidsong.com/images/cs241-images/dfa-example-3.png" alt="DFA Example 3" title=""></li>
+<li>strings with an even number of a’s and odd number of <code>b</code>’s <br>
+<img src="https://meetdavidsong.com/images/cs241-images/dfa-example-4.png" alt="DFA Example 4" title=""> <br>
+Note, it is possible that <script type="math/tex" id="MathJax-Element-47">L(M) = L(M')</script> even though <script type="math/tex" id="MathJax-Element-48">M \neq M'</script>. </li>
+</ul>
+
+<blockquote>
+  <p>A DFA is a 5-tuple <script type="math/tex" id="MathJax-Element-49">(\Sigma, Q, q_0, A, \delta)</script> where</p>
+  
+  <ul>
+  <li>finite alphabet <script type="math/tex" id="MathJax-Element-50">\Sigma</script></li>
+  <li>finite set of states <script type="math/tex" id="MathJax-Element-51">Q</script></li>
+  <li>start state <script type="math/tex" id="MathJax-Element-52">q_0 \in Q</script></li>
+  <li>set of final/accepting states <script type="math/tex" id="MathJax-Element-53">A \subseteq Q</script></li>
+  <li>transition function <script type="math/tex" id="MathJax-Element-54">\delta: Q \times \Sigma \to Q</script></li>
+  </ul>
+</blockquote>
+
+
+
+<p><script type="math/tex; mode=display" id="MathJax-Element-55">\Sigma = \{ a, b, c \} \\ Q = \{ noA, someA \} \\ q_0 = noA \\ A = \{ someA \} \\ \delta(noA, a) = someA \\ \delta(noA, b) = noA \\ \delta(noA, c) = noA \\ \delta(someA, a) = someA \\ \delta(someA, b) = someA \\ \delta(someA, c) = someA</script></p>
+
+<p>This formal definition corresponds to our DFA for the language strings with at least one <code>a</code>.</p>
+
+
+
+<h4 id="dfa-interpreter-algorithm">DFA Interpreter Algorithm</h4>
+
+<p>Input: A word <script type="math/tex" id="MathJax-Element-56">w = w_1w_2\ldots w_n</script> where each <script type="math/tex" id="MathJax-Element-57">w_i \in \Sigma</script> <br>
+Output: true if accepted, false if rejected</p>
+
+<p>Pseudocode: </p>
+
+
+
+<pre class="prettyprint"><code class="language-ruby hljs ">state = q<span class="hljs-number">0</span>
+(<span class="hljs-number">1</span>..n).each <span class="hljs-keyword">do</span> |i|
+  state = delta(state, w[i]
+<span class="hljs-keyword">end</span>
+<span class="hljs-constant">A</span>[state]</code></pre>
+
+<p>The problem now, is to implement the transition function somehow. Because the transition function can be big (as seen above in the definition), we do not want to check every combination. We implement this with a tuple-key dictionary, with O(1) look-up time.</p>
+
+<p>Where are DFAs used? <br>
+<script type="math/tex" id="MathJax-Element-58">CPU = DFA</script> <br>
+Every computer you will ever own. In fact, a Turning machine, is loosely a DFA and a tape (CPU and Memory)</p>
+
+
+
+<h2 id="lecture-11-february-9th">Lecture 11: February 9th</h2>
+
+
+
+<h4 id="non-deterministic-finite-automata">Non-deterministic Finite Automata</h4>
+
+<p>Let <script type="math/tex" id="MathJax-Element-59">L = \{ bba, baa, bbaa, bbbaa, bbbbaa, \ldots \}</script>, which is either 2 b’s followed by an a, or 1 or more b’s followed by 2 a’s. <br>
+Try to derive this using a DFA. It will be ugly.</p>
+
+<p>Let’s use a NFA. </p>
+
+<p><img src="https://meetdavidsong.com/images/cs241-images/nfa.png" alt="NFA" title=""></p>
+
+<blockquote>
+  <p>In an NFA, the difference is that transitions from a state do not need to be unique. Formally, this means: <script type="math/tex; mode=display" id="MathJax-Element-60">T: Q \times \Sigma \to \mathcal{P}(Q)</script> that is, instead of <script type="math/tex" id="MathJax-Element-61">\delta</script>, <script type="math/tex" id="MathJax-Element-62">T</script> is a <em>relation</em> that returns a set of states. </p>
+</blockquote>
+
+<p>This means that we can be in “multiple states”. We recognize words if one path we go down ends in an accepting state.</p>
+
+
+
+<p><script type="math/tex; mode=display" id="MathJax-Element-63">T(start, B) = \{B_1, B_2\}</script></p>
+
+
+
+<h4 id="nfa-interpreter-algorithm">NFA Interpreter Algorithm</h4>
+
+<p>Input: A word <script type="math/tex" id="MathJax-Element-64">w = w_1w_2\ldots w_n</script> with each <script type="math/tex" id="MathJax-Element-65">w_i \in \Sigma</script> <br>
+Output: true if accepted, false if rejected</p>
+
+
+
+<pre class="prettyprint"><code class="language-ruby hljs ">states = <span class="hljs-constant">Set</span>.new [q<span class="hljs-number">0</span>]
+(<span class="hljs-number">1</span>..n).each <span class="hljs-keyword">do</span> |i|
+  new_states = <span class="hljs-constant">Set</span>.new
+  states.each <span class="hljs-keyword">do</span> |state| 
+    states |= <span class="hljs-constant">T</span>(state, w)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+<span class="hljs-keyword">not</span> states.disjoint?(<span class="hljs-constant">A</span>)</code></pre>
+
+<p>The Set data structure is not exactly efficient. Luckily, because we have a finite set of states, and in fact, they are predefined, we can utilize a bit-vector. (intersection is bitwise-and, union is bitwise-or)</p>
+
+<p>NFAs could be smaller in size for the same language, but can be harder to implement. </p>
+
+<blockquote>
+  <p>NFAs and DFAs represent the equivalent set of languages. In other words, there exists a DFA for every NFA. </p>
+</blockquote>
+
+<p>To prove this, see that all DFAs are NFAs, or <script type="math/tex" id="MathJax-Element-66">\{DFAs\} \subseteq \{NFAs\}</script></p>
+
+<p>To prove other direction, we use subset construction. </p>
+
+<p>The question we ask is: What set of states am I in for each possible input from the current state? </p>
+
+<p><img src="https://meetdavidsong.com/images/cs241-images/subset-construction.jpg" alt="Subset Construction" title=""></p>
+
+<p>See that the size of our DFA could be exponential in size compared to its NFA counterpart. </p>
+
+<p>Exercise: Write a NFA and its DFA counterpart for all words over <script type="math/tex" id="MathJax-Element-67">\Sigma = \{ a, b \}</script> with <script type="math/tex" id="MathJax-Element-68">aba</script> as a subword.</p>
+
+
+
+<h4 id="epsilon-nfas"><script type="math/tex" id="MathJax-Element-69">\epsilon</script>-NFAs</h4>
+
+<ul>
+<li>allow transition between states on “no input”</li>
+<li>can be used as “glue for joining” machines together</li>
+</ul>
+
+<p>It is obvious that <script type="math/tex" id="MathJax-Element-70">\epsilon</script>-NFAs can be converted to NFAs. </p>
+
+<ol>
+<li>take <script type="math/tex" id="MathJax-Element-71">\epsilon</script> shortcuts</li>
+<li>pull back final states</li>
+<li>remove <script type="math/tex" id="MathJax-Element-72">\epsilon</script> transitions</li>
+<li>remove dead states</li>
+</ol>
+
+
+
+<h4 id="regular-expressions">Regular Expressions</h4>
+
+<blockquote>
+  <p>A Regular Expression (RE) can be</p>
+  
+  <ul>
+  <li><script type="math/tex" id="MathJax-Element-73">\emptyset</script></li>
+  <li><script type="math/tex" id="MathJax-Element-74">\epsilon</script></li>
+  <li><script type="math/tex" id="MathJax-Element-75">a</script>, where <script type="math/tex" id="MathJax-Element-76">a \in \Sigma</script></li>
+  <li><script type="math/tex" id="MathJax-Element-77">E_1E_2</script> where <script type="math/tex" id="MathJax-Element-78">E_1</script> and <script type="math/tex" id="MathJax-Element-79">E_2</script> are REs</li>
+  <li><script type="math/tex" id="MathJax-Element-80">E_1 \vert E_2</script> where <script type="math/tex" id="MathJax-Element-81">E_1</script> and <script type="math/tex" id="MathJax-Element-82">E_2</script> are REs</li>
+  <li><script type="math/tex" id="MathJax-Element-83">E^*</script> where <script type="math/tex" id="MathJax-Element-84">E</script> is a RE</li>
+  </ul>
+</blockquote>
+
+<p>Examples: </p>
+
+
+
+<pre class="prettyprint"><code class=" hljs livecodeserver">$ L = {cab, car, card}
+cab | car | card
+ca(b|r(d|epsilon))
+$ Sigma = {<span class="hljs-operator">a</span>}        L = {even numbers <span class="hljs-operator">of</span> <span class="hljs-operator">a</span>}
+(aa)*
+$ Sigma = {<span class="hljs-operator">a</span>, b}     L = {<span class="hljs-operator">contains</span> even numbers <span class="hljs-operator">of</span> <span class="hljs-operator">a</span>}
+(b*(ab*<span class="hljs-operator">a</span>)*)*
+b*(ab*ab*)*
+$ Sigma = {<span class="hljs-operator">a</span>, b}     L = {<span class="hljs-operator">contains</span> either aa <span class="hljs-operator">or</span> bb}
+(<span class="hljs-operator">a</span>|b)*(aa|bb)(<span class="hljs-operator">a</span>|b)*
+$ Sigma = {<span class="hljs-operator">a</span>, b}     L = {<span class="hljs-operator">contains</span> no aa <span class="hljs-operator">or</span> bb}
+(epsilon|b)(ab)*(epsilon|<span class="hljs-operator">a</span>)</code></pre>
+
+<p>Exercise: write DFA for these (they should look similar to the regular expressions</p>
+
+
+
+<h2 id="lecture-12-february-11th">Lecture 12: February 11th</h2>
+
+
+
+<h4 id="re-to-epsilon-nfa">RE to <script type="math/tex" id="MathJax-Element-85">\epsilon</script>-NFA</h4>
+
+<ul>
+<li><script type="math/tex" id="MathJax-Element-86">\emptyset</script> (image)</li>
+<li><script type="math/tex" id="MathJax-Element-87">\epsilon</script> (image)</li>
+<li><script type="math/tex" id="MathJax-Element-88">a</script>, where <script type="math/tex" id="MathJax-Element-89">a \in \Sigma</script> (image)</li>
+<li><script type="math/tex" id="MathJax-Element-90">E_1E_2</script> where <script type="math/tex" id="MathJax-Element-91">E_1</script> and <script type="math/tex" id="MathJax-Element-92">E_2</script> are REs <br>
+<ul><li>wire accepting states of <script type="math/tex" id="MathJax-Element-93">E_1</script> to start state of <script type="math/tex" id="MathJax-Element-94">E_2</script> with <script type="math/tex" id="MathJax-Element-95">\epsilon</script></li>
+<li>delete make accepting states of <script type="math/tex" id="MathJax-Element-96">E_1</script> nonaccepting</li></ul></li>
+<li><script type="math/tex" id="MathJax-Element-97">E_1 \vert E_2</script> where <script type="math/tex" id="MathJax-Element-98">E_1</script> and <script type="math/tex" id="MathJax-Element-99">E_2</script> are REs <br>
+<ul><li>create new start state</li>
+<li>wire to start states of both <script type="math/tex" id="MathJax-Element-100">E_1</script> and <script type="math/tex" id="MathJax-Element-101">E_2</script> using <script type="math/tex" id="MathJax-Element-102">\epsilon</script></li></ul></li>
+<li><script type="math/tex" id="MathJax-Element-103">E^*</script> where <script type="math/tex" id="MathJax-Element-104">E</script> is a RE <br>
+<ul><li>create new start state</li>
+<li>wire to start of <script type="math/tex" id="MathJax-Element-105">E</script> using epsilon</li>
+<li>wire accepting states of <script type="math/tex" id="MathJax-Element-106">E</script> to new start state</li></ul></li>
+</ul>
+
+
+
+<h4 id="circle-of-life">Circle of Life</h4>
+
+<p>There is a way to convert DFA to RE (in CS 360 land).</p>
+
+<blockquote>
+  <p>A <strong>regular language</strong> is a language which is:</p>
+  
+  <ul>
+  <li>specified by a regular expression</li>
+  <li>accepted by a DFA</li>
+  <li>accepted by a NFA</li>
+  <li>accepted by a <script type="math/tex" id="MathJax-Element-107">\epsilon</script>-NFA</li>
+  </ul>
+</blockquote>
+
+<ul>
+<li>Most real-world examples do not care about recognizers <br>
+<ul><li>DNA match may be the exception</li></ul></li>
+<li>Mostly, DFAs are used for: <br>
+<ul><li>transforming/transducing input</li>
+<li>searching in text</li>
+<li>scanning/translating</li></ul></li>
+</ul>
+
+<blockquote>
+  <p>A <strong>transducer</strong> is a DFA with output. That is, transitions look like input/output.</p>
+</blockquote>
+
+<p>Example: Remove stutters from <script type="math/tex" id="MathJax-Element-108">\Sigma = \{ a, b \}</script></p>
+
+<p><img src="https://meetdavidsong.com/images/cs241-images/transducer.png" alt="Transducer" title=""></p>
+
+<ul>
+<li>Mealy Machine - output is on a transition</li>
+<li>Moore Machine - output is on leaving a state</li>
+<li><p>“translating” does not “give meaning”</p></li>
+<li><p>It is easy to write a DFA to recognize an individual token type</p></li>
+<li>It is not difficult to combine these into one DFA that recognizes a word as some token type</li>
+</ul>
+
+
+
+<h4 id="scanning-tokenizing">Scanning (Tokenizing)</h4>
+
+<p>The scanning problem:  <br>
+Input: some string <script type="math/tex" id="MathJax-Element-109">w</script> and a language <script type="math/tex" id="MathJax-Element-110">L</script> <br>
+Output: <script type="math/tex" id="MathJax-Element-111">w_1w_2\ldots w_n = w</script> where <script type="math/tex" id="MathJax-Element-112">w_i \in L</script> for all <script type="math/tex" id="MathJax-Element-113">i</script></p>
+
+<p>There may be more than one possible answer: <code>0x1234abcd</code></p>
+
+
+
+<h4 id="simplified-maximal-munch">Simplified Maximal Munch</h4>
+
+<p>We want to eat as much as possible into the current token</p>
+
+
+
+<pre class="prettyprint"><code class="language-ruby hljs ">i = <span class="hljs-number">0</span>
+state = <span class="hljs-constant">START</span>
+many.times <span class="hljs-keyword">do</span> 
+  new_state = <span class="hljs-constant">ERROR</span>
+  new_state = delta(state, c[i]) <span class="hljs-keyword">if</span> i &lt; k
+  <span class="hljs-keyword">if</span> new_state == <span class="hljs-constant">ERROR</span>
+    report_error_and_exit <span class="hljs-keyword">if</span> state_is_not_final            <span class="hljs-comment"># actual error</span>
+    output_appropriate_token <span class="hljs-keyword">if</span> state_is_not_whitespace    <span class="hljs-comment"># end of token</span>
+    state = <span class="hljs-constant">START</span>
+    exit <span class="hljs-keyword">if</span> i == k
+  <span class="hljs-keyword">else</span>
+    state = new_state
+    i += <span class="hljs-number">1</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+
+
+
+<h3 id="context-free-languages">Context-Free Languages</h3>
+
+<p>Big picture:</p>
+
+<ul>
+<li>lexical analysis <br>
+<ul><li>scanning (tokenizing)</li>
+<li>WLP4 text file <script type="math/tex" id="MathJax-Element-114">\to</script> WLP4 tokens</li></ul></li>
+<li>syntactic analysis <br>
+<ul><li>parsing</li>
+<li>WLP4 tokens <script type="math/tex" id="MathJax-Element-115">\to</script> parse tree</li></ul></li>
+<li>semantic (context-sensitive) analysis</li>
+<li>synthesis (code-generation) <br>
+<ul><li>parse tree <script type="math/tex" id="MathJax-Element-116">\to</script> MIPS</li></ul></li>
+</ul>
+
+<p>We have these different stages to generate different types of outputs to the developer. </p>
+
+
+
+<h4 id="non-regular-languages">Non-regular Languages</h4>
+
+<p>Example: Give a DFA over <script type="math/tex" id="MathJax-Element-117">\Sigma = \{ a, b \}</script> for the same number of a’s and b’s</p>
+
+<p>We can’t do this with DFAs (provable using Pumping Lemma). This is not a regular language, but it is <em>context-free</em>. </p>
+
+
+
+<h4 id="context-free-languages-1">Context-Free Languages</h4>
+
+<p>Context-free languages are built from <br>
+* finite sets <br>
+* concatenation <br>
+* union <br>
+* recursion (key difference!)</p>
+
+<blockquote>
+  <p>Recognizers for regular languages use a <em>finite amount of memory</em> (keeping the current state) <br>
+  Recognizers for context-free languages use a finite amount of memory + 1 unbounded stack</p>
+</blockquote>
+
+
+
+<h2 id="lecture-13-february-23rd">Lecture 13: February 23rd</h2>
+
+<blockquote>
+  <p><strong>Context-Free Grammar</strong> is a way to specify a context-free language.</p>
+</blockquote>
+
+<p>By Grammar, we mean a <em>set of rules</em>.</p>
+
+<p>For example: </p>
+
+
+
+<pre class="prettyprint"><code class=" hljs haskell"><span class="hljs-title">sentence</span> -&gt; noun      verb         adverb
+            frank     eats         happily
+            troy      executes     painfully</code></pre>
+
+
+
+<h4 id="a-context-free-grammar">A Context-Free Grammar</h4>
+
+
+
+<pre class="prettyprint"><code class=" hljs haskell"><span class="hljs-type">G</span>:
+  <span class="hljs-type">S</span> -&gt; aSb
+  <span class="hljs-type">S</span> -&gt; <span class="hljs-type">D</span>
+  <span class="hljs-type">D</span> -&gt; cD
+  <span class="hljs-type">D</span> -&gt; epsilon</code></pre>
+
+<p>These are rewriting rules, and the arrow means “can become”, or “can be rewritten as”.</p>
+
+
+
+<h4 id="deriving-accb">Deriving <code>accb</code></h4>
+
+
+
+<pre class="prettyprint"><code class=" hljs haskell"><span class="hljs-type">S</span> -&gt; aSb -&gt; aDb -&gt; acDb -&gt; accDb -&gt; accb
+  <span class="hljs-number">1</span>      <span class="hljs-number">2</span>      <span class="hljs-number">3</span>       <span class="hljs-number">3</span>        <span class="hljs-number">4</span></code></pre>
+
+<p>Note: </p>
+
+<ul>
+<li>G: a context-free grammar</li>
+<li>L(G): set of words specified by CFG G</li>
+<li>a word: finite sequence of tokens that can be derived by G</li>
+<li>a derivation: a sequence of rewriting steps from G</li>
+<li>alternation and concatenation: <br>
+<ul><li>you can choose between rule 1 and rule 2 when starting with S (union)</li>
+<li>you concatenate a in front and b in back for rule 1</li></ul></li>
+<li>recursion vs. repetition:  <br>
+<ul><li>in rule 1, S is in both start and finish of rule 1</li>
+<li>recursion is strictly more powerful than repetition</li></ul></li>
+</ul>
+
+<p>Formally:</p>
+
+<blockquote>
+  <p>A <strong>context-free grammar</strong> consists of</p>
+  
+  <ul>
+  <li><script type="math/tex" id="MathJax-Element-118">N</script>: a finite set of non-terminals (non-ending)</li>
+  <li><script type="math/tex" id="MathJax-Element-119">T</script>: a finite set of terminals (ending)</li>
+  <li><script type="math/tex" id="MathJax-Element-120">P</script>: a finite set of production rules (rewriting rules) <br>
+  <script type="math/tex" id="MathJax-Element-121">A \to \beta, A \in N, \beta \in (N \cup T)*</script></li>
+  <li><script type="math/tex" id="MathJax-Element-122">S \in N</script>: start symbol</li>
+  </ul>
+</blockquote>
+
+<p>In our example:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs livecodeserver">N = {S, D}
+T = {<span class="hljs-operator">a</span>, b, c}
+S = S (<span class="hljs-keyword">by</span> convention, left side <span class="hljs-operator">of</span> <span class="hljs-operator">the</span> <span class="hljs-keyword">first</span> rule)</code></pre>
+
+<p>Note that epsilon stands for “no terminals and non-terminals”.</p>
+
+
+
+<h4 id="example-balanced-parentheses">Example: balanced parentheses</h4>
+
+<p>Example words:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs ">epsilon, (), (()), ()()</code></pre>
+
+<p>CFG: </p>
+
+
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>B -&gt; epsilon
+<span class="hljs-bullet">2. </span>B -&gt; (B)
+<span class="hljs-bullet">3. </span>B -&gt; BB</code></pre>
+
+<p>Derivation of <code>(()())</code></p>
+
+
+
+<pre class="prettyprint"><code class=" hljs coffeescript">B<span class="hljs-function"> -&gt;</span> <span class="hljs-function"><span class="hljs-params">(B)</span> -&gt;</span> <span class="hljs-function"><span class="hljs-params">(BB)</span> -&gt;</span> <span class="hljs-function"><span class="hljs-params">((B)B)</span> -&gt;</span> <span class="hljs-function"><span class="hljs-params">(()B)</span> -&gt;</span> <span class="hljs-function"><span class="hljs-params">(()(B))</span> -&gt;</span> (()())
+  <span class="hljs-number">2</span>      <span class="hljs-number">3</span>       <span class="hljs-number">2</span>         <span class="hljs-number">1</span>        <span class="hljs-number">2</span>          <span class="hljs-number">1</span></code></pre>
+
+
+
+<h4 id="example-binary-expressions">Example: Binary Expressions</h4>
+
+<p>Words are composed of binary numbers (no leading zeros, other than 0) with + or - signs in infix notation</p>
+
+<p>Example words:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs ">1001, 10+1, 11-11110+0</code></pre>
+
+<p>CFG:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs mathematica"><span class="hljs-number">1.</span> <span class="hljs-keyword">E</span> -&gt; <span class="hljs-keyword">E</span> + <span class="hljs-keyword">E</span>           <span class="hljs-keyword">E</span> = expression
+<span class="hljs-number">2.</span> <span class="hljs-keyword">E</span> -&gt; <span class="hljs-keyword">E</span> - <span class="hljs-keyword">E</span>
+<span class="hljs-number">3.</span> <span class="hljs-keyword">E</span> -&gt; B               B = binary number
+<span class="hljs-number">4.</span> B -&gt; <span class="hljs-number">0</span>
+<span class="hljs-number">5.</span> B -&gt; <span class="hljs-keyword">D</span>               <span class="hljs-keyword">D</span> = non-zero binary number
+<span class="hljs-number">6.</span> <span class="hljs-keyword">D</span> -&gt; <span class="hljs-number">1</span>
+<span class="hljs-number">7.</span> <span class="hljs-keyword">D</span> -&gt; D0
+<span class="hljs-number">8.</span> <span class="hljs-keyword">D</span> -&gt; D1</code></pre>
+
+<p>Derivation of <code>10+1</code></p>
+
+
+
+<pre class="prettyprint"><code class=" hljs mathematica"><span class="hljs-keyword">E</span> -&gt; <span class="hljs-keyword">E</span>+<span class="hljs-keyword">E</span> -&gt; B+<span class="hljs-keyword">E</span> -&gt; <span class="hljs-keyword">D</span>+<span class="hljs-keyword">E</span> -&gt; D0+<span class="hljs-keyword">E</span> -&gt; <span class="hljs-number">10</span>+<span class="hljs-keyword">E</span> -&gt; <span class="hljs-number">10</span>+B -&gt; <span class="hljs-number">10</span>+<span class="hljs-keyword">D</span> -&gt; <span class="hljs-number">10</span>+<span class="hljs-number">1</span>
+  <span class="hljs-number">1</span>      <span class="hljs-number">3</span>      <span class="hljs-number">5</span>      <span class="hljs-number">7</span>       <span class="hljs-number">6</span>       <span class="hljs-number">3</span>       <span class="hljs-number">5</span>       <span class="hljs-number">6</span></code></pre>
+
+<p>So far, we’ve been doing left-most derivation. In right-most derivation, we take the right-most non-terminal and transform it at each step.</p>
+
+<p>Formal definitions:</p>
+
+<blockquote>
+  <p>We say that <script type="math/tex" id="MathJax-Element-123">\alpha A \beta</script> <strong>directly derives</strong> <script type="math/tex" id="MathJax-Element-124">\alpha\gamma\beta</script> if there exists a production rule <script type="math/tex" id="MathJax-Element-125">A \to \gamma</script>. Also called a derivation step. We write it with <script type="math/tex" id="MathJax-Element-126">\Rightarrow</script>. <br>
+  We say that <script type="math/tex" id="MathJax-Element-127">\alpha A \beta</script> <strong>derives</strong> <script type="math/tex" id="MathJax-Element-128">\alpha\gamma\beta</script> if there exists <script type="math/tex" id="MathJax-Element-129">\theta_1, \theta_2, \ldots</script> such that <script type="math/tex; mode=display" id="MathJax-Element-130">\alpha A \beta \Rightarrow \alpha \theta_1 \beta \Rightarrow \alpha \theta_2 \beta \Rightarrow \ldots \Rightarrow \alpha\gamma\beta</script> <br>
+  G derives <script type="math/tex" id="MathJax-Element-131">w \in T^*</script> if <script type="math/tex; mode=display" id="MathJax-Element-132">S \Rightarrow^* w</script>. <br>
+  <script type="math/tex" id="MathJax-Element-133">L(G) = \{ w \vert S \Rightarrow^* w \text{ and } w \in T^* \}</script> <br>
+  <script type="math/tex" id="MathJax-Element-134">L</script> is context-free if there exists a CFG <script type="math/tex" id="MathJax-Element-135">G</script> such that <script type="math/tex" id="MathJax-Element-136">L(G)=L</script>.</p>
+</blockquote>
+
+
+
+<h4 id="derivation-as-proofs">Derivation as Proofs</h4>
+
+<p>In a regular language, we have DFA <script type="math/tex" id="MathJax-Element-137">M</script> and word <script type="math/tex" id="MathJax-Element-138">w</script>. The language “accepts” or “rejects” word <script type="math/tex" id="MathJax-Element-139">w</script>.</p>
+
+<p>In a context-free language, we have CFG <script type="math/tex" id="MathJax-Element-140">G</script> and a word <script type="math/tex" id="MathJax-Element-141">w</script>. If word is accepted, we have a sequence of rewrites that <strong>proves</strong> that it is accepted. (It becomes harder to prove that a word is rejected) </p>
+
+
+
+<h4 id="parse-trees">Parse Trees</h4>
+
+<p>Example:  <br>
+parse tree for derivation of <code>10+1</code> <br>
+<img src="https://meetdavidsong.com/images/cs241-images/parse-tree.jpg" alt="Parse Tree" title=""></p>
+
+<p>Leaf nodes are terminal, and internal nodes are non-terminal. A DFS over the tree printing only the leaf nodes gives the final word.</p>
+
+
+
+<h4 id="meaning-of-a-parse-tree">Meaning of a Parse Tree</h4>
+
+<ul>
+<li>Recursive Descent Parsing <br>
+<ul><li>compute the value of my children (recursively) then use that to compute my value</li></ul></li>
+<li>Syntax Directed Translation</li>
+</ul>
+
+
+
+<pre class="prettyprint"><code class=" hljs fsharp">D -&gt; <span class="hljs-number">1</span>           D.<span class="hljs-keyword">val</span> = <span class="hljs-number">1</span>
+D1 -&gt; D2 <span class="hljs-number">0</span>       D1.<span class="hljs-keyword">val</span> = D2.<span class="hljs-keyword">val</span> * <span class="hljs-number">2</span>
+E1 -&gt; E2 + E3    E1.<span class="hljs-keyword">val</span> = E2.<span class="hljs-keyword">val</span> + E3.<span class="hljs-keyword">val</span></code></pre>
+
+<p>Looking back at our parse tree, we can derive the value of binary expression by evaluating the value of the root. </p>
+
+
+
+<h2 id="lecture-14-february-25th">Lecture 14: February 25th</h2>
+
+<p>Problems that grammars can encounter: Ambiguity - more than one meaning</p>
+
+<p>Example in English grammar:  <br>
+Sally was given a book by Joyce. </p>
+
+<blockquote>
+  <p>A string <script type="math/tex" id="MathJax-Element-142">x</script> is <strong>ambiguous</strong> if there exists more than one parse tree for <script type="math/tex" id="MathJax-Element-143">x</script>. <br>
+  A CFG <script type="math/tex" id="MathJax-Element-144">G</script> is <strong>ambiguous</strong> if some word <script type="math/tex" id="MathJax-Element-145">x \in L(G)</script> is ambiguous. </p>
+</blockquote>
+
+<p>The following are equivalent: </p>
+
+<p>A word <script type="math/tex" id="MathJax-Element-146">x</script>:</p>
+
+<ul>
+<li>has more than 2 parse trees</li>
+<li>has more than 2 leftmost derivations</li>
+<li>has more than 2 rightmost derivations</li>
+</ul>
+
+<p>Consider the binary expression grammar, and <code>1-10+11</code></p>
+
+
+
+<pre class="prettyprint"><code class=" hljs r">E -&gt; E-E -&gt; E-E+E -&gt; <span class="hljs-keyword">...</span> -&gt; <span class="hljs-number">1</span>-<span class="hljs-number">10</span>+<span class="hljs-number">11</span>
+E -&gt; E+E -&gt; E-E+E -&gt; <span class="hljs-keyword">...</span> -&gt; <span class="hljs-number">1</span>-<span class="hljs-number">10</span>+<span class="hljs-number">11</span></code></pre>
+
+<p><img src="https://meetdavidsong.com/images/cs241-images/grammar-ambiguity.jpg" alt="Grammar Ambiguity" title=""></p>
+
+<p>We note that when we evaluate a parse tree recursively, the two similar trees evaluates to be different values. </p>
+
+
+
+<h4 id="fixing-ambiguity">Fixing Ambiguity</h4>
+
+<p>Let’s rewrite our binary expression grammar</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs mathematica"><span class="hljs-number">1.</span> <span class="hljs-keyword">E</span> -&gt; B+<span class="hljs-keyword">E</span>
+<span class="hljs-number">2.</span> <span class="hljs-keyword">E</span> -&gt; B-<span class="hljs-keyword">E</span>
+<span class="hljs-number">3.</span> <span class="hljs-keyword">E</span> -&gt; B
+<span class="hljs-number">4.</span> B -&gt; <span class="hljs-number">0</span>
+<span class="hljs-number">5.</span> B -&gt; <span class="hljs-keyword">D</span>
+<span class="hljs-number">6.</span> <span class="hljs-keyword">D</span> -&gt; <span class="hljs-number">1</span>
+<span class="hljs-number">7.</span> <span class="hljs-keyword">D</span> -&gt; D0
+<span class="hljs-number">8.</span> <span class="hljs-keyword">D</span> -&gt; D1</code></pre>
+
+<p>Note that we only changed the first two rules. In our previous grammar, we had the rule </p>
+
+
+
+<pre class="prettyprint"><code class=" hljs mathematica"><span class="hljs-keyword">E</span> -&gt; <span class="hljs-keyword">E</span>+<span class="hljs-keyword">E</span></code></pre>
+
+<p>See that this rule could have both</p>
+
+<ul>
+<li>left recursion: leftmost symbol of RHS is LHS</li>
+<li>right recursion: rightmost symbol of RHS is LHS</li>
+</ul>
+
+<p>When you have both left and right recursion, you are guaranteed to be ambiguous. </p>
+
+<p>Some programming languages have ambiguous grammars - Pascal with “dangling else”</p>
+
+<p>Let’s continue our example <code>1-10+11</code> with our new rules</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs lasso">E <span class="hljs-subst">-&gt; </span>B<span class="hljs-attribute">-E</span> <span class="hljs-subst">-&gt; </span>D<span class="hljs-attribute">-E</span> <span class="hljs-subst">-&gt; </span><span class="hljs-number">1</span><span class="hljs-attribute">-E</span> <span class="hljs-subst">-&gt; </span><span class="hljs-number">1</span><span class="hljs-attribute">-B</span><span class="hljs-subst">+</span>E <span class="hljs-subst">-&gt; </span><span class="hljs-attribute">...</span> <span class="hljs-subst">-&gt; </span><span class="hljs-number">1</span><span class="hljs-subst">-</span><span class="hljs-number">10</span><span class="hljs-subst">+</span><span class="hljs-number">11</span>
+  <span class="hljs-number">2</span>      <span class="hljs-number">5</span>      <span class="hljs-number">6</span>      <span class="hljs-number">1</span></code></pre>
+
+<p><img src="https://meetdavidsong.com/images/cs241-images/associativity-problem.jpg" alt="Associativity Problem" title=""></p>
+
+<p>Mathematics, as we know it, is left-associative. Our rule gave us right-associative.</p>
+
+<p>We change our rule again to represent this:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs r"><span class="hljs-number">1.</span> E -&gt; E+B
+<span class="hljs-number">2.</span> E -&gt; E-B
+<span class="hljs-number">3.</span> <span class="hljs-keyword">...</span></code></pre>
+
+<p>The new rules are left-recursion, which corresponds to left-associative of the grammar. </p>
+
+<p>Add rule: </p>
+
+
+
+<pre class="prettyprint"><code class=" hljs http"><span class="hljs-attribute">9</span>: <span class="hljs-string">E -&gt; E*B</span></code></pre>
+
+<p>Consider: <code>1*10+11</code></p>
+
+
+
+<pre class="prettyprint"><code class=" hljs r">E -&gt; E+B -&gt; E*B+B -&gt; <span class="hljs-keyword">...</span> -&gt; <span class="hljs-number">1</span>*<span class="hljs-number">10</span>+<span class="hljs-number">11</span></code></pre>
+
+<p>Consider: <code>1+10*11</code></p>
+
+
+
+<pre class="prettyprint"><code class=" hljs r">E -&gt; E*B -&gt; E+B*B -&gt; <span class="hljs-keyword">...</span> &gt; <span class="hljs-number">1</span>+<span class="hljs-number">10</span>*<span class="hljs-number">11</span></code></pre>
+
+<p>Wrong!!</p>
+
+<p><img src="https://meetdavidsong.com/images/cs241-images/associativity-multiplication.jpg" alt="Associativity Multiplication" title=""></p>
+
+
+
+<h4 id="fixing-precedence">Fixing Precedence</h4>
+
+<p>We see that closer to the root of the tree means being evaluated later (lower precedence) <br>
+Let’s make new non-terminals</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs lasso"><span class="hljs-number">1.</span> S <span class="hljs-subst">-&gt; </span>S<span class="hljs-subst">+</span>P
+<span class="hljs-number">2.</span> S <span class="hljs-subst">-&gt; </span>S<span class="hljs-attribute">-P</span>
+<span class="hljs-number">3.</span> S <span class="hljs-subst">-&gt; </span>P
+<span class="hljs-number">4.</span> P <span class="hljs-subst">-&gt; </span>P<span class="hljs-subst">*</span>B
+<span class="hljs-number">5.</span> P <span class="hljs-subst">-&gt; </span>P/B
+<span class="hljs-number">6.</span> P <span class="hljs-subst">-&gt; </span>B
+<span class="hljs-number">7.</span> B <span class="hljs-subst">-&gt; </span><span class="hljs-number">0</span>
+<span class="hljs-number">8.</span> B <span class="hljs-subst">-&gt; </span>D
+<span class="hljs-number">9.</span> D <span class="hljs-subst">-&gt; </span><span class="hljs-number">1</span>
+<span class="hljs-number">10.</span> D <span class="hljs-subst">-&gt; </span>D0
+<span class="hljs-number">11.</span> D <span class="hljs-subst">-&gt; </span>D1</code></pre>
+
+<p>Example <code>1+10*11</code></p>
+
+
+
+<pre class="prettyprint"><code class=" hljs r">S -&gt; S+P -&gt; <span class="hljs-keyword">...</span> -&gt; <span class="hljs-number">1</span>+P -&gt; <span class="hljs-number">1</span>+P*B -&gt; <span class="hljs-number">1</span>+B*B -&gt; <span class="hljs-keyword">...</span> -&gt; <span class="hljs-number">1</span>+<span class="hljs-number">10</span>*<span class="hljs-number">11</span>
+  <span class="hljs-number">1</span>                    <span class="hljs-number">4</span>        <span class="hljs-number">6</span></code></pre>
+
+<p><img src="https://meetdavidsong.com/images/cs241-images/multiplication-tree-correct.jpg" alt="Multiplication Tree Correct" title=""></p>
+
+<p>Exercise: add parentheses. </p>
+
+
+
+<pre class="prettyprint"><code class=" hljs "></code></pre>
+
+
+
+<h4 id="proof-by-example-regular-languages-are-context-free">Proof by Example: Regular Languages are Context-Free</h4>
+
+<p>If <script type="math/tex" id="MathJax-Element-147">L</script> is a regular language, then there exists a regular expression <script type="math/tex" id="MathJax-Element-148">R</script> such that <script type="math/tex; mode=display" id="MathJax-Element-149">L(R) = L</script></p>
+
+<p>Suppose <script type="math/tex" id="MathJax-Element-150">R = a^*b\vert (cde)^*</script> <br>
+We construct a CFG <script type="math/tex" id="MathJax-Element-151">G</script> such that <script type="math/tex" id="MathJax-Element-152">L(G) = L</script> as follows:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>S -&gt; X
+<span class="hljs-bullet">2. </span>S -&gt; Y
+<span class="hljs-bullet">3. </span>X -&gt; Ab
+<span class="hljs-bullet">4. </span>A -&gt; Aa
+<span class="hljs-bullet">5. </span>A -&gt; epsilon
+<span class="hljs-bullet">6. </span>Y -&gt; Ycde
+<span class="hljs-bullet">7. </span>Y -&gt; epsilon</code></pre>
+
+
+
+<h4 id="parsing">Parsing</h4>
+
+<p>Given a grammar <script type="math/tex" id="MathJax-Element-153">G</script> and a word <script type="math/tex" id="MathJax-Element-154">w</script>, find a derivation for <script type="math/tex" id="MathJax-Element-155">w</script>. <br>
+Two strategies:</p>
+
+<ol>
+<li>Top-down: find a non-terminal and replace it with a right-hand side of a rule <br>
+For example: <code>S -&gt; S+P -&gt; S-P+P</code></li>
+<li>Bottom-up: replace a right-hand side with a non-terminal <br>
+For example: <code>B+B*B -&gt; B+P</code></li>
+</ol>
+
+<p>We have to make the correct decision at each step - knowing which rule to use!</p>
+
+
+
+<h2 id="lecture-15-march-1st">Lecture 15: March 1st</h2>
+
+<p>There is a backtracking algorithm for parsing in any CFG</p>
+
+<ul>
+<li>try each rule in turn</li>
+<li>if we can move “forward”, do so</li>
+<li>if we cannot move “forward”, go back a step and try the “next” rule</li>
+<li>stop when we find the derivation</li>
+</ul>
+
+<p>This algorithm will finish guaranteed - but running time is exponential. Alternatively we will look at two linear-time algorithms.</p>
+
+<p>Recall: Context-free languages are recognized with a finite control and one stack. </p>
+
+<p>For example: balanced parentheses</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs perl">(()())
+( = <span class="hljs-keyword">push</span>
+) = <span class="hljs-keyword">pop</span></code></pre>
+
+<p>As long as we do not pop an empty stack, and the stack height is 0 at the end of the word, the recognizer returns true. </p>
+
+
+
+<h4 id="augmenting-grammars">Augmenting Grammars</h4>
+
+<p>Empty words and empty stacks can cause hassles.</p>
+
+<p>We augment out grammars by adding “beginning” and “ending” characters. For example - we augment with rule 1:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>S' -&gt; ⊢ S ⊣
+<span class="hljs-bullet">2. </span>S -&gt; AyB
+<span class="hljs-bullet">3. </span>A -&gt; ab
+<span class="hljs-bullet">4. </span>A -&gt; cd
+<span class="hljs-bullet">5. </span>B -&gt; z
+<span class="hljs-bullet">6. </span>B -&gt; wz</code></pre>
+
+<p>Demonstrate:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs haml">word: ⊢a..w...
+S' -&gt; ⊢S⊣
+   -<span class="ruby">&gt; ⊢<span class="hljs-constant">AyB</span>⊣
+</span>   -<span class="ruby">&gt; ⊢abyB⊣
+</span>   -<span class="ruby">&gt; ⊢abywz⊣</span></code></pre>
+
+<p>Invariant: </p>
+
+<blockquote>
+  <p>derivation = input read + stack</p>
+</blockquote>
+
+
+
+<h4 id="stack-example">Stack Example</h4>
+
+<table>
+<thead>
+<tr>
+  <th align="center">Derivation</th>
+  <th align="left">Input read</th>
+  <th align="right">Input to be read</th>
+  <th>Stack</th>
+  <th>Actions</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td align="center">S’</td>
+  <td align="left">epsilon</td>
+  <td align="right">⊢abywz⊣</td>
+  <td>S’</td>
+  <td>rule 1</td>
+</tr>
+<tr>
+  <td align="center">⊢S⊣</td>
+  <td align="left">epsilon</td>
+  <td align="right">⊢abywz⊣</td>
+  <td>⊢S⊣</td>
+  <td>match ⊢</td>
+</tr>
+<tr>
+  <td align="center">⊢S⊣</td>
+  <td align="left">⊢</td>
+  <td align="right">abywz⊣</td>
+  <td>S⊣</td>
+  <td>rule 2</td>
+</tr>
+<tr>
+  <td align="center">⊢AyB⊣</td>
+  <td align="left">⊢</td>
+  <td align="right">abywz⊣</td>
+  <td>AyB⊣</td>
+  <td>rule 3</td>
+</tr>
+<tr>
+  <td align="center">⊢abyB⊣</td>
+  <td align="left">⊢</td>
+  <td align="right">abywz⊣</td>
+  <td>abyB⊣</td>
+  <td>match a</td>
+</tr>
+<tr>
+  <td align="center">⊢abyB⊣</td>
+  <td align="left">⊢a</td>
+  <td align="right">bywz⊣</td>
+  <td>byB⊣</td>
+  <td>match b</td>
+</tr>
+<tr>
+  <td align="center">⊢abyB⊣</td>
+  <td align="left">⊢ab</td>
+  <td align="right">ywz⊣</td>
+  <td>yB⊣</td>
+  <td>match y</td>
+</tr>
+<tr>
+  <td align="center">⊢abyB⊣</td>
+  <td align="left">⊢aby</td>
+  <td align="right">wz⊣</td>
+  <td>B⊣</td>
+  <td>rule 6</td>
+</tr>
+<tr>
+  <td align="center">⊢abywz⊣</td>
+  <td align="left">⊢aby</td>
+  <td align="right">wz⊣</td>
+  <td>wz⊣</td>
+  <td>match w</td>
+</tr>
+<tr>
+  <td align="center">⊢abywz⊣</td>
+  <td align="left">⊢abyw</td>
+  <td align="right">wz⊣</td>
+  <td>z⊣</td>
+  <td>match z</td>
+</tr>
+<tr>
+  <td align="center">⊢abywz⊣</td>
+  <td align="left">⊢abywz</td>
+  <td align="right">wz⊣</td>
+  <td>⊣</td>
+  <td>match ⊣</td>
+</tr>
+<tr>
+  <td align="center">⊢abywz⊣</td>
+  <td align="left">⊢abywz⊣</td>
+  <td align="right">epsilon</td>
+  <td>epsilon</td>
+  <td>ACCEPT</td>
+</tr>
+</tbody></table>
+
+
+<p>Observations: <br>
+How do we apply these rules? What does “expand” mean?</p>
+
+<ul>
+<li>pop the stack (LHS of a rule)</li>
+<li>push the RHS of a rule, in reverse!</li>
+</ul>
+
+<p>How do know when we are done? First terminal symbol <br>
+How to know which rule to use? Search trees!</p>
+
+
+
+<h4 id="ll1-parsing">LL(1) Parsing</h4>
+
+<p>We need <script type="math/tex" id="MathJax-Element-156">Predict(A, x) = A \to \alpha</script>  so long as </p>
+
+<ul>
+<li><script type="math/tex" id="MathJax-Element-157">A</script> is on top of the stack, and</li>
+<li><script type="math/tex" id="MathJax-Element-158">x</script> is the first symbol of input to be read</li>
+</ul>
+
+<blockquote>
+  <p>Definition of an <strong>LL(1) grammar</strong>: <br>
+  For all <script type="math/tex" id="MathJax-Element-159">A\in N</script> and <script type="math/tex" id="MathJax-Element-160">x \in T</script>, <script type="math/tex; mode=display" id="MathJax-Element-161">Predict(A, x) \leq 1</script></p>
+</blockquote>
+
+<p>Meaning </p>
+
+<p>missing_for <br>
+First terminal symbol <br>
+Search trees</p>
+
+
+
+<h4 id="constructing-a-predictor-table">Constructing a Predictor Table</h4>
+
+<table>
+<thead>
+<tr>
+  <th>nonter\ter</th>
+  <th>a</th>
+  <th>b</th>
+  <th>c</th>
+  <th>d</th>
+  <th>y</th>
+  <th>w</th>
+  <th>z</th>
+  <th>⊢</th>
+  <th>⊣</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>S’</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>1</td>
+  <td>E</td>
+</tr>
+<tr>
+  <td>S</td>
+  <td>2</td>
+  <td>E</td>
+  <td>2</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+</tr>
+<tr>
+  <td>A</td>
+  <td>3</td>
+  <td>E</td>
+  <td>4</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+</tr>
+<tr>
+  <td>B</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>E</td>
+  <td>6</td>
+  <td>5</td>
+  <td>E</td>
+  <td>E</td>
+</tr>
+</tbody></table>
+
+
+<p>E = error</p>
+
+<p><img src="construct-predict-table.jpg" alt="image_for" title=""></p>
+
+<p>We now make a small change by adding a rule 7:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">7. </span>B -&gt; epsilon</code></pre>
+
+<p>Note that we do not change anything on the predictor table, but we didn’t stop on a terminal symbol. We ask ourselves: what terminal symbols can follow B? Answer: nothing!</p>
+
+<p><img src="whats-the-follow.jpg" alt="image_for" title=""></p>
+
+<p>But we observe that Follow(B) = Follow(S) = ⊣ <br>
+So we add <script type="math/tex" id="MathJax-Element-162">Predict(B, ⊣) = 7</script></p>
+
+<p>Example: <code>⊢cdy⊣</code> (omitted)</p>
+
+
+
+<h4 id="algorithm-to-construct-predictor-table">Algorithm to construct predictor table</h4>
+
+<p>Below, <script type="math/tex" id="MathJax-Element-163">\alpha, \beta \in (N \cup T)*</script>, <script type="math/tex" id="MathJax-Element-164">x,y \in T</script>, <script type="math/tex" id="MathJax-Element-165">A \in N</script></p>
+
+<p><script type="math/tex" id="MathJax-Element-166">Empty(alpha) =</script> true if <script type="math/tex" id="MathJax-Element-167">\alpha \Rightarrow^* \epsilon</script> <br>
+                       # can alpha disappear? <br>
+                       # ask: can a non-terminal disappear? <br>
+                              (depth-first search)</p>
+
+<p>First(alpha) = { x | alpha =&gt;* x beta } <br>
+                       # starting from alpha, what can I generate <br>
+                       # as a first terminal symbol? <br>
+                              (search trees)</p>
+
+<p>Follow(A) = { y | S’ =&gt;* alpha A y beta } <br>
+                       # starting from the start symbol,  <br>
+                       # does the terminal y ever appear  <br>
+                       # following non-terminal A?</p>
+
+<p>We get predictor from these helpers <script type="math/tex; mode=display" id="MathJax-Element-168">Predict(A, x) = \{A \rightarrow \alpha \mid x \in First(\alpha) \} \cup \{ A\rightarrow\beta \mid ...</script></p>
+
+
+
+<h4 id="ll1-parsing-algorithm">LL(1) Parsing Algorithm</h4>
+
+
+
+<pre class="prettyprint"><code class=" hljs applescript">Input: w
+push S'
+<span class="hljs-keyword">for</span> each x <span class="hljs-keyword">in</span> w {
+  <span class="hljs-keyword">while</span> (top <span class="hljs-keyword">of</span> stack <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> A <span class="hljs-keyword">in</span> N) {
+    pop A
+    <span class="hljs-keyword">if</span> Predict(A, x) = {A -&gt; alpha}
+      push_in_reverse alpha
+    <span class="hljs-keyword">else</span>
+      reject          <span class="hljs-comment"># no rule to expand by</span>
+  }
+  pop c               <span class="hljs-comment"># must be non-terminal</span>
+  <span class="hljs-keyword">if</span> c != x reject    <span class="hljs-comment"># try to match</span>
+}
+accept w</code></pre>
+
+
+
+<h2 id="lecture-15-march-3rd">Lecture 15: March 3rd</h2>
+
+
+
+<h4 id="non-ll1-grammars">Non LL(1) Grammars</h4>
+
+
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>S -&gt; ab
+<span class="hljs-bullet">2. </span>S -&gt; acb</code></pre>
+
+<p>Our predictor table would have more than 1 rule in it. But it is LL(2).</p>
+
+<table>
+<thead>
+<tr>
+  <th>nonter\ter</th>
+  <th>aa</th>
+  <th>ab</th>
+  <th>ac</th>
+  <th>ba</th>
+  <th>bb</th>
+  <th>bc</th>
+  <th>ca</th>
+  <th>cb</th>
+  <th>cc</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>…</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+</tbody></table>
+
+
+<p>However, note that our grammar has only 2 words - that it is finite.  <br>
+We should at least make all finite grammars LL(1).</p>
+
+
+
+<h4 id="factoring">Factoring</h4>
+
+
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>E -&gt; aX
+<span class="hljs-bullet">2. </span>X -&gt; b
+<span class="hljs-bullet">3. </span>X -&gt; cb</code></pre>
+
+<p>We’ve combined our original rule 1 and 2 into 1, and added a new non-terminal state.  <br>
+It is indeed LL(1) because we can create a predictor table with only 1 rule in each cell.</p>
+
+
+
+<h4 id="non-llk">Non LL(k)</h4>
+
+<p><script type="math/tex; mode=display" id="MathJax-Element-169">L \{ a^nb^m \mid n \geq m \geq 0 \}</script> </p>
+
+<p>Grammar (ambiguous): </p>
+
+
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>S -&gt; epsilon
+<span class="hljs-bullet">2. </span>S -&gt; aSb
+<span class="hljs-bullet">3. </span>S -&gt; aS</code></pre>
+
+<p>Rule 2 matches a and b, and rule 3 gives an unmatched a.</p>
+
+<p>Grammar (unambiguous):</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>S -&gt; A
+<span class="hljs-bullet">2. </span>S -&gt; B
+<span class="hljs-bullet">3. </span>A -&gt; epsilon
+<span class="hljs-bullet">4. </span>A -&gt; aAb
+<span class="hljs-bullet">5. </span>B -&gt; aA
+<span class="hljs-bullet">6. </span>B -&gt; aB</code></pre>
+
+<p>LL(k) grammars needs the next k inputs to figure out the next step. However, this example pretty much needs the whole input. This, of course, is not suitable for top-down parsing. </p>
+
+
+
+<h4 id="bottom-up-parsing">Bottom-up Parsing</h4>
+
+<p>We look at our first LL(1) example:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>S' -&gt; ⊢ S ⊣
+<span class="hljs-bullet">2. </span>S -&gt; AyB
+<span class="hljs-bullet">3. </span>A -&gt; ab
+<span class="hljs-bullet">4. </span>A -&gt; cd
+<span class="hljs-bullet">5. </span>B -&gt; z
+<span class="hljs-bullet">6. </span>B -&gt; wz</code></pre>
+
+<p>Recall that a stack in LL/top-down parsing is used in the following way: </p>
+
+
+
+<pre class="prettyprint"><code class=" hljs fix"><span class="hljs-attribute">input processed + stack </span>=<span class="hljs-string"> current derivation</span></code></pre>
+
+<p>(stack read from top to bottom)</p>
+
+<p>For LR/bottom-up parsing, we have </p>
+
+
+
+<pre class="prettyprint"><code class=" hljs livecodeserver">stack + input <span class="hljs-built_in">to</span> be <span class="hljs-built_in">read</span> = current derivation</code></pre>
+
+<p>(stack read from bottom to top)</p>
+
+<p><a href="https://www.student.cs.uwaterloo.ca/~cs241/tmjvasiga/lec16_17.pdf">slide 4</a></p>
+
+<p>Shift: shifting a token from one place to another (push) <br>
+Reduce: size of the stack may be reduced (pop RHS, push LHS)</p>
+
+<p>Somehow, we shifted at just the right time, and reduced just at the right time. How do we know this?</p>
+
+<p>Recall that for LL(1) parsing, we had a predictor table. For LR(1) parsing, we have an oracle, in the form of a DFA.</p>
+
+<p>But this is difficult to do.</p>
+
+<p>Donald Knuth proved a theorem that can construct a DFA (reall,y a transducer) for LR(1) grammars (1965)</p>
+
+
+
+<h4 id="building-an-lr0-automation">Building an LR(0) Automation</h4>
+
+<ul>
+<li>L - left-to-right input</li>
+<li>R - rightmost derivation</li>
+<li>0 - 0 tokens of look ahead (!)</li>
+</ul>
+
+<blockquote>
+  <p>An <strong>item</strong> is a production with a dot (•) somewhere on the RHS (which indicates a partially completed rule)</p>
+</blockquote>
+
+<p>How to construct the automation:</p>
+
+<ul>
+<li>make the start state the first rule, with the dot (•) in front of the left-most symbol of the RHS</li>
+<li>for each state, label an arc with the symbol that follows • and advance the • one position to the right of the next state</li>
+<li>if the • precedes a non-terminal (e.g. A) add all productions with the non-terminal A on the LHS to the current state, with the • in the leftmost position</li>
+</ul>
+
+<p>Small example CFG: </p>
+
+
+
+<pre class="prettyprint"><code class=" hljs markdown"><span class="hljs-bullet">1. </span>S' -&gt; ⊢ E ⊣
+<span class="hljs-bullet">2. </span>E -&gt; E + T
+<span class="hljs-bullet">3. </span>E -&gt; T
+<span class="hljs-bullet">4. </span>T -&gt; id</code></pre>
+
+
+
+<pre class="prettyprint"><code class=" hljs haskell"><span class="hljs-title">state</span> <span class="hljs-number">1</span>
+<span class="hljs-type">S'</span> -&gt; • ⊢ <span class="hljs-type">E</span> ⊣ 
+
+<span class="hljs-title">state</span> <span class="hljs-number">2</span>
+<span class="hljs-type">S'</span> -&gt; ⊢ • <span class="hljs-type">E</span> ⊣
+<span class="hljs-type">E</span> -&gt; • <span class="hljs-type">E</span> + <span class="hljs-type">T</span>
+<span class="hljs-type">E</span> -&gt; • <span class="hljs-type">T</span>
+<span class="hljs-type">T</span> -&gt; • id
+
+<span class="hljs-title">state</span> <span class="hljs-number">3</span>
+<span class="hljs-type">S'</span> -&gt; ⊢ <span class="hljs-type">E</span> • ⊣
+<span class="hljs-type">E</span> -&gt; <span class="hljs-type">E</span> • + <span class="hljs-type">T</span>
+
+<span class="hljs-title">state</span> <span class="hljs-number">4</span>
+<span class="hljs-type">S'</span> -&gt; ⊢ <span class="hljs-type">E</span> ⊣ •
+
+<span class="hljs-title">state</span> <span class="hljs-number">5</span>
+<span class="hljs-type">E</span> -&gt; <span class="hljs-type">T</span> •
+
+<span class="hljs-title">state</span> <span class="hljs-number">6</span>
+<span class="hljs-type">T</span> -&gt; id •
+
+<span class="hljs-title">state</span> <span class="hljs-number">7</span>
+<span class="hljs-type">E</span> -&gt; <span class="hljs-type">E</span> + • <span class="hljs-type">T</span>
+<span class="hljs-type">T</span> -&gt; • id
+
+<span class="hljs-title">state</span> <span class="hljs-number">8</span>
+<span class="hljs-type">E</span> -&gt; <span class="hljs-type">E</span> + <span class="hljs-type">T</span> •
+
+<span class="hljs-number">1</span> -&gt; <span class="hljs-number">2</span>
+  ⊢
+<span class="hljs-number">2</span> -&gt; <span class="hljs-number">3</span>
+  <span class="hljs-type">E</span>
+<span class="hljs-number">2</span> -&gt; <span class="hljs-number">5</span>
+  <span class="hljs-type">T</span>
+<span class="hljs-number">2</span> -&gt; <span class="hljs-number">6</span>
+  id
+<span class="hljs-number">3</span> -&gt; <span class="hljs-number">4</span>
+  ⊣
+<span class="hljs-number">3</span> -&gt; <span class="hljs-number">7</span>
+  +
+<span class="hljs-number">7</span> -&gt; <span class="hljs-number">6</span>
+  id
+<span class="hljs-number">7</span> -&gt; <span class="hljs-number">8</span>
+  <span class="hljs-type">T</span></code></pre>
+
+
+
+<h4 id="using-the-automaton">Using the Automaton</h4>
+
+<p>For each input token</p>
+
+<ul>
+<li>start in the start state</li>
+<li>read the stack (from the bottom up) and read the current input, and do the action indicated for the current input <br>
+<ul><li>if there is a transition out of our current state on the current input, then shift (push) that input onto the stack</li>
+<li>we know we can reduce if the current state has only one item and the • is the rightmost symbol</li>
+<li>to reduce, pop the RHS off the stack, reread the stack (from the bottom-up), follow the transition for the LHS and push the LHS onto the stack</li></ul></li>
+<li>Accept if S’ on the stack when all input is read</li>
+</ul>
+
+<p><a href="https://www.student.cs.uwaterloo.ca/~cs241/tmjvasiga/lec16_17.pdf">slide 10</a></p>
+
+<div class="author-info">
+  <div class="image-column">
+    <img class="author-photo" src="../images/face2.gif" />
+  </div>
+  <div class="content-column">
+    <div class="author-text">
+      <p class="author-name h2">David Song</p>
+      <p class="author-description">I am a developer with just over 1 year of web experience, and over 7 years of competitive programming experience; Currently a third year student at the University of Waterloo. I am eager to argue for design choices, and open to critism about coding practices; I am looking to accumulate knowledge with a mind to learn, and contribute to the community with a habit to share; I'm obsessed with the most challenging problems, and have fallen for the simplest solutions. Also addicted to Netflix. </p>
+    </div>
+  </div>
+</div>
+
+<!-- DISQUS -->
+<div id="disqus_thread"></div>
+<script>
+    
+    var PAGE_IDENTIFIER = "CS 241 Notes";
+    
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;
+        this.page.identifier = PAGE_IDENTIFIER;
+    };
+    
+    (function() {
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//meetdavidsong.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+
+</body>
+</html>

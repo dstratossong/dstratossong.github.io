@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <script src="https://unpkg.com/vue"></script>
+  <link href="stylesheets/class-and-style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Class Object -->
+  <div id="app-1">
+    <div class="static" v-bind:class="classObject">
+      <span>What up</span>
+    </div>
+  </div>
+
+  <!-- Class Array -->
+  <div id="app-2">
+    <div class="static" v-bind:class="[activeClass, errorClass]">
+      <span>Heyyyy</span>
+    </div>
+    <div v-bind:class="[{ static: true, active: isActive }, errorClass]">
+      <span>Yooooo</span>
+    </div>
+  </div>
+
+  <!-- Class and Components -->
+  <div id="app-3">
+    <my-component class="baz boo"></my-component>
+  </div>
+
+  <!-- Style Object -->
+  <div id="app-4">
+    <p v-bind:style="styleObject">Yo yo yo yo yo yoooooo</p>
+  </div>
+
+  <!-- Style Array -->
+  <div id="app-5">
+    <p v-bind:style="[baseStyles, extraStyles]">Overridden?</p>
+  </div>
+
+  <script src="scripts/class-and-style.js"></script>
+</body>
+
+</html>

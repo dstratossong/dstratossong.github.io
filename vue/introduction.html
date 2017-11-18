@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <!-- Hello World -->
+  <div id="app">
+    {{ message }}
+  </div>
+
+  <!-- Attribute Binding -->
+  <div id="app-2">
+    <span v-bind:title="message">
+      Hover here!
+    </span>
+    <span title="title test!">but but but that's not possible!</span>
+  </div>
+
+  <!-- Conditionals -->
+  <div id="app-3">
+    <span v-if="seen">Now you see me</span>
+  </div>
+
+  <!-- Loops -->
+  <div id="app-4">
+    <ol>
+      <li v-for="todo in todos">{{ todo.text }}</li>
+    </ol>
+  </div>
+
+  <!-- Click -->
+  <div id="app-5">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">Reverse Message</button>
+  </div>
+
+  <!-- Models -->
+  <div id="app-6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+  </div>
+
+  <!-- Components -->
+  <div id="app-7">
+    <ol>
+      <todo-item
+        v-for="item in groceryList"
+        v-bind:todo="item"
+        v-bind:key="item.id">
+      </todo-item>
+    </ol>
+  </div>
+
+  <script src="scripts/introduction.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <script src="https://unpkg.com/vue"></script>
+  <link href="stylesheets/syntax.css" rel="stylesheet"></link>
+</head>
+
+<body>
+  <!-- One-time -->
+  <div id="app-1">
+    <p>Dynamic Message: {{ message }}</p>
+    <p v-once>Static Message: {{ message }}</p>
+  </div>
+
+  <!-- Raw HTML -->
+  <div id="app-2">
+    <div v-html="rawHtml"></div>
+  </div>
+
+  <!-- Bind Attributes -->
+  <div id="app-3">
+    <div id="cool-div" v-bind:class="dynamicClass"></div>
+  </div>
+
+  <!-- Expressions -->
+  <div id="app-4">
+    <p>{{ tsundere ? "I hate you" : "I love you" }}</p>
+  </div>
+
+  <!-- Directive Modifiers -->
+  <div id="app-5">
+    <form v-on:submit.prevent="onSubmit">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <!-- Shorthands -->
+  <div id="app-6">
+    <a :href="somewhere">My Link</a>
+    <a @click="goSomewhere">My Other Link</a>
+  </div>
+
+  <script src="scripts/syntax.js"></script>
+</body>
+
+</html>

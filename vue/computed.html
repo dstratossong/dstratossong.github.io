@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+</head>
+
+<body>
+  <!-- Computed Getter -->
+  <div id="app-1">
+    <p>Original message: "{{ message }}"</p>
+    <p>Reversed message: "{{ reversedMessage }}"</p>
+  </div>
+
+  <!-- Watch -->
+  <div id="app-2">
+    <input v-model="firstName" />
+    <input v-model="lastName" />
+    <p>{{ fullName }}</p>
+  </div>
+
+  <!-- Computed Setter -->
+  <div id="app-3">
+    <p>{{ fullName }}</p>
+    <!-- This is actually really weird LOL -->
+    <input v-model="fullName" />
+  </div>
+
+  <!-- Debounce -->
+  <div id="app-4">
+    <p>
+      Ask a yes/no question:
+      <input v-model="question" />
+    </p>
+    <p>{{ answer }}</p>
+  </div>
+
+  <script src="scripts/computed.js"></script>
+</body>
+
+</html>

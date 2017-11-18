@@ -1,0 +1,38 @@
+@keyframes colors {
+  0% {
+    background-color: red;
+  }
+  10% {
+    background-color: orange;
+  }
+  20% {
+    background-color: yellow;
+  }
+  40% {
+    background-color: green;
+  }
+  60% {
+    background-color: cyan;
+  }
+  70% {
+    background-color: blue;
+  }
+  85% {
+    background-color: purple;
+  }
+  100% {
+    background-color: red;
+  }
+}
+
+.animate {
+  animation-name: colors;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+}
+
+#cool-div {
+  height: 100px;
+  width: 100px;
+  background-color: red;
+}

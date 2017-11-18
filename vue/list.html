@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <!-- v-for -->
+  <div id="app-1">
+    <ul>
+      <li v-for="(item, index) of items" :key="item.id">{{ parentField }} {{ index }}: {{ item.text }}</li>
+      <li v-for="(value, key, index) in object">{{ key }}: {{ value }} ({{ index }})</li>
+    </ul>
+  </div>
+
+  <script src="scripts/list.js"></script>
+</body>
+
+</html>

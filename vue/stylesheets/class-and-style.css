@@ -1,0 +1,11 @@
+.static {
+  border: 1px black solid;
+}
+
+.active {
+  font-size: 30px;
+}
+
+.text-danger {
+  color: red;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <!-- v-if -->
+  <div id="app-1">
+    <button v-on:click="toggleOk">Toggle ok</button>
+
+    <h1 v-if="ok">Hey There!</h1>
+    <h1 v-else>Nope.</h1>
+
+    <template v-if="ok">
+      <h1>Title</h1>
+      <p>Well I don't have anything to say really</p>
+      <p>I just hope you have a great day!</p>
+    </template>
+
+    <h1 v-if="Math.random() < 0.5">Sometimes you see me</h1>
+    <h1 v-else-if="Math.random() < 0.5">Sometimes I need two tries</h1>
+    <h1 v-else>Sometimes I just don't</h1>
+    <!-- note: v-else must immediately follow v-if -->
+
+    <template v-if="ok">
+      <label>Fake Password</label>
+      <input />
+    </template>
+    <template v-else>
+      <label>Real Password</label>
+      <input /><!-- same input field (because of optimization) -->
+    </template>
+
+    <template v-if="ok">
+      <label>Fake Password</label>
+      <input key="fake" />
+    </template>
+    <template v-else>
+      <label>Real Password</label>
+      <input key="real" /><!-- different input field (still same label tho) -->
+    </template>
+
+    <h1 v-show="ok">Oh Hey!</h1><!-- this is just CSS -->
+  </div>
+
+  <script src="scripts/conditional.js"></script>
+</body>
+
+</html>

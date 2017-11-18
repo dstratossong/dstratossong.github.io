@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Nova+Mono|VT323" rel="stylesheet">
+  <script src="https://unpkg.com/vue"></script>
+
+  <style>
+    .countdown {
+      font-family: 'Nova Mono', monospace;
+      font-weight: 500;
+      font-size: 48px;
+      text-align: center;
+    }
+    .countdown .number {
+      color: red;
+    }
+    .event-form {
+      text-align: center;
+    }
+    .event-form .event-input {
+      width: 50%;
+      min-width: 300px;
+      font-size: 30px;
+    }
+    .event-list {
+      padding: 0;
+    }
+    .event-item {
+      list-style: none;
+    }
+    .event-item .left {
+      display: inline-block;
+      width: 30%;
+      text-align: right;
+      font-family: 'Nova Mono', monospace;
+    }
+    .event-item .right {
+      display: inline-grid;
+      width: 69%;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app-1">
+    <p v-if="timeLeft" class="countdown">
+      <!-- {{ timeLeft.days }} Days -->
+      <span class="number">{{ timeLeft.hours }}</span> Hours
+      <span class="number">{{ timeLeft.minutes }}</span> Minutes
+      <span class="number">{{ timeLeft.seconds }}</span> Seconds
+      <span class="number">{{ timeLeft.millisec }}</span>
+    </p>
+
+    <form v-on:submit.prevent="onSubmit" class="event-form">
+      <input v-model="newEvent" class="event-input" placeholder="New event" />
+      <!-- <button type="submit">Submit</button> -->
+    </form>
+
+    <ul class="event-list">
+      <li v-for="event in events" class="event-item">
+        <p class="left">{{ event.time.hours }}:{{ event.time.minutes }}:{{ event.time.seconds }}</p>
+        <p class="right">{{ event.name }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    var pad = function(number, length) {
+      let str = String(number);
+      let diff = str.length - length;
+      if (diff > 0) {
+        return str;
+      } else {
+        return Array(-diff + 1).join('0') + str;
+      }
+    };
+
+    var getDiff = function(before, after) {
+      let timeDiff = after - before;
+      return {
+        // days: Math.floor(timeDiff / 1000 / 60 / 60 / 24),
+        hours: pad(Math.floor(timeDiff / 1000 / 60 / 60), 2),
+        minutes: pad(Math.floor(timeDiff / 1000 / 60) % 60, 2),
+        seconds: pad(Math.floor(timeDiff / 1000) % 60, 2),
+        millisec: pad(timeDiff % 1000, 3),
+      };
+    };
+
+    var app1 = new Vue({
+      el: "#app-1",
+      data: {
+        timeLeft: null,
+        time: null,
+        events: [],
+        newEvent: "",
+        interval: null,
+      },
+      methods: {
+        calculate: function() {
+          this.timeLeft = getDiff(new Date, this.time);
+        },
+        start: function (time) {
+          this.time = new Date(time);
+          this.interval = setInterval(this.calculate);
+        },
+        end: function () {
+          clearInterval(this.interval);
+        },
+        onSubmit: function () {
+          this.events.push({
+            time: getDiff(new Date, this.time),
+            name: this.newEvent,
+          });
+          this.newEvent = "";
+        },
+      },
+    });
+  </script>
+</body>
+
+</html>
